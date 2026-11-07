@@ -1,0 +1,8 @@
+{
+  "id": "raise-four-eyes-limit",
+  "title": "Raise the four-eyes limit for recalls to 25,000",
+  "rationale": "Team leads approve a recall every few minutes; most are just above 10,000.",
+  "model": "proposals/raise-four-eyes-limit.bpmn",
+  "author": "ops.lead"
+}
+

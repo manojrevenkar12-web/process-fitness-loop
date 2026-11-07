@@ -1,0 +1,17 @@
+{
+  "sha256": "a2f389eb7bc66f2727f5b65d3ac11bdd0cb17653032784e1ba7b3dd099a74ad1",
+  "seeds": [
+    1009,
+    1013,
+    1019,
+    1021,
+    1031,
+    1033,
+    1039,
+    1049,
+    1051,
+    1061
+  ],
+  "pinned": "2026-11-07",
+  "rule": "The held-out worlds are run once, after the backtester is final, for the published numbers. Changing their seeds needs a new pin and a note in REPORT.md."
+}

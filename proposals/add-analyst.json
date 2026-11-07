@@ -1,0 +1,9 @@
+{
+  "id": "add-analyst",
+  "title": "Add one analyst to payments operations",
+  "rationale": "Queues build up every Monday morning; one more person might clear them.",
+  "model": "processes/payment-investigation-as-is.bpmn",
+  "teams": { "payments-ops": 8 },
+  "author": "ops.lead"
+}
+

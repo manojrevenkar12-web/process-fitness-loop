@@ -1,0 +1,23 @@
+{
+  "id": "agent-intake",
+  "title": "Let an agent read and classify inbound inquiries",
+  "rationale": "Registering an inquiry is reading a message and keying four fields. An agent can propose them and rules can check the UETR and amounts against the hub.",
+  "model": "proposals/agent-intake.bpmn",
+  "author": "fde.manoj",
+  "steps": {
+    "classify_inquiry": {
+      "outputsFrom": "register_inquiry",
+      "assume": {
+        "medianMinutes": 0.5,
+        "p90Minutes": 1.5,
+        "uncertainty": 2.0,
+        "source": "vendor latency figures for the model endpoint; decisions assumed equal to the analysts' recorded decisions (not yet measured)",
+        "measured": false,
+        "agreement": [
+          0.88,
+          1.0
+        ]
+      }
+    }
+  }
+}

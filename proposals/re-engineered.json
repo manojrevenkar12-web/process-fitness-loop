@@ -1,0 +1,81 @@
+{
+  "id": "re-engineered",
+  "title": "Re-engineered investigation: agent intake, hub connector, gpi tracker, automated notices",
+  "rationale": "The target process from the re-engineering workshop: people keep the four-eyes approval, hand searches, unclear traces and free-text answers.",
+  "model": "processes/payment-investigation-to-be.bpmn",
+  "author": "fde.manoj",
+  "steps": {
+    "classify_inquiry": {
+      "outputsFrom": "register_inquiry",
+      "assume": {
+        "medianMinutes": 0.5,
+        "p90Minutes": 1.5,
+        "uncertainty": 2.0,
+        "source": "vendor latency figures for the model endpoint; decisions assumed equal to the analysts' recorded decisions (not yet measured)",
+        "measured": false,
+        "agreement": [
+          0.88,
+          1.0
+        ]
+      }
+    },
+    "request_info": {
+      "assume": {
+        "medianMinutes": 0.1,
+        "p90Minutes": 0.3,
+        "source": "outbound MT199 send through the hub connector, staging",
+        "measured": true
+      }
+    },
+    "hub_lookup": {
+      "assume": {
+        "medianMinutes": 0.2,
+        "p90Minutes": 0.6,
+        "errors": {
+          "PAYMENT_NOT_FOUND": 0.05
+        },
+        "source": "connector timings and not-found rate from the staging run against the hub test region (pfl-hub, 2,000 lookups)",
+        "measured": true
+      }
+    },
+    "manual_lookup": {
+      "history": "lookup_payment"
+    },
+    "approve_recall": {
+      "history": "second_approval"
+    },
+    "send_recall": {
+      "assume": {
+        "medianMinutes": 0.3,
+        "p90Minutes": 1.0,
+        "source": "connector recall timings, staging",
+        "measured": true
+      }
+    },
+    "gpi_trace": {
+      "assume": {
+        "medianMinutes": 0.2,
+        "p90Minutes": 0.5,
+        "outputs": {
+          "gpiStatus": {
+            "CREDITED": 0.7,
+            "PENDING": 0.3
+          }
+        },
+        "source": "gpi tracker API latency; credited share from the bank's gpi dashboard for last quarter",
+        "measured": true
+      }
+    },
+    "investigate_trace": {
+      "history": "trace_payment"
+    },
+    "notify_customer": {
+      "assume": {
+        "medianMinutes": 0.05,
+        "p90Minutes": 0.1,
+        "source": "notification service, staging",
+        "measured": true
+      }
+    }
+  }
+}

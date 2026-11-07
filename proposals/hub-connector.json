@@ -1,0 +1,24 @@
+{
+  "id": "hub-connector",
+  "title": "Look up payments through the legacy hub connector",
+  "rationale": "Analysts spend about a fifth of their time finding payments in the hub screens. The connector does it in under a second; people only search by hand when the hub cannot find the payment.",
+  "model": "proposals/hub-connector.bpmn",
+  "author": "fde.manoj",
+  "steps": {
+    "hub_lookup": {
+      "assume": {
+        "medianMinutes": 0.2,
+        "p90Minutes": 0.6,
+        "errors": {
+          "PAYMENT_NOT_FOUND": 0.05
+        },
+        "uncertainty": 1.5,
+        "source": "connector timings and not-found rate from the staging run against the hub test region (pfl-hub, 2,000 lookups)",
+        "measured": true
+      }
+    },
+    "manual_lookup": {
+      "history": "lookup_payment"
+    }
+  }
+}
