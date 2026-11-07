@@ -11,11 +11,15 @@ import java.util.List;
  * @param missing tokens that had to be added because a step ran when the model did not allow it
  * @param remaining tokens left when the history ended
  * @param problems keys of the deviations seen in this case, e.g. {@code RAN_WHEN_NOT_ALLOWED:send_recall}
+ * @param expectedInstead for each step that ran when it was not allowed, the steps the model would
+ *     have allowed at that point, given the case's data
  */
-public record CaseFit(String caseId, int produced, int consumed, int missing, int remaining, List<String> problems) {
+public record CaseFit(String caseId, int produced, int consumed, int missing, int remaining, List<String> problems,
+    java.util.Map<String, List<String>> expectedInstead) {
 
   public CaseFit {
     problems = List.copyOf(problems);
+    expectedInstead = java.util.Map.copyOf(expectedInstead);
   }
 
   public double fitness() {

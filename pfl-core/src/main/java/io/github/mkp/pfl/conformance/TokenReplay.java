@@ -72,16 +72,20 @@ public final class TokenReplay {
     double perfect = fits.isEmpty() ? 1.0 : (double) fits.stream().filter(CaseFit::perfect).count() / fits.size();
 
     Map<String, List<String>> casesByProblem = new LinkedHashMap<>();
+    Map<String, Map<String, Integer>> expected = new HashMap<>();
     for (CaseFit fit : fits) {
       for (String p : new LinkedHashSet<>(fit.problems())) {
         casesByProblem.computeIfAbsent(p, k -> new ArrayList<>()).add(fit.caseId());
       }
+      fit.expectedInstead().forEach((element, steps) -> steps.forEach(step ->
+          expected.computeIfAbsent(element, k -> new HashMap<>()).merge(step, 1, Integer::sum)));
     }
+
     List<Deviation> deviations = new ArrayList<>();
     casesByProblem.forEach((key, caseIds) -> {
       String[] parts = key.split(":", 2);
       Deviation.Kind kind = Deviation.Kind.valueOf(parts[0]);
-      deviations.add(new Deviation(kind, parts[1], caseIds.size(), describe(kind, parts[1], caseIds.size(), log.size()),
+      deviations.add(new Deviation(kind, parts[1], caseIds.size(), describe(kind, parts[1], caseIds.size(), log.size(), expected),
           caseIds.subList(0, Math.min(5, caseIds.size()))));
     });
     deviations.sort(Comparator.comparingInt(Deviation::cases).reversed().thenComparing(Deviation::elementId));
@@ -91,6 +95,7 @@ public final class TokenReplay {
   public CaseFit replay(CaseRecord record) {
     Counter n = new Counter();
     List<String> problems = new ArrayList<>();
+    Map<String, List<String>> expectedInstead = new HashMap<>();
     Map<String, Object> vars = new HashMap<>(record.attributes());
     int[] marking = new int[flowIds.size()];
     Node start = model.nodesOfKind(NodeKind.START_EVENT).stream()
@@ -121,6 +126,7 @@ public final class TokenReplay {
         }
       }
       if (!enabled(node, marking)) {
+        expectedInstead.putIfAbsent(node.id(), expectedNext(marking, vars));
         String in = inputFlowsOf(node).get(0);
         marking[flowIndex.get(in)]++;
         n.missing++;
@@ -145,7 +151,7 @@ public final class TokenReplay {
         }
       }
     }
-    return new CaseFit(record.caseId(), n.produced, n.consumed, n.missing, remaining, problems);
+    return new CaseFit(record.caseId(), n.produced, n.consumed, n.missing, remaining, problems, expectedInstead);
   }
 
   // ------------------------------------------------------------------ firing
@@ -312,6 +318,24 @@ public final class TokenReplay {
     return null;
   }
 
+  /**
+   * Visible steps the model would let run next from this marking, firing only silent elements and
+   * taking only the gateway branches the case's data selects.
+   */
+  private List<String> expectedNext(int[] marking, Map<String, Object> vars) {
+    java.util.Set<String> next = new java.util.TreeSet<>();
+    search(marking, vars, m -> {
+      for (Node node : model.nodes().values()) {
+        boolean visible = node.kind().isActivity() || node.kind() == NodeKind.INTERMEDIATE_CATCH_EVENT;
+        if (visible && enabled(node, m)) {
+          next.add(node.id());
+        }
+      }
+      return false;
+    });
+    return List.copyOf(next);
+  }
+
   /** The first step a person would recognise after a flow, skipping gateways. */
   private String firstVisibleAfter(String flowId) {
     String target = model.flow(flowId).target();
@@ -351,7 +375,8 @@ public final class TokenReplay {
     return labels;
   }
 
-  private String describe(Deviation.Kind kind, String elementId, int cases, int total) {
+  private String describe(Deviation.Kind kind, String elementId, int cases, int total,
+      Map<String, Map<String, Integer>> expectedByElement) {
     String share = String.format(java.util.Locale.ROOT, "%d of %d cases (%.1f%%)", cases, total, 100.0 * cases / total);
     return switch (kind) {
       case NOT_IN_MODEL -> "'" + elementId + "' appears in " + share + " but is not a step of the model.";
@@ -359,9 +384,21 @@ public final class TokenReplay {
           + model.findNode(elementId).map(Node::label).orElse(elementId) + "'.";
       case RAN_WHEN_NOT_ALLOWED -> {
         Node node = model.node(elementId);
+        Map<String, Integer> instead = expectedByElement.getOrDefault(elementId, Map.of());
+        // the most frequent expectation; ties go to the alphabetically first step, for stable text
+        String usual = instead.entrySet().stream()
+            .min(Comparator.comparing((Map.Entry<String, Integer> e) -> -e.getValue()).thenComparing(Map.Entry::getKey))
+            .map(Map.Entry::getKey).orElse(null);
+        if (usual != null) {
+          yield "'" + node.label() + "' ran in " + share + " while the model, given each case's data, still required '"
+              + model.node(usual).label() + "' first.";
+        }
+        if (node.incoming().stream().map(f -> model.node(model.flow(f).source())).allMatch(p -> p.kind() == NodeKind.START_EVENT)) {
+          yield "'" + node.label() + "' ran more than once in " + share + "; the model allows it once, at the start.";
+        }
         List<String> before = predecessors(elementId);
         yield "'" + node.label() + "' ran in " + share + " at a point where the model does not allow it"
-            + (before.isEmpty() ? "." : "; for these cases the model first requires " + String.join(" or ", before) + ".");
+            + (before.isEmpty() ? "." : "; the model first requires " + String.join(" or ", before) + ".");
       }
     };
   }

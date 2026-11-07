@@ -13,7 +13,7 @@
           "cases" : 10,
           "element" : "send_recall",
           "kind" : "RAN_WHEN_NOT_ALLOWED",
-          "message" : "'Send recall' ran in 10 of 3808 cases (0.3%) at a point where the model does not allow it; for these cases the model first requires 'Second approval' or 'Check funds can be returned'."
+          "message" : "'Send recall' ran in 10 of 3808 cases (0.3%) while the model, given each case's data, still required 'Second approval' first."
         } ],
         "fitness" : 0.9997719342258308,
         "perfectlyFitting" : 0.9973739495798319
@@ -28,7 +28,7 @@
           "cases" : 589,
           "element" : "register_inquiry",
           "kind" : "RAN_WHEN_NOT_ALLOWED",
-          "message" : "'Register inquiry' ran in 589 of 3808 cases (15.5%) at a point where the model does not allow it; for these cases the model first requires 'Inquiry received'."
+          "message" : "'Register inquiry' ran in 589 of 3808 cases (15.5%) while the model, given each case's data, still required 'Look up payment in hub' first."
         }, {
           "cases" : 589,
           "element" : "request_info",
@@ -48,7 +48,7 @@
           "cases" : 10,
           "element" : "send_recall",
           "kind" : "RAN_WHEN_NOT_ALLOWED",
-          "message" : "'Send recall' ran in 10 of 3808 cases (0.3%) at a point where the model does not allow it; for these cases the model first requires 'Second approval' or 'Check funds can be returned'."
+          "message" : "'Send recall' ran in 10 of 3808 cases (0.3%) while the model, given each case's data, still required 'Second approval' first."
         } ],
         "fitness" : 0.9634629752632662,
         "perfectlyFitting" : 0.8432247899159664
@@ -394,7 +394,7 @@
           "cases" : 7,
           "element" : "send_recall",
           "kind" : "RAN_WHEN_NOT_ALLOWED",
-          "message" : "'Send recall' ran in 7 of 3473 cases (0.2%) at a point where the model does not allow it; for these cases the model first requires 'Second approval' or 'Check funds can be returned'."
+          "message" : "'Send recall' ran in 7 of 3473 cases (0.2%) while the model, given each case's data, still required 'Second approval' first."
         } ],
         "fitness" : 0.9998273480662984,
         "perfectlyFitting" : 0.9979844514828679
@@ -409,7 +409,7 @@
           "cases" : 732,
           "element" : "register_inquiry",
           "kind" : "RAN_WHEN_NOT_ALLOWED",
-          "message" : "'Register inquiry' ran in 732 of 3473 cases (21.1%) at a point where the model does not allow it; for these cases the model first requires 'Inquiry received'."
+          "message" : "'Register inquiry' ran in 732 of 3473 cases (21.1%) while the model, given each case's data, still required 'Look up payment in hub' first."
         }, {
           "cases" : 732,
           "element" : "request_info",
@@ -429,7 +429,7 @@
           "cases" : 7,
           "element" : "send_recall",
           "kind" : "RAN_WHEN_NOT_ALLOWED",
-          "message" : "'Send recall' ran in 7 of 3473 cases (0.2%) at a point where the model does not allow it; for these cases the model first requires 'Second approval' or 'Check funds can be returned'."
+          "message" : "'Send recall' ran in 7 of 3473 cases (0.2%) while the model, given each case's data, still required 'Second approval' first."
         } ],
         "fitness" : 0.9509308424914216,
         "perfectlyFitting" : 0.7875035991937805
@@ -775,7 +775,7 @@
           "cases" : 6,
           "element" : "send_recall",
           "kind" : "RAN_WHEN_NOT_ALLOWED",
-          "message" : "'Send recall' ran in 6 of 3079 cases (0.2%) at a point where the model does not allow it; for these cases the model first requires 'Second approval' or 'Check funds can be returned'."
+          "message" : "'Send recall' ran in 6 of 3079 cases (0.2%) while the model, given each case's data, still required 'Second approval' first."
         } ],
         "fitness" : 0.9998334952129874,
         "perfectlyFitting" : 0.9980513153621305
@@ -790,7 +790,7 @@
           "cases" : 706,
           "element" : "register_inquiry",
           "kind" : "RAN_WHEN_NOT_ALLOWED",
-          "message" : "'Register inquiry' ran in 706 of 3079 cases (22.9%) at a point where the model does not allow it; for these cases the model first requires 'Inquiry received'."
+          "message" : "'Register inquiry' ran in 706 of 3079 cases (22.9%) while the model, given each case's data, still required 'Look up payment in hub' first."
         }, {
           "cases" : 706,
           "element" : "request_info",
@@ -810,7 +810,7 @@
           "cases" : 6,
           "element" : "send_recall",
           "kind" : "RAN_WHEN_NOT_ALLOWED",
-          "message" : "'Send recall' ran in 6 of 3079 cases (0.2%) at a point where the model does not allow it; for these cases the model first requires 'Second approval' or 'Check funds can be returned'."
+          "message" : "'Send recall' ran in 6 of 3079 cases (0.2%) while the model, given each case's data, still required 'Second approval' first."
         } ],
         "fitness" : 0.945038484815848,
         "perfectlyFitting" : 0.7690808704124715
@@ -1156,7 +1156,7 @@
           "cases" : 11,
           "element" : "send_recall",
           "kind" : "RAN_WHEN_NOT_ALLOWED",
-          "message" : "'Send recall' ran in 11 of 3076 cases (0.4%) at a point where the model does not allow it; for these cases the model first requires 'Second approval' or 'Check funds can be returned'."
+          "message" : "'Send recall' ran in 11 of 3076 cases (0.4%) while the model, given each case's data, still required 'Second approval' first."
         } ],
         "fitness" : 0.9996870821835974,
         "perfectlyFitting" : 0.9964239271781534
@@ -1171,7 +1171,7 @@
           "cases" : 615,
           "element" : "register_inquiry",
           "kind" : "RAN_WHEN_NOT_ALLOWED",
-          "message" : "'Register inquiry' ran in 615 of 3076 cases (20.0%) at a point where the model does not allow it; for these cases the model first requires 'Inquiry received'."
+          "message" : "'Register inquiry' ran in 615 of 3076 cases (20.0%) while the model, given each case's data, still required 'Look up payment in hub' first."
         }, {
           "cases" : 615,
           "element" : "request_info",
@@ -1191,7 +1191,7 @@
           "cases" : 11,
           "element" : "send_recall",
           "kind" : "RAN_WHEN_NOT_ALLOWED",
-          "message" : "'Send recall' ran in 11 of 3076 cases (0.4%) at a point where the model does not allow it; for these cases the model first requires 'Second approval' or 'Check funds can be returned'."
+          "message" : "'Send recall' ran in 11 of 3076 cases (0.4%) while the model, given each case's data, still required 'Second approval' first."
         } ],
         "fitness" : 0.9497529367194149,
         "perfectlyFitting" : 0.796814044213264
@@ -1537,7 +1537,7 @@
           "cases" : 11,
           "element" : "send_recall",
           "kind" : "RAN_WHEN_NOT_ALLOWED",
-          "message" : "'Send recall' ran in 11 of 3443 cases (0.3%) at a point where the model does not allow it; for these cases the model first requires 'Second approval' or 'Check funds can be returned'."
+          "message" : "'Send recall' ran in 11 of 3443 cases (0.3%) while the model, given each case's data, still required 'Second approval' first."
         } ],
         "fitness" : 0.9997168232719784,
         "perfectlyFitting" : 0.9968051118210862
@@ -1552,7 +1552,7 @@
           "cases" : 523,
           "element" : "register_inquiry",
           "kind" : "RAN_WHEN_NOT_ALLOWED",
-          "message" : "'Register inquiry' ran in 523 of 3443 cases (15.2%) at a point where the model does not allow it; for these cases the model first requires 'Inquiry received'."
+          "message" : "'Register inquiry' ran in 523 of 3443 cases (15.2%) while the model, given each case's data, still required 'Look up payment in hub' first."
         }, {
           "cases" : 523,
           "element" : "request_info",
@@ -1572,7 +1572,7 @@
           "cases" : 11,
           "element" : "send_recall",
           "kind" : "RAN_WHEN_NOT_ALLOWED",
-          "message" : "'Send recall' ran in 11 of 3443 cases (0.3%) at a point where the model does not allow it; for these cases the model first requires 'Second approval' or 'Check funds can be returned'."
+          "message" : "'Send recall' ran in 11 of 3443 cases (0.3%) while the model, given each case's data, still required 'Second approval' first."
         } ],
         "fitness" : 0.9627711117468598,
         "perfectlyFitting" : 0.8451931455126344
@@ -1918,7 +1918,7 @@
           "cases" : 9,
           "element" : "send_recall",
           "kind" : "RAN_WHEN_NOT_ALLOWED",
-          "message" : "'Send recall' ran in 9 of 3484 cases (0.3%) at a point where the model does not allow it; for these cases the model first requires 'Second approval' or 'Check funds can be returned'."
+          "message" : "'Send recall' ran in 9 of 3484 cases (0.3%) while the model, given each case's data, still required 'Second approval' first."
         } ],
         "fitness" : 0.9997853207070104,
         "perfectlyFitting" : 0.9974167623421355
@@ -1933,7 +1933,7 @@
           "cases" : 893,
           "element" : "register_inquiry",
           "kind" : "RAN_WHEN_NOT_ALLOWED",
-          "message" : "'Register inquiry' ran in 893 of 3484 cases (25.6%) at a point where the model does not allow it; for these cases the model first requires 'Inquiry received'."
+          "message" : "'Register inquiry' ran in 893 of 3484 cases (25.6%) while the model, given each case's data, still required 'Look up payment in hub' first."
         }, {
           "cases" : 893,
           "element" : "request_info",
@@ -1953,7 +1953,7 @@
           "cases" : 9,
           "element" : "send_recall",
           "kind" : "RAN_WHEN_NOT_ALLOWED",
-          "message" : "'Send recall' ran in 9 of 3484 cases (0.3%) at a point where the model does not allow it; for these cases the model first requires 'Second approval' or 'Check funds can be returned'."
+          "message" : "'Send recall' ran in 9 of 3484 cases (0.3%) while the model, given each case's data, still required 'Second approval' first."
         } ],
         "fitness" : 0.9410989421255176,
         "perfectlyFitting" : 0.7413892078071183

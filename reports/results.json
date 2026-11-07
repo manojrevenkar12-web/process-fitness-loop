@@ -1,0 +1,472 @@
+{
+  "backtest-dev" : {
+    "summary" : {
+      "add-analyst" : {
+        "intervalCoverage" : 1.0,
+        "scoreErrorNaive" : 0.1540209572683333,
+        "scoreErrorOurs" : 0.003810718096982494,
+        "verdictHolds" : 6,
+        "verdicts" : {
+          "IMPROVES" : 6
+        },
+        "worlds" : 6
+      },
+      "agent-intake" : {
+        "intervalCoverage" : 1.0,
+        "scoreErrorNaive" : 0.13022241977480153,
+        "scoreErrorOurs" : 0.02578199306503937,
+        "verdictHolds" : 6,
+        "verdicts" : {
+          "NEEDS_SHADOW_RUN" : 6
+        },
+        "worlds" : 6
+      },
+      "hub-connector" : {
+        "intervalCoverage" : 1.0,
+        "scoreErrorNaive" : 0.17064686501911275,
+        "scoreErrorOurs" : 0.00844509596276844,
+        "verdictHolds" : 6,
+        "verdicts" : {
+          "IMPROVES" : 6
+        },
+        "worlds" : 6
+      },
+      "overall" : {
+        "intervalCoverage" : 0.9333333333333333,
+        "scoreErrorNaive" : 0.1734960921181484,
+        "scoreErrorOurs" : 0.013978191521064528,
+        "verdicts" : 30,
+        "verdictsThatHold" : 30
+      },
+      "raise-four-eyes-limit" : {
+        "intervalCoverage" : 0.6666666666666666,
+        "scoreErrorNaive" : 0.004522408833091292,
+        "scoreErrorOurs" : 0.0031802632051044395,
+        "verdictHolds" : 6,
+        "verdicts" : {
+          "BLOCKED" : 6
+        },
+        "worlds" : 6
+      },
+      "re-engineered" : {
+        "intervalCoverage" : 1.0,
+        "scoreErrorNaive" : 0.4080678096954031,
+        "scoreErrorOurs" : 0.0286728872754279,
+        "verdictHolds" : 6,
+        "verdicts" : {
+          "NEEDS_SHADOW_RUN" : 6
+        },
+        "worlds" : 6
+      }
+    },
+    "worlds" : [ 1, 2, 3, 4, 5, 6 ]
+  },
+  "exampleWorld" : {
+    "cases" : 3808,
+    "conformance" : {
+      "asIs" : {
+        "deviations" : [ {
+          "cases" : 10,
+          "element" : "second_approval",
+          "kind" : "LEFT_UNDONE",
+          "message" : "In 10 of 3808 cases (0.3%) the history ends while the model still expects 'Second approval'."
+        }, {
+          "cases" : 10,
+          "element" : "send_recall",
+          "kind" : "RAN_WHEN_NOT_ALLOWED",
+          "message" : "'Send recall' ran in 10 of 3808 cases (0.3%) at a point where the model does not allow it; for these cases the model first requires 'Second approval' or 'Check funds can be returned'."
+        } ],
+        "fitness" : 0.9997719342258308,
+        "perfectlyFitting" : 0.9973739495798319
+      },
+      "documented" : {
+        "deviations" : [ {
+          "cases" : 589,
+          "element" : "lookup_payment",
+          "kind" : "LEFT_UNDONE",
+          "message" : "In 589 of 3808 cases (15.5%) the history ends while the model still expects 'Look up payment in hub'."
+        }, {
+          "cases" : 589,
+          "element" : "register_inquiry",
+          "kind" : "RAN_WHEN_NOT_ALLOWED",
+          "message" : "'Register inquiry' ran in 589 of 3808 cases (15.5%) at a point where the model does not allow it; for these cases the model first requires 'Inquiry received'."
+        }, {
+          "cases" : 589,
+          "element" : "request_info",
+          "kind" : "NOT_IN_MODEL",
+          "message" : "'request_info' appears in 589 of 3808 cases (15.5%) but is not a step of the model."
+        }, {
+          "cases" : 589,
+          "element" : "wait_reply",
+          "kind" : "NOT_IN_MODEL",
+          "message" : "'wait_reply' appears in 589 of 3808 cases (15.5%) but is not a step of the model."
+        }, {
+          "cases" : 10,
+          "element" : "second_approval",
+          "kind" : "LEFT_UNDONE",
+          "message" : "In 10 of 3808 cases (0.3%) the history ends while the model still expects 'Second approval'."
+        }, {
+          "cases" : 10,
+          "element" : "send_recall",
+          "kind" : "RAN_WHEN_NOT_ALLOWED",
+          "message" : "'Send recall' ran in 10 of 3808 cases (0.3%) at a point where the model does not allow it; for these cases the model first requires 'Second approval' or 'Check funds can be returned'."
+        } ],
+        "fitness" : 0.9634629752632662,
+        "perfectlyFitting" : 0.8432247899159664
+      }
+    },
+    "observed" : {
+      "cost_per_case_eur" : 55.11101774334734,
+      "cycle_p50_hours" : 9.50741,
+      "cycle_p90_hours" : 66.65062205555556,
+      "four_eyes_violation_rate" : 0.03205128205128205,
+      "open_case_rate" : 0.0,
+      "person_minutes_per_case" : 56.65958520658263,
+      "sla_breach_rate" : 0.17673319327731093,
+      "touches_per_case" : 5.246586134453781
+    },
+    "proposals" : [ {
+      "delta" : {
+        "cost_per_case_eur" : {
+          "covered" : false,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : 0.0,
+            "high" : 0.0,
+            "low" : 0.0
+          },
+          "true" : 0.02314440096871806
+        },
+        "cycle_p90_hours" : {
+          "covered" : true,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : -1.7145049097221943,
+            "high" : -1.0280627138888847,
+            "low" : -5.144471562500002
+          },
+          "true" : -1.9561003888888848
+        },
+        "sla_breach_rate" : {
+          "covered" : true,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : -0.024619222689075626,
+            "high" : -0.013359513344295514,
+            "low" : -0.03825671609957245
+          },
+          "true" : -0.02573529411764708
+        },
+        "touches_per_case" : {
+          "covered" : false,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : 0.0,
+            "high" : 0.0,
+            "low" : 0.0
+          },
+          "true" : 0.002626050420168724
+        }
+      },
+      "evidence" : {
+        "ASSUMED" : 0.0,
+        "SAME_CASE" : 0.9999550146880377,
+        "SIMILAR_CASES" : 4.498531196227724E-5
+      },
+      "proposal" : "add-analyst",
+      "reasons" : [ "the fitness score improves by 0.078 (90% interval 0.046 to 0.125)" ],
+      "score" : {
+        "covered" : true,
+        "naive" : 0.0,
+        "projected" : {
+          "estimate" : 0.0780407962825349,
+          "high" : 0.12531724890982301,
+          "low" : 0.046279335939913575
+        },
+        "true" : 0.08222570138576465
+      },
+      "trueBreaches" : [ ],
+      "verdict" : "IMPROVES",
+      "verdictHolds" : true
+    }, {
+      "delta" : {
+        "cost_per_case_eur" : {
+          "covered" : true,
+          "naive" : -17.181283459383756,
+          "projected" : {
+            "estimate" : -16.80775135854342,
+            "high" : -16.17844863914986,
+            "low" : -17.409320880082202
+          },
+          "true" : -16.787770059232024
+        },
+        "cycle_p90_hours" : {
+          "covered" : true,
+          "naive" : -0.4939866666666646,
+          "projected" : {
+            "estimate" : -0.24034666666666737,
+            "high" : 7.829596090277773,
+            "low" : -8.805373579166682
+          },
+          "true" : -0.6829585833333311
+        },
+        "sla_breach_rate" : {
+          "covered" : true,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : -0.014246323529411742,
+            "high" : 0.018321715516385177,
+            "low" : -0.047179657977326574
+          },
+          "true" : -0.014968487394957986
+        },
+        "touches_per_case" : {
+          "covered" : true,
+          "naive" : -1.1649159663865554,
+          "projected" : {
+            "estimate" : -1.1132484243697478,
+            "high" : -1.0572433293659047,
+            "low" : -1.1653168153986448
+          },
+          "true" : -1.1055672268907557
+        }
+      },
+      "evidence" : {
+        "ASSUMED" : 0.0014933234655561045,
+        "SAME_CASE" : 0.7496195208479961,
+        "SIMILAR_CASES" : 0.24888715568644773
+      },
+      "proposal" : "agent-intake",
+      "reasons" : [ "the projection rests on assumptions nobody has measured yet (classify_inquiry); run the candidate in shadow on live cases and measure them before deciding" ],
+      "score" : {
+        "covered" : true,
+        "naive" : 0.19936690460773482,
+        "projected" : {
+          "estimate" : 0.23173589682038734,
+          "high" : 0.36559943559153296,
+          "low" : 0.09833999355433845
+        },
+        "true" : 0.23580392043783963
+      },
+      "trueBreaches" : [ ],
+      "verdict" : "NEEDS_SHADOW_RUN",
+      "verdictHolds" : true
+    }, {
+      "delta" : {
+        "cost_per_case_eur" : {
+          "covered" : false,
+          "naive" : -11.96686166666666,
+          "projected" : {
+            "estimate" : -11.339342719238736,
+            "high" : -11.034180400908467,
+            "low" : -11.681416596740986
+          },
+          "true" : -10.985610251371384
+        },
+        "cycle_p90_hours" : {
+          "covered" : true,
+          "naive" : -0.2030608333333319,
+          "projected" : {
+            "estimate" : -3.202861694444451,
+            "high" : -1.9890144402777667,
+            "low" : -8.736847038888927
+          },
+          "true" : -3.546516916666647
+        },
+        "sla_breach_rate" : {
+          "covered" : true,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : -0.033810399159663856,
+            "high" : -0.017883326791198147,
+            "low" : -0.0522493751735629
+          },
+          "true" : -0.0344012605042017
+        },
+        "touches_per_case" : {
+          "covered" : true,
+          "naive" : -1.0,
+          "projected" : {
+            "estimate" : -0.9472820378151265,
+            "high" : -0.9360220634535781,
+            "low" : -0.9555104468414126
+          },
+          "true" : -0.9377626050420167
+        }
+      },
+      "evidence" : {
+        "ASSUMED" : 6.281129883065563E-4,
+        "SAME_CASE" : 0.9993257878289764,
+        "SIMILAR_CASES" : 4.609918271704615E-5
+      },
+      "proposal" : "hub-connector",
+      "reasons" : [ "the fitness score improves by 0.250 (90% interval 0.206 to 0.323)" ],
+      "score" : {
+        "covered" : true,
+        "naive" : 0.14674880585202546,
+        "projected" : {
+          "estimate" : 0.2500610668802331,
+          "high" : 0.32284375999490567,
+          "low" : 0.20630626351382964
+        },
+        "true" : 0.25033049262627327
+      },
+      "trueBreaches" : [ ],
+      "verdict" : "IMPROVES",
+      "verdictHolds" : true
+    }, {
+      "delta" : {
+        "cost_per_case_eur" : {
+          "covered" : true,
+          "naive" : -0.6642730718954226,
+          "projected" : {
+            "estimate" : -0.6494845104604323,
+            "high" : -0.5632986118083608,
+            "low" : -0.7384580965309311
+          },
+          "true" : -0.6202614793417354
+        },
+        "cycle_p90_hours" : {
+          "covered" : false,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : 0.08529949999999076,
+            "high" : 0.3094938722222105,
+            "low" : -0.08028899444444378
+          },
+          "true" : -0.45087436111110435
+        },
+        "sla_breach_rate" : {
+          "covered" : true,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : -0.001181722689075626,
+            "high" : -2.7345226931034674E-4,
+            "low" : -0.002150109329620448
+          },
+          "true" : -0.0013130252100840567
+        },
+        "touches_per_case" : {
+          "covered" : true,
+          "naive" : -0.05724789915966433,
+          "projected" : {
+            "estimate" : -0.05724789915966433,
+            "high" : -0.051316814666819345,
+            "low" : -0.06347858099530543
+          },
+          "true" : -0.054621848739495604
+        }
+      },
+      "evidence" : {
+        "ASSUMED" : 0.0,
+        "SAME_CASE" : 0.9999862712119169,
+        "SIMILAR_CASES" : 1.372878808316759E-5
+      },
+      "proposal" : "raise-four-eyes-limit",
+      "reasons" : [ "hard limit: four_eyes_violation_rate is 0.6987, above the limit of 0.0000" ],
+      "score" : {
+        "covered" : true,
+        "naive" : 0.008160188512944838,
+        "projected" : {
+          "estimate" : 0.010800987412937673,
+          "high" : 0.014266009551683606,
+          "low" : 0.00784335969287727
+        },
+        "true" : 0.01394247495352707
+      },
+      "trueBreaches" : [ "four_eyes_violation_rate is 0.6987, above the limit of 0.0000" ],
+      "verdict" : "BLOCKED",
+      "verdictHolds" : true
+    }, {
+      "delta" : {
+        "cost_per_case_eur" : {
+          "covered" : true,
+          "naive" : -51.02243678104575,
+          "projected" : {
+            "estimate" : -48.12188665878851,
+            "high" : -47.195180119929326,
+            "low" : -48.863321077790104
+          },
+          "true" : -47.43857631798553
+        },
+        "cycle_p90_hours" : {
+          "covered" : true,
+          "naive" : -1.2211736111111051,
+          "projected" : {
+            "estimate" : -26.486115548611124,
+            "high" : -12.799399483333243,
+            "low" : -34.85192853611112
+          },
+          "true" : -28.421956083333328
+        },
+        "sla_breach_rate" : {
+          "covered" : true,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : -0.07891281512605042,
+            "high" : -0.04828560320445232,
+            "low" : -0.10860988223264281
+          },
+          "true" : -0.08455882352941177
+        },
+        "touches_per_case" : {
+          "covered" : true,
+          "naive" : -5.004726890756303,
+          "projected" : {
+            "estimate" : -4.813878676470589,
+            "high" : -4.781028543566232,
+            "low" : -4.846822942941206
+          },
+          "true" : -4.842436974789916
+        }
+      },
+      "evidence" : {
+        "ASSUMED" : 0.0026320324032895106,
+        "SAME_CASE" : 0.7353024191374743,
+        "SIMILAR_CASES" : 0.2620655484592362
+      },
+      "proposal" : "re-engineered",
+      "reasons" : [ "the projection rests on assumptions nobody has measured yet (classify_inquiry); run the candidate in shadow on live cases and measure them before deciding" ],
+      "score" : {
+        "covered" : true,
+        "naive" : 0.4071580058640202,
+        "projected" : {
+          "estimate" : 0.7731845714633733,
+          "high" : 0.8891033168646476,
+          "low" : 0.6249112097825571
+        },
+        "true" : 0.8001242774072181
+      },
+      "trueBreaches" : [ ],
+      "verdict" : "NEEDS_SHADOW_RUN",
+      "verdictHolds" : true
+    } ],
+    "seed" : 1
+  },
+  "hub-reliability" : {
+    "faults" : {
+      "lostAnswer" : 0.08,
+      "overload" : 0.1,
+      "sessionCalls" : 25
+    },
+    "jobRetries" : 3,
+    "outcomes" : {
+      "blindRetry" : {
+        "extraRecalls" : 884,
+        "hubCallsPerRecall" : 1.3186,
+        "neverRecalled" : 0,
+        "recalledTwiceOrMore" : 822,
+        "recalls" : 10000
+      },
+      "checkBeforeAct" : {
+        "extraRecalls" : 0,
+        "hubCallsPerRecall" : 2.8028,
+        "neverRecalled" : 0,
+        "recalledTwiceOrMore" : 0,
+        "recalls" : 10000
+      }
+    },
+    "recallsPerRun" : 2000,
+    "seeds" : [ 11, 12, 13, 14, 15 ]
+  }
+}

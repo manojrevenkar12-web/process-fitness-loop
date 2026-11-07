@@ -85,6 +85,12 @@ jobs:
         env:
           CAMUNDA_URL: http://localhost:8080
         run: mvn -B -ntp -pl pfl-service -am -Pengine test -Dsurefire.failIfNoSpecifiedTests=false
+      - name: print the engine reports
+        if: always()
+        run: |
+          for f in reports/engine-equivalence.json reports/verifier-vs-engine.json; do
+            echo "::group::$f"; python3 -c "import json,sys; print(json.dumps(json.load(open('$f')), separators=(',',':')))" "$f" | sed 's/^/REPORT /'; echo "::endgroup::"
+          done
       - name: cluster log
         if: failure()
         run: docker logs camunda 2>&1 | tail -200

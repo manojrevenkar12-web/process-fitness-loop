@@ -92,8 +92,9 @@ class TokenReplayTest {
 
     ConformanceReport report = replay.replay(new EventLog("payment-investigation", List.of(big, small)));
     Deviation skipped = report.deviations().stream().filter(d -> d.elementId().equals("send_recall")).findFirst().orElseThrow();
-    assertTrue(skipped.message().contains("'Send recall' ran in 1 of 2 cases (50.0%)"), skipped.message());
-    assertTrue(skipped.message().contains("'Second approval'"), skipped.message());
+    assertEquals("'Send recall' ran in 1 of 2 cases (50.0%) while the model, given each case's data, still required"
+        + " 'Second approval' first.", skipped.message());
+    assertEquals(List.of("second_approval"), fit.expectedInstead().get("send_recall"));
   }
 
   @Test
