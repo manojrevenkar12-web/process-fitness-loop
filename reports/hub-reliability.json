@@ -1,0 +1,26 @@
+{
+  "faults" : {
+    "overload" : 0.1,
+    "lostAnswer" : 0.08,
+    "sessionCalls" : 25
+  },
+  "recallsPerRun" : 2000,
+  "jobRetries" : 3,
+  "seeds" : [ 11, 12, 13, 14, 15 ],
+  "outcomes" : {
+    "checkBeforeAct" : {
+      "recalledTwiceOrMore" : 0,
+      "neverRecalled" : 0,
+      "recalls" : 10000,
+      "hubCallsPerRecall" : 2.8028,
+      "extraRecalls" : 0
+    },
+    "blindRetry" : {
+      "recalledTwiceOrMore" : 822,
+      "neverRecalled" : 0,
+      "recalls" : 10000,
+      "hubCallsPerRecall" : 1.3186,
+      "extraRecalls" : 884
+    }
+  }
+}

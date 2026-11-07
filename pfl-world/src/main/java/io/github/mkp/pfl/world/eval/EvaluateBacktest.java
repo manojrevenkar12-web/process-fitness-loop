@@ -91,7 +91,9 @@ public final class EvaluateBacktest {
       SimResult truthToday = world.run(World.practisedModel(), arrivals, Map.of());
       EventLog history = World.export(truthToday);
       if (seed == seeds.get(0) && set.equals("dev")) {
-        EventLogIo.write(history, root.resolve("data/history-sample.jsonl"));
+        // two weeks are enough to look at; the evaluation regenerates the full twelve
+        java.time.Instant from = FIRST_DAY.atStartOfDay(java.time.ZoneId.of("Europe/Berlin")).toInstant();
+        EventLogIo.write(history.between(from, from.plus(java.time.Duration.ofDays(14))), root.resolve("data/history-sample.jsonl"));
       }
       Backtester backtester = new Backtester(asIs, history, config, planned, settings.withSeed(settings.seed() + seed));
       FitnessFunction fitness = backtester.fitness();
