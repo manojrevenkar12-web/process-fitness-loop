@@ -17,9 +17,8 @@ import org.junit.jupiter.api.Test;
 class MutationsTest {
 
   /** Operators whose mutants the verifier must predict the engine refuses. */
-  static final Set<String> REFUSED = Set.of("drop-job-type", "drop-condition", "broken-feel", "condition-without-equals",
-      "unbalanced-paren", "condition-outside-gateway", "drop-default", "default-not-outgoing", "condition-on-default", "drop-correlation-key",
-      "boundary-detached", "error-ref-missing", "start-has-incoming", "end-has-outgoing", "dangling-flow", "duplicate-id",
+  static final Set<String> REFUSED = Set.of("drop-job-type", "broken-feel", "condition-without-equals",
+      "unbalanced-paren", "default-not-outgoing", "drop-correlation-key", "boundary-detached", "dangling-flow", "duplicate-id",
       "intermediate-timer-bad-duration");
 
   @Test

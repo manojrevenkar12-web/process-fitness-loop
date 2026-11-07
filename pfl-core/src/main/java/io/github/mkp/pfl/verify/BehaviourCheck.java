@@ -91,9 +91,6 @@ final class BehaviourCheck {
     boolean complete = true;
 
     for (Node start : model.nodesOfKind(NodeKind.START_EVENT)) {
-      if (!start.incoming().isEmpty()) {
-        continue;
-      }
       fired.add(start.id());
       int[] tokens = new int[flowIds.size()];
       for (String out : start.outgoing()) {

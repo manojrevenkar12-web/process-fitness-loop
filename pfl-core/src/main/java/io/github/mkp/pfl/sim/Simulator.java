@@ -199,7 +199,7 @@ public final class Simulator {
 
     private void start(CaseState c) {
       Node startEvent = model.nodesOfKind(NodeKind.START_EVENT).stream()
-          .filter(n -> n.incoming().isEmpty() && (n.event() == null || n.event().type() == EventDefinition.Type.NONE))
+          .filter(n -> (n.event() == null || n.event().type() == EventDefinition.Type.NONE))
           .findFirst()
           .orElseThrow(() -> new IllegalStateException(model.id() + " has no plain start event"));
       c.path.add(startEvent.id());

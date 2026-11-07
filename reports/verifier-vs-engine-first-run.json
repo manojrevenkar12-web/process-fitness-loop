@@ -1,0 +1,25 @@
+{
+  "acceptedByEngine": [
+    "condition-on-default",
+    "condition-outside-gateway",
+    "drop-condition",
+    "drop-default",
+    "end-has-outgoing",
+    "error-ref-missing",
+    "start-has-incoming"
+  ],
+  "camundaVersion": "8.10.9",
+  "dev": {
+    "agree": 42,
+    "engineRefused": 30,
+    "mutants": 64,
+    "verifierPredictedRefused": 52
+  },
+  "heldout": {
+    "agree": 60,
+    "engineRefused": 41,
+    "mutants": 87,
+    "verifierPredictedRefused": 68
+  },
+  "note": "First run against the engine, before the verifier's rules were re-classified. Every disagreement went one way: the verifier called a file undeployable that the engine accepted. See REPORT.md."
+}

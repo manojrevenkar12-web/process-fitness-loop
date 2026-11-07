@@ -108,6 +108,10 @@ class VerifierTest {
       assertTrue(report.has(code), code + " missing in " + report.issues());
     }
     assertEquals(Issue.Category.DEPLOY, report.issues().get(0).category(), "deploy problems come first");
+    // Camunda 8.10 deploys these; they are risks, not deploy errors (reports/verifier-vs-engine-first-run.json)
+    for (String accepted : List.of("GATEWAY_FLOW_WITHOUT_CONDITION", "CONDITION_OUTSIDE_GATEWAY")) {
+      assertTrue(report.issues().stream().filter(i -> i.code().equals(accepted)).allMatch(i -> i.category() != Issue.Category.DEPLOY), accepted);
+    }
   }
 
   @Test

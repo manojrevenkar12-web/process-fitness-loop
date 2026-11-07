@@ -12,9 +12,11 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 /**
- * Checks that predict whether Zeebe accepts a deployment. Each rule mirrors a validation the engine
- * performs when a resource is deployed; CI measures the agreement on mutated models against a real
- * cluster (see {@code reports/verifier-vs-engine.json}).
+ * Checks that predict whether Zeebe accepts a deployment. Only rules the engine enforces are DEPLOY
+ * errors; CI measures the agreement on mutated models against a real cluster (see {@code
+ * reports/verifier-vs-engine.json}). Six rules started out as deploy errors and turned out, on the
+ * first run against Camunda 8.10, to be accepted by the engine; they are now design or behaviour
+ * warnings (see {@code reports/verifier-vs-engine-first-run.json}).
  */
 final class DeployRules {
 
@@ -60,8 +62,9 @@ final class DeployRules {
         checkCondition(flow, issues);
         model.findNode(flow.source()).ifPresent(source -> {
           if (source.kind() != NodeKind.EXCLUSIVE_GATEWAY && source.kind() != NodeKind.PARALLEL_GATEWAY) {
-            issues.add(Issue.of("CONDITION_OUTSIDE_GATEWAY", Issue.Category.DEPLOY, Issue.Severity.ERROR, flow.id(),
-                "The flow out of '" + source.label() + "' has a condition, but only flows leaving a gateway may.",
+            issues.add(Issue.of("CONDITION_OUTSIDE_GATEWAY", Issue.Category.DESIGN, Issue.Severity.WARNING, flow.id(),
+                "The flow out of '" + source.label() + "' has a condition. The engine accepts it, but the decision is hidden"
+                    + " in a flow instead of shown as a gateway, and this toolkit does not simulate it.",
                 "Put an exclusive gateway after '" + source.label() + "' and move the condition there."));
           }
         });
@@ -74,15 +77,15 @@ final class DeployRules {
     switch (node.kind()) {
       case START_EVENT -> {
         if (!node.incoming().isEmpty()) {
-          issues.add(Issue.of("START_EVENT_HAS_INCOMING", Issue.Category.DEPLOY, Issue.Severity.ERROR, node.id(),
-              "Start event '" + node.label() + "' has an incoming flow.",
+          issues.add(Issue.of("START_EVENT_HAS_INCOMING", Issue.Category.DESIGN, Issue.Severity.WARNING, node.id(),
+              "Start event '" + node.label() + "' has an incoming flow. The engine accepts it; readers will not expect it.",
               "Start events begin the process; route loops back to a gateway or task instead."));
         }
       }
       case END_EVENT -> {
         if (!node.outgoing().isEmpty()) {
-          issues.add(Issue.of("END_EVENT_HAS_OUTGOING", Issue.Category.DEPLOY, Issue.Severity.ERROR, node.id(),
-              "End event '" + node.label() + "' has an outgoing flow.",
+          issues.add(Issue.of("END_EVENT_HAS_OUTGOING", Issue.Category.DESIGN, Issue.Severity.WARNING, node.id(),
+              "End event '" + node.label() + "' has an outgoing flow. The engine accepts it; readers will think the case ends here.",
               "Remove the flow, or replace the end event with an intermediate step."));
         }
       }
@@ -135,16 +138,18 @@ final class DeployRules {
               "Gateway '" + node.label() + "' names default flow '" + node.defaultFlow() + "', which does not leave it.",
               "Point the default at one of the gateway's outgoing flows."));
         } else if (def.condition() != null) {
-          issues.add(Issue.of("DEFAULT_FLOW_HAS_CONDITION", Issue.Category.DEPLOY, Issue.Severity.ERROR, def.id(),
-              "The default flow of '" + node.label() + "' also has a condition.",
+          issues.add(Issue.of("DEFAULT_FLOW_HAS_CONDITION", Issue.Category.DESIGN, Issue.Severity.WARNING, def.id(),
+              "The default flow of '" + node.label() + "' also has a condition. The engine accepts it, but a reader cannot tell"
+                  + " which of the two decides.",
               "A default flow is taken when no condition holds; remove its condition."));
         }
       }
       if (out.size() > 1) {
         for (Flow f : out) {
           if (f.condition() == null && !f.id().equals(node.defaultFlow())) {
-            issues.add(Issue.of("GATEWAY_FLOW_WITHOUT_CONDITION", Issue.Category.DEPLOY, Issue.Severity.ERROR, f.id(),
-                "A flow out of decision '" + node.label() + "' has no condition and is not the default.",
+            issues.add(Issue.of("GATEWAY_FLOW_WITHOUT_CONDITION", Issue.Category.BEHAVIOUR, Issue.Severity.WARNING, f.id(),
+                "A flow out of decision '" + node.label() + "' has no condition and is not the default. The engine deploys it;"
+                    + " nothing in the model says when a case takes this branch.",
                 "Give it a condition such as =amount > 10000, or make it the default flow."));
           }
         }
@@ -191,8 +196,9 @@ final class DeployRules {
       }
       case ERROR -> {
         if (event.definitionMissing()) {
-          issues.add(Issue.of("ERROR_REF_MISSING", Issue.Category.DEPLOY, Issue.Severity.ERROR, node.id(),
-              "Error event '" + node.label() + "' refers to an error that is not defined in the file.",
+          issues.add(Issue.of("ERROR_REF_MISSING", Issue.Category.DESIGN, Issue.Severity.WARNING, node.id(),
+              "Error event '" + node.label() + "' refers to an error that is not defined in the file. The engine deploys it;"
+                  + " which error it catches is no longer written down.",
               "Define the bpmn:error with its errorCode, or remove the reference to catch every error."));
         }
       }
