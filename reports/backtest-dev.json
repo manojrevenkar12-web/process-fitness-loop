@@ -1,7 +1,2293 @@
 {
-  "set" : "dev",
-  "worlds" : [ 1, 2, 3, 4, 5, 6 ],
   "daysOfHistory" : 84,
+  "perWorld" : [ {
+    "cases" : 3808,
+    "conformance" : {
+      "asIs" : {
+        "deviations" : [ {
+          "cases" : 10,
+          "element" : "second_approval",
+          "kind" : "LEFT_UNDONE",
+          "message" : "In 10 of 3808 cases (0.3%) the history ends while the model still expects 'Second approval'."
+        }, {
+          "cases" : 10,
+          "element" : "send_recall",
+          "kind" : "RAN_WHEN_NOT_ALLOWED",
+          "message" : "'Send recall' ran in 10 of 3808 cases (0.3%) at a point where the model does not allow it; for these cases the model first requires 'Second approval' or 'Check funds can be returned'."
+        } ],
+        "fitness" : 0.9997719342258308,
+        "perfectlyFitting" : 0.9973739495798319
+      },
+      "documented" : {
+        "deviations" : [ {
+          "cases" : 589,
+          "element" : "lookup_payment",
+          "kind" : "LEFT_UNDONE",
+          "message" : "In 589 of 3808 cases (15.5%) the history ends while the model still expects 'Look up payment in hub'."
+        }, {
+          "cases" : 589,
+          "element" : "register_inquiry",
+          "kind" : "RAN_WHEN_NOT_ALLOWED",
+          "message" : "'Register inquiry' ran in 589 of 3808 cases (15.5%) at a point where the model does not allow it; for these cases the model first requires 'Inquiry received'."
+        }, {
+          "cases" : 589,
+          "element" : "request_info",
+          "kind" : "NOT_IN_MODEL",
+          "message" : "'request_info' appears in 589 of 3808 cases (15.5%) but is not a step of the model."
+        }, {
+          "cases" : 589,
+          "element" : "wait_reply",
+          "kind" : "NOT_IN_MODEL",
+          "message" : "'wait_reply' appears in 589 of 3808 cases (15.5%) but is not a step of the model."
+        }, {
+          "cases" : 10,
+          "element" : "second_approval",
+          "kind" : "LEFT_UNDONE",
+          "message" : "In 10 of 3808 cases (0.3%) the history ends while the model still expects 'Second approval'."
+        }, {
+          "cases" : 10,
+          "element" : "send_recall",
+          "kind" : "RAN_WHEN_NOT_ALLOWED",
+          "message" : "'Send recall' ran in 10 of 3808 cases (0.3%) at a point where the model does not allow it; for these cases the model first requires 'Second approval' or 'Check funds can be returned'."
+        } ],
+        "fitness" : 0.9634629752632662,
+        "perfectlyFitting" : 0.8432247899159664
+      }
+    },
+    "observed" : {
+      "cost_per_case_eur" : 55.11101774334734,
+      "cycle_p50_hours" : 9.50741,
+      "cycle_p90_hours" : 66.65062205555556,
+      "four_eyes_violation_rate" : 0.03205128205128205,
+      "open_case_rate" : 0.0,
+      "person_minutes_per_case" : 56.65958520658263,
+      "sla_breach_rate" : 0.17673319327731093,
+      "touches_per_case" : 5.246586134453781
+    },
+    "proposals" : [ {
+      "delta" : {
+        "cost_per_case_eur" : {
+          "covered" : false,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : 0.0,
+            "low" : 0.0,
+            "high" : 0.0
+          },
+          "true" : 0.02314440096871806
+        },
+        "cycle_p90_hours" : {
+          "covered" : true,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : -1.7145049097221943,
+            "low" : -5.144471562500002,
+            "high" : -1.0280627138888847
+          },
+          "true" : -1.9561003888888848
+        },
+        "sla_breach_rate" : {
+          "covered" : true,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : -0.024619222689075626,
+            "low" : -0.03825671609957245,
+            "high" : -0.013359513344295514
+          },
+          "true" : -0.02573529411764708
+        },
+        "touches_per_case" : {
+          "covered" : false,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : 0.0,
+            "low" : 0.0,
+            "high" : 0.0
+          },
+          "true" : 0.002626050420168724
+        }
+      },
+      "evidence" : {
+        "SAME_CASE" : 0.9999550146880377,
+        "SIMILAR_CASES" : 4.498531196227724E-5,
+        "ASSUMED" : 0.0
+      },
+      "proposal" : "add-analyst",
+      "reasons" : [ "the fitness score improves by 0.078 (90% interval 0.046 to 0.125)" ],
+      "score" : {
+        "covered" : true,
+        "naive" : 0.0,
+        "projected" : {
+          "estimate" : 0.0780407962825349,
+          "low" : 0.046279335939913575,
+          "high" : 0.12531724890982301
+        },
+        "true" : 0.08222570138576465
+      },
+      "trueBreaches" : [ ],
+      "verdict" : "IMPROVES",
+      "verdictHolds" : true
+    }, {
+      "delta" : {
+        "cost_per_case_eur" : {
+          "covered" : true,
+          "naive" : -17.181283459383756,
+          "projected" : {
+            "estimate" : -16.80775135854342,
+            "low" : -17.409320880082202,
+            "high" : -16.17844863914986
+          },
+          "true" : -16.787770059232024
+        },
+        "cycle_p90_hours" : {
+          "covered" : true,
+          "naive" : -0.4939866666666646,
+          "projected" : {
+            "estimate" : -0.24034666666666737,
+            "low" : -8.805373579166682,
+            "high" : 7.829596090277773
+          },
+          "true" : -0.6829585833333311
+        },
+        "sla_breach_rate" : {
+          "covered" : true,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : -0.014246323529411742,
+            "low" : -0.047179657977326574,
+            "high" : 0.018321715516385177
+          },
+          "true" : -0.014968487394957986
+        },
+        "touches_per_case" : {
+          "covered" : true,
+          "naive" : -1.1649159663865554,
+          "projected" : {
+            "estimate" : -1.1132484243697478,
+            "low" : -1.1653168153986448,
+            "high" : -1.0572433293659047
+          },
+          "true" : -1.1055672268907557
+        }
+      },
+      "evidence" : {
+        "SAME_CASE" : 0.7496195208479961,
+        "SIMILAR_CASES" : 0.24888715568644773,
+        "ASSUMED" : 0.0014933234655561045
+      },
+      "proposal" : "agent-intake",
+      "reasons" : [ "the projection rests on assumptions nobody has measured yet (classify_inquiry); run the candidate in shadow on live cases and measure them before deciding" ],
+      "score" : {
+        "covered" : true,
+        "naive" : 0.19936690460773482,
+        "projected" : {
+          "estimate" : 0.23173589682038734,
+          "low" : 0.09833999355433845,
+          "high" : 0.36559943559153296
+        },
+        "true" : 0.23580392043783963
+      },
+      "trueBreaches" : [ ],
+      "verdict" : "NEEDS_SHADOW_RUN",
+      "verdictHolds" : true
+    }, {
+      "delta" : {
+        "cost_per_case_eur" : {
+          "covered" : false,
+          "naive" : -11.96686166666666,
+          "projected" : {
+            "estimate" : -11.339342719238736,
+            "low" : -11.681416596740986,
+            "high" : -11.034180400908467
+          },
+          "true" : -10.985610251371384
+        },
+        "cycle_p90_hours" : {
+          "covered" : true,
+          "naive" : -0.2030608333333319,
+          "projected" : {
+            "estimate" : -3.202861694444451,
+            "low" : -8.736847038888927,
+            "high" : -1.9890144402777667
+          },
+          "true" : -3.546516916666647
+        },
+        "sla_breach_rate" : {
+          "covered" : true,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : -0.033810399159663856,
+            "low" : -0.0522493751735629,
+            "high" : -0.017883326791198147
+          },
+          "true" : -0.0344012605042017
+        },
+        "touches_per_case" : {
+          "covered" : true,
+          "naive" : -1.0,
+          "projected" : {
+            "estimate" : -0.9472820378151265,
+            "low" : -0.9555104468414126,
+            "high" : -0.9360220634535781
+          },
+          "true" : -0.9377626050420167
+        }
+      },
+      "evidence" : {
+        "SAME_CASE" : 0.9993257878289764,
+        "SIMILAR_CASES" : 4.609918271704615E-5,
+        "ASSUMED" : 6.281129883065563E-4
+      },
+      "proposal" : "hub-connector",
+      "reasons" : [ "the fitness score improves by 0.250 (90% interval 0.206 to 0.323)" ],
+      "score" : {
+        "covered" : true,
+        "naive" : 0.14674880585202546,
+        "projected" : {
+          "estimate" : 0.2500610668802331,
+          "low" : 0.20630626351382964,
+          "high" : 0.32284375999490567
+        },
+        "true" : 0.25033049262627327
+      },
+      "trueBreaches" : [ ],
+      "verdict" : "IMPROVES",
+      "verdictHolds" : true
+    }, {
+      "delta" : {
+        "cost_per_case_eur" : {
+          "covered" : true,
+          "naive" : -0.6642730718954226,
+          "projected" : {
+            "estimate" : -0.6494845104604323,
+            "low" : -0.7384580965309311,
+            "high" : -0.5632986118083608
+          },
+          "true" : -0.6202614793417354
+        },
+        "cycle_p90_hours" : {
+          "covered" : false,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : 0.08529949999999076,
+            "low" : -0.08028899444444378,
+            "high" : 0.3094938722222105
+          },
+          "true" : -0.45087436111110435
+        },
+        "sla_breach_rate" : {
+          "covered" : true,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : -0.001181722689075626,
+            "low" : -0.002150109329620448,
+            "high" : -2.7345226931034674E-4
+          },
+          "true" : -0.0013130252100840567
+        },
+        "touches_per_case" : {
+          "covered" : true,
+          "naive" : -0.05724789915966433,
+          "projected" : {
+            "estimate" : -0.05724789915966433,
+            "low" : -0.06347858099530543,
+            "high" : -0.051316814666819345
+          },
+          "true" : -0.054621848739495604
+        }
+      },
+      "evidence" : {
+        "SAME_CASE" : 0.9999862712119169,
+        "SIMILAR_CASES" : 1.372878808316759E-5,
+        "ASSUMED" : 0.0
+      },
+      "proposal" : "raise-four-eyes-limit",
+      "reasons" : [ "hard limit: four_eyes_violation_rate is 0.6987, above the limit of 0.0000" ],
+      "score" : {
+        "covered" : true,
+        "naive" : 0.008160188512944838,
+        "projected" : {
+          "estimate" : 0.010800987412937673,
+          "low" : 0.00784335969287727,
+          "high" : 0.014266009551683606
+        },
+        "true" : 0.01394247495352707
+      },
+      "trueBreaches" : [ "four_eyes_violation_rate is 0.6987, above the limit of 0.0000" ],
+      "verdict" : "BLOCKED",
+      "verdictHolds" : true
+    }, {
+      "delta" : {
+        "cost_per_case_eur" : {
+          "covered" : true,
+          "naive" : -51.02243678104575,
+          "projected" : {
+            "estimate" : -48.12188665878851,
+            "low" : -48.863321077790104,
+            "high" : -47.195180119929326
+          },
+          "true" : -47.43857631798553
+        },
+        "cycle_p90_hours" : {
+          "covered" : true,
+          "naive" : -1.2211736111111051,
+          "projected" : {
+            "estimate" : -26.486115548611124,
+            "low" : -34.85192853611112,
+            "high" : -12.799399483333243
+          },
+          "true" : -28.421956083333328
+        },
+        "sla_breach_rate" : {
+          "covered" : true,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : -0.07891281512605042,
+            "low" : -0.10860988223264281,
+            "high" : -0.04828560320445232
+          },
+          "true" : -0.08455882352941177
+        },
+        "touches_per_case" : {
+          "covered" : true,
+          "naive" : -5.004726890756303,
+          "projected" : {
+            "estimate" : -4.813878676470589,
+            "low" : -4.846822942941206,
+            "high" : -4.781028543566232
+          },
+          "true" : -4.842436974789916
+        }
+      },
+      "evidence" : {
+        "SAME_CASE" : 0.7353024191374743,
+        "SIMILAR_CASES" : 0.2620655484592362,
+        "ASSUMED" : 0.0026320324032895106
+      },
+      "proposal" : "re-engineered",
+      "reasons" : [ "the projection rests on assumptions nobody has measured yet (classify_inquiry); run the candidate in shadow on live cases and measure them before deciding" ],
+      "score" : {
+        "covered" : true,
+        "naive" : 0.4071580058640202,
+        "projected" : {
+          "estimate" : 0.7731845714633733,
+          "low" : 0.6249112097825571,
+          "high" : 0.8891033168646476
+        },
+        "true" : 0.8001242774072181
+      },
+      "trueBreaches" : [ ],
+      "verdict" : "NEEDS_SHADOW_RUN",
+      "verdictHolds" : true
+    } ],
+    "seed" : 1
+  }, {
+    "cases" : 3473,
+    "conformance" : {
+      "asIs" : {
+        "deviations" : [ {
+          "cases" : 7,
+          "element" : "second_approval",
+          "kind" : "LEFT_UNDONE",
+          "message" : "In 7 of 3473 cases (0.2%) the history ends while the model still expects 'Second approval'."
+        }, {
+          "cases" : 7,
+          "element" : "send_recall",
+          "kind" : "RAN_WHEN_NOT_ALLOWED",
+          "message" : "'Send recall' ran in 7 of 3473 cases (0.2%) at a point where the model does not allow it; for these cases the model first requires 'Second approval' or 'Check funds can be returned'."
+        } ],
+        "fitness" : 0.9998273480662984,
+        "perfectlyFitting" : 0.9979844514828679
+      },
+      "documented" : {
+        "deviations" : [ {
+          "cases" : 732,
+          "element" : "lookup_payment",
+          "kind" : "LEFT_UNDONE",
+          "message" : "In 732 of 3473 cases (21.1%) the history ends while the model still expects 'Look up payment in hub'."
+        }, {
+          "cases" : 732,
+          "element" : "register_inquiry",
+          "kind" : "RAN_WHEN_NOT_ALLOWED",
+          "message" : "'Register inquiry' ran in 732 of 3473 cases (21.1%) at a point where the model does not allow it; for these cases the model first requires 'Inquiry received'."
+        }, {
+          "cases" : 732,
+          "element" : "request_info",
+          "kind" : "NOT_IN_MODEL",
+          "message" : "'request_info' appears in 732 of 3473 cases (21.1%) but is not a step of the model."
+        }, {
+          "cases" : 732,
+          "element" : "wait_reply",
+          "kind" : "NOT_IN_MODEL",
+          "message" : "'wait_reply' appears in 732 of 3473 cases (21.1%) but is not a step of the model."
+        }, {
+          "cases" : 7,
+          "element" : "second_approval",
+          "kind" : "LEFT_UNDONE",
+          "message" : "In 7 of 3473 cases (0.2%) the history ends while the model still expects 'Second approval'."
+        }, {
+          "cases" : 7,
+          "element" : "send_recall",
+          "kind" : "RAN_WHEN_NOT_ALLOWED",
+          "message" : "'Send recall' ran in 7 of 3473 cases (0.2%) at a point where the model does not allow it; for these cases the model first requires 'Second approval' or 'Check funds can be returned'."
+        } ],
+        "fitness" : 0.9509308424914216,
+        "perfectlyFitting" : 0.7875035991937805
+      }
+    },
+    "observed" : {
+      "cost_per_case_eur" : 58.92653029481396,
+      "cycle_p50_hours" : 24.22515111111111,
+      "cycle_p90_hours" : 90.60353866666671,
+      "four_eyes_violation_rate" : 0.026615969581749048,
+      "open_case_rate" : 0.0,
+      "person_minutes_per_case" : 60.72067444092523,
+      "sla_breach_rate" : 0.3198963432191189,
+      "touches_per_case" : 5.25079182263173
+    },
+    "proposals" : [ {
+      "delta" : {
+        "cost_per_case_eur" : {
+          "covered" : false,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : 0.0,
+            "low" : 0.0,
+            "high" : 0.0
+          },
+          "true" : 0.019778072111854783
+        },
+        "cycle_p90_hours" : {
+          "covered" : true,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : -17.627932152777788,
+            "low" : -19.760787004166666,
+            "high" : -12.518264993055537
+          },
+          "true" : -17.296858999999984
+        },
+        "sla_breach_rate" : {
+          "covered" : true,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : -0.11675784624244173,
+            "low" : -0.14777423302838943,
+            "high" : -0.0921907411777858
+          },
+          "true" : -0.11344658796429599
+        },
+        "touches_per_case" : {
+          "covered" : false,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : 0.0,
+            "low" : 0.0,
+            "high" : 0.0
+          },
+          "true" : 0.0020155485171322596
+        }
+      },
+      "evidence" : {
+        "SAME_CASE" : 0.999981830316329,
+        "SIMILAR_CASES" : 1.816968367098671E-5,
+        "ASSUMED" : 0.0
+      },
+      "proposal" : "add-analyst",
+      "reasons" : [ "the fitness score improves by 0.218 (90% interval 0.176 to 0.260)" ],
+      "score" : {
+        "covered" : true,
+        "naive" : 0.0,
+        "projected" : {
+          "estimate" : 0.21757829321754207,
+          "low" : 0.176032393423521,
+          "high" : 0.2595585046348268
+        },
+        "true" : 0.21180282719159887
+      },
+      "trueBreaches" : [ ],
+      "verdict" : "IMPROVES",
+      "verdictHolds" : true
+    }, {
+      "delta" : {
+        "cost_per_case_eur" : {
+          "covered" : true,
+          "naive" : -19.589952105448383,
+          "projected" : {
+            "estimate" : -19.013090629618965,
+            "low" : -19.91335700570829,
+            "high" : -18.078628826685083
+          },
+          "true" : -19.300581919250085
+        },
+        "cycle_p90_hours" : {
+          "covered" : true,
+          "naive" : -0.5379377777777776,
+          "projected" : {
+            "estimate" : -15.676676722222226,
+            "low" : -21.72512334583332,
+            "high" : -3.067462602777785
+          },
+          "true" : -18.9263672777778
+        },
+        "sla_breach_rate" : {
+          "covered" : true,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : -0.1282032824647279,
+            "low" : -0.17243932805329967,
+            "high" : -0.08394586297567641
+          },
+          "true" : -0.1390728476821192
+        },
+        "touches_per_case" : {
+          "covered" : true,
+          "naive" : -1.2225741433918804,
+          "projected" : {
+            "estimate" : -1.1716095594586813,
+            "low" : -1.2200192605080176,
+            "high" : -1.120288020546689
+          },
+          "true" : -1.1923409156348974
+        }
+      },
+      "evidence" : {
+        "SAME_CASE" : 0.8061810326719212,
+        "SIMILAR_CASES" : 0.19246611782752973,
+        "ASSUMED" : 0.0013528495005490143
+      },
+      "proposal" : "agent-intake",
+      "reasons" : [ "the projection rests on assumptions nobody has measured yet (classify_inquiry); run the candidate in shadow on live cases and measure them before deciding" ],
+      "score" : {
+        "covered" : true,
+        "naive" : 0.20278763323148394,
+        "projected" : {
+          "estimate" : 0.41926252673032977,
+          "low" : 0.3177526964162995,
+          "high" : 0.49602931483652357
+        },
+        "true" : 0.4486310884455637
+      },
+      "trueBreaches" : [ ],
+      "verdict" : "NEEDS_SHADOW_RUN",
+      "verdictHolds" : true
+    }, {
+      "delta" : {
+        "cost_per_case_eur" : {
+          "covered" : false,
+          "naive" : -12.443138333333337,
+          "projected" : {
+            "estimate" : -11.83285628823144,
+            "low" : -12.181610058528905,
+            "high" : -11.509604938968481
+          },
+          "true" : -11.098004110919149
+        },
+        "cycle_p90_hours" : {
+          "covered" : true,
+          "naive" : -0.21127249999999975,
+          "projected" : {
+            "estimate" : -19.107425999999975,
+            "low" : -21.27530852916666,
+            "high" : -14.820965979166694
+          },
+          "true" : -18.739442944444463
+        },
+        "sla_breach_rate" : {
+          "covered" : true,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : -0.13331413763317018,
+            "low" : -0.16587999236460943,
+            "high" : -0.10433451869119745
+          },
+          "true" : -0.12640368557443132
+        },
+        "touches_per_case" : {
+          "covered" : false,
+          "naive" : -1.0,
+          "projected" : {
+            "estimate" : -0.9509069968327095,
+            "low" : -0.959204386989787,
+            "high" : -0.9382971844805956
+          },
+          "true" : -0.9291678663979264
+        }
+      },
+      "evidence" : {
+        "SAME_CASE" : 0.999554404554389,
+        "SIMILAR_CASES" : 1.848589409721677E-5,
+        "ASSUMED" : 4.2710955151373025E-4
+      },
+      "proposal" : "hub-connector",
+      "reasons" : [ "the fitness score improves by 0.376 (90% interval 0.331 to 0.419)" ],
+      "score" : {
+        "covered" : true,
+        "naive" : 0.13862742548870882,
+        "projected" : {
+          "estimate" : 0.37567379367967946,
+          "low" : 0.3312600185181066,
+          "high" : 0.41937234584795324
+        },
+        "true" : 0.3589129893550322
+      },
+      "trueBreaches" : [ ],
+      "verdict" : "IMPROVES",
+      "verdictHolds" : true
+    }, {
+      "delta" : {
+        "cost_per_case_eur" : {
+          "covered" : true,
+          "naive" : -0.45436871964680847,
+          "projected" : {
+            "estimate" : -0.47084811442236685,
+            "low" : -0.5660603985829571,
+            "high" : -0.38134461492858773
+          },
+          "true" : -0.45364014716702883
+        },
+        "cycle_p90_hours" : {
+          "covered" : true,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : 0.3444285555555666,
+            "low" : -0.2425121055555515,
+            "high" : 0.8149024597222155
+          },
+          "true" : 0.2966497222221989
+        },
+        "sla_breach_rate" : {
+          "covered" : false,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : 8.638065073423573E-4,
+            "low" : -0.0017628506612073355,
+            "high" : 0.003704216465054117
+          },
+          "true" : 0.007774258566081216
+        },
+        "touches_per_case" : {
+          "covered" : true,
+          "naive" : -0.05384393895767303,
+          "projected" : {
+            "estimate" : -0.05384393895767303,
+            "low" : -0.06146975517290363,
+            "high" : -0.046706832577282545
+          },
+          "true" : -0.05182839044054077
+        }
+      },
+      "evidence" : {
+        "SAME_CASE" : 0.9999855609815633,
+        "SIMILAR_CASES" : 1.4439018436635187E-5,
+        "ASSUMED" : 0.0
+      },
+      "proposal" : "raise-four-eyes-limit",
+      "reasons" : [ "hard limit: four_eyes_violation_rate is 0.7110, above the limit of 0.0000" ],
+      "score" : {
+        "covered" : false,
+        "naive" : 0.005832681022331944,
+        "projected" : {
+          "estimate" : 0.003541104927377055,
+          "low" : -0.0013855634374924741,
+          "high" : 0.008473275153124616
+        },
+        "true" : -0.00546079428984147
+      },
+      "trueBreaches" : [ "four_eyes_violation_rate is 0.7110, above the limit of 0.0000" ],
+      "verdict" : "BLOCKED",
+      "verdictHolds" : true
+    }, {
+      "delta" : {
+        "cost_per_case_eur" : {
+          "covered" : false,
+          "naive" : -53.698970802700195,
+          "projected" : {
+            "estimate" : -51.626657630330804,
+            "low" : -52.65279618989876,
+            "high" : -50.71574992789041
+          },
+          "true" : -49.30478677800173
+        },
+        "cycle_p90_hours" : {
+          "covered" : true,
+          "naive" : -1.3093608333333293,
+          "projected" : {
+            "estimate" : -34.60321509722223,
+            "low" : -42.23874536805556,
+            "high" : -23.848056513888885
+          },
+          "true" : -39.93186516666669
+        },
+        "sla_breach_rate" : {
+          "covered" : true,
+          "naive" : -0.06910452058738842,
+          "projected" : {
+            "estimate" : -0.19824359343507056,
+            "low" : -0.24147176741484885,
+            "high" : -0.15328137591134564
+          },
+          "true" : -0.20932911027929743
+        },
+        "touches_per_case" : {
+          "covered" : true,
+          "naive" : -4.909012381226605,
+          "projected" : {
+            "estimate" : -4.757126403685574,
+            "low" : -4.787501025551483,
+            "high" : -4.725257159521726
+          },
+          "true" : -4.727325079182263
+        }
+      },
+      "evidence" : {
+        "SAME_CASE" : 0.79814747053909,
+        "SIMILAR_CASES" : 0.19965619927229364,
+        "ASSUMED" : 0.002196330188616407
+      },
+      "proposal" : "re-engineered",
+      "reasons" : [ "the projection rests on assumptions nobody has measured yet (classify_inquiry); run the candidate in shadow on live cases and measure them before deciding" ],
+      "score" : {
+        "covered" : true,
+        "naive" : 0.4945290953008318,
+        "projected" : {
+          "estimate" : 0.7869661803449098,
+          "low" : 0.6967807933025981,
+          "high" : 0.8595172985370669
+        },
+        "true" : 0.8213431912443584
+      },
+      "trueBreaches" : [ ],
+      "verdict" : "NEEDS_SHADOW_RUN",
+      "verdictHolds" : true
+    } ],
+    "seed" : 2
+  }, {
+    "cases" : 3079,
+    "conformance" : {
+      "asIs" : {
+        "deviations" : [ {
+          "cases" : 6,
+          "element" : "second_approval",
+          "kind" : "LEFT_UNDONE",
+          "message" : "In 6 of 3079 cases (0.2%) the history ends while the model still expects 'Second approval'."
+        }, {
+          "cases" : 6,
+          "element" : "send_recall",
+          "kind" : "RAN_WHEN_NOT_ALLOWED",
+          "message" : "'Send recall' ran in 6 of 3079 cases (0.2%) at a point where the model does not allow it; for these cases the model first requires 'Second approval' or 'Check funds can be returned'."
+        } ],
+        "fitness" : 0.9998334952129874,
+        "perfectlyFitting" : 0.9980513153621305
+      },
+      "documented" : {
+        "deviations" : [ {
+          "cases" : 706,
+          "element" : "lookup_payment",
+          "kind" : "LEFT_UNDONE",
+          "message" : "In 706 of 3079 cases (22.9%) the history ends while the model still expects 'Look up payment in hub'."
+        }, {
+          "cases" : 706,
+          "element" : "register_inquiry",
+          "kind" : "RAN_WHEN_NOT_ALLOWED",
+          "message" : "'Register inquiry' ran in 706 of 3079 cases (22.9%) at a point where the model does not allow it; for these cases the model first requires 'Inquiry received'."
+        }, {
+          "cases" : 706,
+          "element" : "request_info",
+          "kind" : "NOT_IN_MODEL",
+          "message" : "'request_info' appears in 706 of 3079 cases (22.9%) but is not a step of the model."
+        }, {
+          "cases" : 706,
+          "element" : "wait_reply",
+          "kind" : "NOT_IN_MODEL",
+          "message" : "'wait_reply' appears in 706 of 3079 cases (22.9%) but is not a step of the model."
+        }, {
+          "cases" : 6,
+          "element" : "second_approval",
+          "kind" : "LEFT_UNDONE",
+          "message" : "In 6 of 3079 cases (0.2%) the history ends while the model still expects 'Second approval'."
+        }, {
+          "cases" : 6,
+          "element" : "send_recall",
+          "kind" : "RAN_WHEN_NOT_ALLOWED",
+          "message" : "'Send recall' ran in 6 of 3079 cases (0.2%) at a point where the model does not allow it; for these cases the model first requires 'Second approval' or 'Check funds can be returned'."
+        } ],
+        "fitness" : 0.945038484815848,
+        "perfectlyFitting" : 0.7690808704124715
+      }
+    },
+    "observed" : {
+      "cost_per_case_eur" : 59.27978875681138,
+      "cycle_p50_hours" : 7.970748333333334,
+      "cycle_p90_hours" : 67.42478522222224,
+      "four_eyes_violation_rate" : 0.02830188679245283,
+      "open_case_rate" : 0.0,
+      "person_minutes_per_case" : 61.10850100140738,
+      "sla_breach_rate" : 0.17765508281909712,
+      "touches_per_case" : 5.296200064956155
+    },
+    "proposals" : [ {
+      "delta" : {
+        "cost_per_case_eur" : {
+          "covered" : false,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : 0.0,
+            "low" : 0.0,
+            "high" : 0.0
+          },
+          "true" : 0.023606535671753193
+        },
+        "cycle_p90_hours" : {
+          "covered" : true,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : -0.9482619027778156,
+            "low" : -1.7028187347222223,
+            "high" : -0.5838095791666787
+          },
+          "true" : -1.0806836666666868
+        },
+        "sla_breach_rate" : {
+          "covered" : true,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : -0.011692107827216636,
+            "low" : -0.021117009592355712,
+            "high" : -0.005159524286924714
+          },
+          "true" : -0.01201688860019487
+        },
+        "touches_per_case" : {
+          "covered" : false,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : 0.0,
+            "low" : 0.0,
+            "high" : 0.0
+          },
+          "true" : 0.0019486846378686806
+        }
+      },
+      "evidence" : {
+        "SAME_CASE" : 0.9999801917271348,
+        "SIMILAR_CASES" : 1.980827286528237E-5,
+        "ASSUMED" : 0.0
+      },
+      "proposal" : "add-analyst",
+      "reasons" : [ "the fitness score improves by 0.038 (90% interval 0.021 to 0.065)" ],
+      "score" : {
+        "covered" : true,
+        "naive" : 0.0,
+        "projected" : {
+          "estimate" : 0.03751621065877959,
+          "low" : 0.020693569155623665,
+          "high" : 0.06498899461263442
+        },
+        "true" : 0.03890820598068221
+      },
+      "trueBreaches" : [ ],
+      "verdict" : "IMPROVES",
+      "verdictHolds" : true
+    }, {
+      "delta" : {
+        "cost_per_case_eur" : {
+          "covered" : true,
+          "naive" : -17.493997390927788,
+          "projected" : {
+            "estimate" : -17.181065257388767,
+            "low" : -17.662997109261653,
+            "high" : -16.676906958135238
+          },
+          "true" : -17.11695514867742
+        },
+        "cycle_p90_hours" : {
+          "covered" : true,
+          "naive" : -0.4685916666666685,
+          "projected" : {
+            "estimate" : -0.6251897500000325,
+            "low" : -2.877231911111123,
+            "high" : 3.4706720472222243
+          },
+          "true" : 1.2851777777777897
+        },
+        "sla_breach_rate" : {
+          "covered" : true,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : -0.00641442026632022,
+            "low" : -0.02340664328398127,
+            "high" : 0.010699700966812806
+          },
+          "true" : -9.743423189347289E-4
+        },
+        "touches_per_case" : {
+          "covered" : true,
+          "naive" : -1.2484572913283527,
+          "projected" : {
+            "estimate" : -1.2073725235466064,
+            "low" : -1.2424186286638041,
+            "high" : -1.16906418817527
+          },
+          "true" : -1.1929197791490749
+        }
+      },
+      "evidence" : {
+        "SAME_CASE" : 0.8660985426638961,
+        "SIMILAR_CASES" : 0.13292549961512157,
+        "ASSUMED" : 9.759577209823269E-4
+      },
+      "proposal" : "agent-intake",
+      "reasons" : [ "the projection rests on assumptions nobody has measured yet (classify_inquiry); run the candidate in shadow on live cases and measure them before deciding" ],
+      "score" : {
+        "covered" : true,
+        "naive" : 0.1870936467294342,
+        "projected" : {
+          "estimate" : 0.20143018201064822,
+          "low" : 0.13028302411028275,
+          "high" : 0.26080607203314177
+        },
+        "true" : 0.17439138589520523
+      },
+      "trueBreaches" : [ ],
+      "verdict" : "NEEDS_SHADOW_RUN",
+      "verdictHolds" : true
+    }, {
+      "delta" : {
+        "cost_per_case_eur" : {
+          "covered" : false,
+          "naive" : -12.964348888888885,
+          "projected" : {
+            "estimate" : -12.291215496914589,
+            "low" : -12.663152437063294,
+            "high" : -11.970128925086495
+          },
+          "true" : -10.841368046804526
+        },
+        "cycle_p90_hours" : {
+          "covered" : true,
+          "naive" : -0.22025888888889256,
+          "projected" : {
+            "estimate" : -1.7005818611111607,
+            "low" : -3.1291658055555414,
+            "high" : -1.1881673861110513
+          },
+          "true" : -1.4879996666666813
+        },
+        "sla_breach_rate" : {
+          "covered" : true,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : -0.01607664826242286,
+            "low" : -0.025554328422289527,
+            "high" : -0.009084272325125235
+          },
+          "true" : -0.01623903864891199
+        },
+        "touches_per_case" : {
+          "covered" : false,
+          "naive" : -1.0,
+          "projected" : {
+            "estimate" : -0.9477914907437484,
+            "low" : -0.9555771445713784,
+            "high" : -0.9407514728718789
+          },
+          "true" : -0.9116596297499191
+        }
+      },
+      "evidence" : {
+        "SAME_CASE" : 0.9994951183724525,
+        "SIMILAR_CASES" : 2.0252584418655395E-5,
+        "ASSUMED" : 4.8462904312879213E-4
+      },
+      "proposal" : "hub-connector",
+      "reasons" : [ "the fitness score improves by 0.187 (90% interval 0.169 to 0.216)" ],
+      "score" : {
+        "covered" : true,
+        "naive" : 0.14132304592318184,
+        "projected" : {
+          "estimate" : 0.18663878392414399,
+          "low" : 0.1686626914265894,
+          "high" : 0.21638413023117772
+        },
+        "true" : 0.17364228460801817
+      },
+      "trueBreaches" : [ ],
+      "verdict" : "IMPROVES",
+      "verdictHolds" : true
+    }, {
+      "delta" : {
+        "cost_per_case_eur" : {
+          "covered" : true,
+          "naive" : -0.41849698928223233,
+          "projected" : {
+            "estimate" : -0.4350392668074079,
+            "low" : -0.5036870861307214,
+            "high" : -0.36982704146831014
+          },
+          "true" : -0.4178029389051332
+        },
+        "cycle_p90_hours" : {
+          "covered" : false,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : 0.017378152777780542,
+            "low" : -0.0667377430555444,
+            "high" : 0.0319352722222312
+          },
+          "true" : 0.032441277777763844
+        },
+        "sla_breach_rate" : {
+          "covered" : false,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : 0.0,
+            "low" : 0.0,
+            "high" : 0.0
+          },
+          "true" : 3.247807729782337E-4
+        },
+        "touches_per_case" : {
+          "covered" : true,
+          "naive" : -0.04969145826567001,
+          "projected" : {
+            "estimate" : -0.04969145826567001,
+            "low" : -0.05576831875461026,
+            "high" : -0.04359503334033064
+          },
+          "true" : -0.04774277362780133
+        }
+      },
+      "evidence" : {
+        "SAME_CASE" : 1.0,
+        "SIMILAR_CASES" : 0.0,
+        "ASSUMED" : 0.0
+      },
+      "proposal" : "raise-four-eyes-limit",
+      "reasons" : [ "hard limit: four_eyes_violation_rate is 0.7217, above the limit of 0.0000" ],
+      "score" : {
+        "covered" : false,
+        "naive" : 0.0053133745621014574,
+        "projected" : {
+          "estimate" : 0.005333968755166054,
+          "low" : 0.0046756513134272116,
+          "high" : 0.006302722077541036
+        },
+        "true" : 0.004142395206138313
+      },
+      "trueBreaches" : [ "four_eyes_violation_rate is 0.7217, above the limit of 0.0000" ],
+      "verdict" : "BLOCKED",
+      "verdictHolds" : true
+    }, {
+      "delta" : {
+        "cost_per_case_eur" : {
+          "covered" : false,
+          "naive" : -53.44946133719461,
+          "projected" : {
+            "estimate" : -50.21719905696294,
+            "low" : -51.121914728290015,
+            "high" : -49.53599208686937
+          },
+          "true" : -49.38462425679333
+        },
+        "cycle_p90_hours" : {
+          "covered" : true,
+          "naive" : -1.3488788888888905,
+          "projected" : {
+            "estimate" : -21.902817416666707,
+            "low" : -25.649048527777847,
+            "high" : -15.248386075000012
+          },
+          "true" : -20.489848055555562
+        },
+        "sla_breach_rate" : {
+          "covered" : true,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : -0.07802858070802209,
+            "low" : -0.09961229990237432,
+            "high" : -0.05938894951860685
+          },
+          "true" : -0.0727508931471257
+        },
+        "touches_per_case" : {
+          "covered" : true,
+          "naive" : -4.961675868788567,
+          "projected" : {
+            "estimate" : -4.787836960051965,
+            "low" : -4.828843552723122,
+            "high" : -4.746228697254795
+          },
+          "true" : -4.779798635920754
+        }
+      },
+      "evidence" : {
+        "SAME_CASE" : 0.8581151930656579,
+        "SIMILAR_CASES" : 0.1398318724562811,
+        "ASSUMED" : 0.0020529344780610896
+      },
+      "proposal" : "re-engineered",
+      "reasons" : [ "the projection rests on assumptions nobody has measured yet (classify_inquiry); run the candidate in shadow on live cases and measure them before deciding" ],
+      "score" : {
+        "covered" : true,
+        "naive" : 0.4077656048382631,
+        "projected" : {
+          "estimate" : 0.7400321770235707,
+          "low" : 0.6597478374747041,
+          "high" : 0.8099071498290186
+        },
+        "true" : 0.7174274289644803
+      },
+      "trueBreaches" : [ ],
+      "verdict" : "NEEDS_SHADOW_RUN",
+      "verdictHolds" : true
+    } ],
+    "seed" : 3
+  }, {
+    "cases" : 3076,
+    "conformance" : {
+      "asIs" : {
+        "deviations" : [ {
+          "cases" : 11,
+          "element" : "second_approval",
+          "kind" : "LEFT_UNDONE",
+          "message" : "In 11 of 3076 cases (0.4%) the history ends while the model still expects 'Second approval'."
+        }, {
+          "cases" : 11,
+          "element" : "send_recall",
+          "kind" : "RAN_WHEN_NOT_ALLOWED",
+          "message" : "'Send recall' ran in 11 of 3076 cases (0.4%) at a point where the model does not allow it; for these cases the model first requires 'Second approval' or 'Check funds can be returned'."
+        } ],
+        "fitness" : 0.9996870821835974,
+        "perfectlyFitting" : 0.9964239271781534
+      },
+      "documented" : {
+        "deviations" : [ {
+          "cases" : 615,
+          "element" : "lookup_payment",
+          "kind" : "LEFT_UNDONE",
+          "message" : "In 615 of 3076 cases (20.0%) the history ends while the model still expects 'Look up payment in hub'."
+        }, {
+          "cases" : 615,
+          "element" : "register_inquiry",
+          "kind" : "RAN_WHEN_NOT_ALLOWED",
+          "message" : "'Register inquiry' ran in 615 of 3076 cases (20.0%) at a point where the model does not allow it; for these cases the model first requires 'Inquiry received'."
+        }, {
+          "cases" : 615,
+          "element" : "request_info",
+          "kind" : "NOT_IN_MODEL",
+          "message" : "'request_info' appears in 615 of 3076 cases (20.0%) but is not a step of the model."
+        }, {
+          "cases" : 615,
+          "element" : "wait_reply",
+          "kind" : "NOT_IN_MODEL",
+          "message" : "'wait_reply' appears in 615 of 3076 cases (20.0%) but is not a step of the model."
+        }, {
+          "cases" : 11,
+          "element" : "second_approval",
+          "kind" : "LEFT_UNDONE",
+          "message" : "In 11 of 3076 cases (0.4%) the history ends while the model still expects 'Second approval'."
+        }, {
+          "cases" : 11,
+          "element" : "send_recall",
+          "kind" : "RAN_WHEN_NOT_ALLOWED",
+          "message" : "'Send recall' ran in 11 of 3076 cases (0.4%) at a point where the model does not allow it; for these cases the model first requires 'Second approval' or 'Check funds can be returned'."
+        } ],
+        "fitness" : 0.9497529367194149,
+        "perfectlyFitting" : 0.796814044213264
+      }
+    },
+    "observed" : {
+      "cost_per_case_eur" : 64.12470183318885,
+      "cycle_p50_hours" : 19.96560402777778,
+      "cycle_p90_hours" : 68.64069722222223,
+      "four_eyes_violation_rate" : 0.055,
+      "open_case_rate" : 0.0,
+      "person_minutes_per_case" : 66.10254912765495,
+      "sla_breach_rate" : 0.2048114434330299,
+      "touches_per_case" : 5.168725617685306
+    },
+    "proposals" : [ {
+      "delta" : {
+        "cost_per_case_eur" : {
+          "covered" : false,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : 0.0,
+            "low" : 0.0,
+            "high" : 0.0
+          },
+          "true" : 0.02046494870683091
+        },
+        "cycle_p90_hours" : {
+          "covered" : true,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : -13.409320277777766,
+            "low" : -18.902926823611114,
+            "high" : -4.166466704166663
+          },
+          "true" : -12.641224444444447
+        },
+        "sla_breach_rate" : {
+          "covered" : true,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : -0.07452860858257479,
+            "low" : -0.1026607976762645,
+            "high" : -0.051762648200908444
+          },
+          "true" : -0.07509752925877763
+        },
+        "touches_per_case" : {
+          "covered" : false,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : 0.0,
+            "low" : 0.0,
+            "high" : 0.0
+          },
+          "true" : 0.0035760728218461324
+        }
+      },
+      "evidence" : {
+        "SAME_CASE" : 0.9999357295216793,
+        "SIMILAR_CASES" : 6.42704783206571E-5,
+        "ASSUMED" : 0.0
+      },
+      "proposal" : "add-analyst",
+      "reasons" : [ "the fitness score improves by 0.244 (90% interval 0.158 to 0.325)" ],
+      "score" : {
+        "covered" : true,
+        "naive" : 0.0,
+        "projected" : {
+          "estimate" : 0.24359120695093672,
+          "low" : 0.1581745647565234,
+          "high" : 0.32533764468612836
+        },
+        "true" : 0.24027583614325182
+      },
+      "trueBreaches" : [ ],
+      "verdict" : "IMPROVES",
+      "verdictHolds" : true
+    }, {
+      "delta" : {
+        "cost_per_case_eur" : {
+          "covered" : true,
+          "naive" : -16.8013983810143,
+          "projected" : {
+            "estimate" : -16.327931875496688,
+            "low" : -16.941198576179282,
+            "high" : -15.742751953827442
+          },
+          "true" : -16.582241091063437
+        },
+        "cycle_p90_hours" : {
+          "covered" : true,
+          "naive" : -0.4598716666666647,
+          "projected" : {
+            "estimate" : -6.0286344097222155,
+            "low" : -16.886379506944433,
+            "high" : -2.55257317361105
+          },
+          "true" : -10.236225555555563
+        },
+        "sla_breach_rate" : {
+          "covered" : true,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : -0.06794538361508454,
+            "low" : -0.0984245105041245,
+            "high" : -0.040443021342005614
+          },
+          "true" : -0.07932379713914173
+        },
+        "touches_per_case" : {
+          "covered" : true,
+          "naive" : -1.2210663198959684,
+          "projected" : {
+            "estimate" : -1.1629551365409618,
+            "low" : -1.2001416367652562,
+            "high" : -1.1239482766232602
+          },
+          "true" : -1.1869310793237973
+        }
+      },
+      "evidence" : {
+        "SAME_CASE" : 0.7865915890164302,
+        "SIMILAR_CASES" : 0.2105365458830512,
+        "ASSUMED" : 0.0028718651005185114
+      },
+      "proposal" : "agent-intake",
+      "reasons" : [ "the projection rests on assumptions nobody has measured yet (classify_inquiry); run the candidate in shadow on live cases and measure them before deciding" ],
+      "score" : {
+        "covered" : true,
+        "naive" : 0.16773580299141128,
+        "projected" : {
+          "estimate" : 0.3467580964366033,
+          "low" : 0.26890113800419985,
+          "high" : 0.4616190139758877
+        },
+        "true" : 0.3988061884268929
+      },
+      "trueBreaches" : [ ],
+      "verdict" : "NEEDS_SHADOW_RUN",
+      "verdictHolds" : true
+    }, {
+      "delta" : {
+        "cost_per_case_eur" : {
+          "covered" : true,
+          "naive" : -15.773466111111098,
+          "projected" : {
+            "estimate" : -15.05306068378848,
+            "low" : -15.420189987987499,
+            "high" : -14.73102723717295
+          },
+          "true" : -14.771813858546466
+        },
+        "cycle_p90_hours" : {
+          "covered" : true,
+          "naive" : -0.2686919444444449,
+          "projected" : {
+            "estimate" : -16.20299569444444,
+            "low" : -21.53616896388885,
+            "high" : -5.633446068055537
+          },
+          "true" : -15.570988472222226
+        },
+        "sla_breach_rate" : {
+          "covered" : true,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : -0.08501300390117036,
+            "low" : -0.11597670973578798,
+            "high" : -0.060071717475647025
+          },
+          "true" : -0.08517555266579974
+        },
+        "touches_per_case" : {
+          "covered" : true,
+          "naive" : -1.0,
+          "projected" : {
+            "estimate" : -0.9518855656697012,
+            "low" : -0.9592961168680157,
+            "high" : -0.9428566867359973
+          },
+          "true" : -0.944733420026008
+        }
+      },
+      "evidence" : {
+        "SAME_CASE" : 0.9990128829115593,
+        "SIMILAR_CASES" : 6.719063803352175E-5,
+        "ASSUMED" : 9.19926450407199E-4
+      },
+      "proposal" : "hub-connector",
+      "reasons" : [ "the fitness score improves by 0.424 (90% interval 0.330 to 0.513)" ],
+      "score" : {
+        "covered" : true,
+        "naive" : 0.14963207898700795,
+        "projected" : {
+          "estimate" : 0.4241862649373732,
+          "low" : 0.32960576794906066,
+          "high" : 0.5126997575391564
+        },
+        "true" : 0.41887866217568526
+      },
+      "trueBreaches" : [ ],
+      "verdict" : "IMPROVES",
+      "verdictHolds" : true
+    }, {
+      "delta" : {
+        "cost_per_case_eur" : {
+          "covered" : true,
+          "naive" : -0.46504265279583734,
+          "projected" : {
+            "estimate" : -0.45005261008164155,
+            "low" : -0.5138226365774315,
+            "high" : -0.38700725328855407
+          },
+          "true" : -0.4185325137263476
+        },
+        "cycle_p90_hours" : {
+          "covered" : false,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : -0.26035222222220966,
+            "low" : -0.6874422486111386,
+            "high" : 0.01605447222224385
+          },
+          "true" : 0.07006583333333083
+        },
+        "sla_breach_rate" : {
+          "covered" : true,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : -0.0013816644993498162,
+            "low" : -0.003157962179819537,
+            "high" : 3.849561245888606E-4
+          },
+          "true" : -0.0016254876462938883
+        },
+        "touches_per_case" : {
+          "covered" : true,
+          "naive" : -0.04681404421326363,
+          "projected" : {
+            "estimate" : -0.04681404421326363,
+            "low" : -0.052369103568266205,
+            "high" : -0.04109489976660479
+          },
+          "true" : -0.043237971391417496
+        }
+      },
+      "evidence" : {
+        "SAME_CASE" : 0.9999848425136442,
+        "SIMILAR_CASES" : 1.5157486355889404E-5,
+        "ASSUMED" : 0.0
+      },
+      "proposal" : "raise-four-eyes-limit",
+      "reasons" : [ "hard limit: four_eyes_violation_rate is 0.7200, above the limit of 0.0000" ],
+      "score" : {
+        "covered" : true,
+        "naive" : 0.005187607675960484,
+        "projected" : {
+          "estimate" : 0.009673554439520034,
+          "low" : 0.004501213347419975,
+          "high" : 0.01450408611035367
+        },
+        "true" : 0.008003672018027309
+      },
+      "trueBreaches" : [ "four_eyes_violation_rate is 0.7200, above the limit of 0.0000" ],
+      "verdict" : "BLOCKED",
+      "verdictHolds" : true
+    }, {
+      "delta" : {
+        "cost_per_case_eur" : {
+          "covered" : false,
+          "naive" : -56.47058269216876,
+          "projected" : {
+            "estimate" : -53.051210333495895,
+            "low" : -53.838487597579395,
+            "high" : -52.200719786770655
+          },
+          "true" : -53.865599482733714
+        },
+        "cycle_p90_hours" : {
+          "covered" : true,
+          "naive" : -1.2897924999999972,
+          "projected" : {
+            "estimate" : -36.315379062499986,
+            "low" : -42.27913299444445,
+            "high" : -27.891455086111115
+          },
+          "true" : -39.98723486111112
+        },
+        "sla_breach_rate" : {
+          "covered" : true,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : -0.1384102730819246,
+            "low" : -0.1713181992720959,
+            "high" : -0.11059967185823509
+          },
+          "true" : -0.1469440832249675
+        },
+        "touches_per_case" : {
+          "covered" : true,
+          "naive" : -4.772431729518855,
+          "projected" : {
+            "estimate" : -4.618579323797139,
+            "low" : -4.661904003295645,
+            "high" : -4.569934818082241
+          },
+          "true" : -4.638166449934981
+        }
+      },
+      "evidence" : {
+        "SAME_CASE" : 0.7650856783006625,
+        "SIMILAR_CASES" : 0.2300920652107243,
+        "ASSUMED" : 0.004822256488613101
+      },
+      "proposal" : "re-engineered",
+      "reasons" : [ "the projection rests on assumptions nobody has measured yet (classify_inquiry); run the candidate in shadow on live cases and measure them before deciding" ],
+      "score" : {
+        "covered" : true,
+        "naive" : 0.40722318747386155,
+        "projected" : {
+          "estimate" : 0.9162959541311818,
+          "low" : 0.8214900937077011,
+          "high" : 0.9771927898230196
+        },
+        "true" : 0.9561527056384991
+      },
+      "trueBreaches" : [ ],
+      "verdict" : "NEEDS_SHADOW_RUN",
+      "verdictHolds" : true
+    } ],
+    "seed" : 4
+  }, {
+    "cases" : 3443,
+    "conformance" : {
+      "asIs" : {
+        "deviations" : [ {
+          "cases" : 11,
+          "element" : "second_approval",
+          "kind" : "LEFT_UNDONE",
+          "message" : "In 11 of 3443 cases (0.3%) the history ends while the model still expects 'Second approval'."
+        }, {
+          "cases" : 11,
+          "element" : "send_recall",
+          "kind" : "RAN_WHEN_NOT_ALLOWED",
+          "message" : "'Send recall' ran in 11 of 3443 cases (0.3%) at a point where the model does not allow it; for these cases the model first requires 'Second approval' or 'Check funds can be returned'."
+        } ],
+        "fitness" : 0.9997168232719784,
+        "perfectlyFitting" : 0.9968051118210862
+      },
+      "documented" : {
+        "deviations" : [ {
+          "cases" : 523,
+          "element" : "lookup_payment",
+          "kind" : "LEFT_UNDONE",
+          "message" : "In 523 of 3443 cases (15.2%) the history ends while the model still expects 'Look up payment in hub'."
+        }, {
+          "cases" : 523,
+          "element" : "register_inquiry",
+          "kind" : "RAN_WHEN_NOT_ALLOWED",
+          "message" : "'Register inquiry' ran in 523 of 3443 cases (15.2%) at a point where the model does not allow it; for these cases the model first requires 'Inquiry received'."
+        }, {
+          "cases" : 523,
+          "element" : "request_info",
+          "kind" : "NOT_IN_MODEL",
+          "message" : "'request_info' appears in 523 of 3443 cases (15.2%) but is not a step of the model."
+        }, {
+          "cases" : 523,
+          "element" : "wait_reply",
+          "kind" : "NOT_IN_MODEL",
+          "message" : "'wait_reply' appears in 523 of 3443 cases (15.2%) but is not a step of the model."
+        }, {
+          "cases" : 11,
+          "element" : "second_approval",
+          "kind" : "LEFT_UNDONE",
+          "message" : "In 11 of 3443 cases (0.3%) the history ends while the model still expects 'Second approval'."
+        }, {
+          "cases" : 11,
+          "element" : "send_recall",
+          "kind" : "RAN_WHEN_NOT_ALLOWED",
+          "message" : "'Send recall' ran in 11 of 3443 cases (0.3%) at a point where the model does not allow it; for these cases the model first requires 'Second approval' or 'Check funds can be returned'."
+        } ],
+        "fitness" : 0.9627711117468598,
+        "perfectlyFitting" : 0.8451931455126344
+      }
+    },
+    "observed" : {
+      "cost_per_case_eur" : 57.942035779520445,
+      "cycle_p50_hours" : 18.439352222222222,
+      "cycle_p90_hours" : 64.09327961111111,
+      "four_eyes_violation_rate" : 0.040293040293040296,
+      "open_case_rate" : 0.0,
+      "person_minutes_per_case" : 59.61258041920806,
+      "sla_breach_rate" : 0.19053151321521927,
+      "touches_per_case" : 5.1080453093232645
+    },
+    "proposals" : [ {
+      "delta" : {
+        "cost_per_case_eur" : {
+          "covered" : false,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : 0.0,
+            "low" : 0.0,
+            "high" : 0.0
+          },
+          "true" : 0.0400868690095848
+        },
+        "cycle_p90_hours" : {
+          "covered" : true,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : -9.758708722222146,
+            "low" : -11.062407877777789,
+            "high" : -2.487641313888904
+          },
+          "true" : -9.319484944444412
+        },
+        "sla_breach_rate" : {
+          "covered" : true,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : -0.06992448446122565,
+            "low" : -0.09244097902605415,
+            "high" : -0.05032701877431477
+          },
+          "true" : -0.06796398489689223
+        },
+        "touches_per_case" : {
+          "covered" : false,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : 0.0,
+            "low" : 0.0,
+            "high" : 0.0
+          },
+          "true" : 0.0031948881789141126
+        }
+      },
+      "evidence" : {
+        "SAME_CASE" : 0.9999350571318867,
+        "SIMILAR_CASES" : 6.49428681133858E-5,
+        "ASSUMED" : 0.0
+      },
+      "proposal" : "add-analyst",
+      "reasons" : [ "the fitness score improves by 0.235 (90% interval 0.151 to 0.287)" ],
+      "score" : {
+        "covered" : true,
+        "naive" : 0.0,
+        "projected" : {
+          "estimate" : 0.23500007434257672,
+          "low" : 0.1513585928617149,
+          "high" : 0.28736724230839084
+        },
+        "true" : 0.22692018694990893
+      },
+      "trueBreaches" : [ ],
+      "verdict" : "IMPROVES",
+      "verdictHolds" : true
+    }, {
+      "delta" : {
+        "cost_per_case_eur" : {
+          "covered" : true,
+          "naive" : -14.597479650498599,
+          "projected" : {
+            "estimate" : -14.195148516918387,
+            "low" : -14.64523492512067,
+            "high" : -13.7002231658943
+          },
+          "true" : -14.055905765966372
+        },
+        "cycle_p90_hours" : {
+          "covered" : true,
+          "naive" : -0.41802166666666807,
+          "projected" : {
+            "estimate" : -5.014343097222223,
+            "low" : -11.513386193055538,
+            "high" : 1.6146129305555477
+          },
+          "true" : -1.2784189444444465
+        },
+        "sla_breach_rate" : {
+          "covered" : true,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : -0.06070287539936098,
+            "low" : -0.08917886154270405,
+            "high" : -0.03145210298558576
+          },
+          "true" : -0.05634620970084228
+        },
+        "touches_per_case" : {
+          "covered" : true,
+          "naive" : -1.1635201858844035,
+          "projected" : {
+            "estimate" : -1.116468196340401,
+            "low" : -1.1549024508407886,
+            "high" : -1.0819264119267404
+          },
+          "true" : -1.0961370897473133
+        }
+      },
+      "evidence" : {
+        "SAME_CASE" : 0.800745557379727,
+        "SIMILAR_CASES" : 0.19646773924436214,
+        "ASSUMED" : 0.0027867033759108773
+      },
+      "proposal" : "agent-intake",
+      "reasons" : [ "the projection rests on assumptions nobody has measured yet (classify_inquiry); run the candidate in shadow on live cases and measure them before deciding" ],
+      "score" : {
+        "covered" : true,
+        "naive" : 0.16954174136334074,
+        "projected" : {
+          "estimate" : 0.3440609909108127,
+          "low" : 0.2339163710504452,
+          "high" : 0.4507216014475076
+        },
+        "true" : 0.30787737678953536
+      },
+      "trueBreaches" : [ ],
+      "verdict" : "NEEDS_SHADOW_RUN",
+      "verdictHolds" : true
+    }, {
+      "delta" : {
+        "cost_per_case_eur" : {
+          "covered" : false,
+          "naive" : -14.248646111111107,
+          "projected" : {
+            "estimate" : -13.517413312437476,
+            "low" : -13.823201781468246,
+            "high" : -13.18366203873632
+          },
+          "true" : -12.935120796140325
+        },
+        "cycle_p90_hours" : {
+          "covered" : true,
+          "naive" : -0.2424019444444454,
+          "projected" : {
+            "estimate" : -12.828702944444437,
+            "low" : -14.116574844444454,
+            "high" : -4.487231165277772
+          },
+          "true" : -12.571045111111083
+        },
+        "sla_breach_rate" : {
+          "covered" : true,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : -0.07892826023816436,
+            "low" : -0.10203700373907044,
+            "high" : -0.056433531552155726
+          },
+          "true" : -0.0766773162939297
+        },
+        "touches_per_case" : {
+          "covered" : true,
+          "naive" : -1.0,
+          "projected" : {
+            "estimate" : -0.9495352889921582,
+            "low" : -0.9600701673625518,
+            "high" : -0.9388993618522425
+          },
+          "true" : -0.9526575660760965
+        }
+      },
+      "evidence" : {
+        "SAME_CASE" : 0.9990037685299825,
+        "SIMILAR_CASES" : 6.776033370134667E-5,
+        "ASSUMED" : 9.284711363162125E-4
+      },
+      "proposal" : "hub-connector",
+      "reasons" : [ "the fitness score improves by 0.425 (90% interval 0.338 to 0.479)" ],
+      "score" : {
+        "covered" : true,
+        "naive" : 0.15790755763814207,
+        "projected" : {
+          "estimate" : 0.42497836275141704,
+          "low" : 0.33765203519326137,
+          "high" : 0.4793164565797285
+        },
+        "true" : 0.4134972894927702
+      },
+      "trueBreaches" : [ ],
+      "verdict" : "IMPROVES",
+      "verdictHolds" : true
+    }, {
+      "delta" : {
+        "cost_per_case_eur" : {
+          "covered" : true,
+          "naive" : -0.6407580740310479,
+          "projected" : {
+            "estimate" : -0.6048258885177731,
+            "low" : -0.7086021113198544,
+            "high" : -0.5083670849992528
+          },
+          "true" : -0.5735780185238966
+        },
+        "cycle_p90_hours" : {
+          "covered" : true,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : -3.2305555555467436E-4,
+            "low" : -0.463648822222212,
+            "high" : 0.49407793611096573
+          },
+          "true" : 0.11906827777779938
+        },
+        "sla_breach_rate" : {
+          "covered" : true,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : 3.630554748765835E-4,
+            "low" : -0.0011335811716222334,
+            "high" : 0.002011958801199856
+          },
+          "true" : 5.808887598025003E-4
+        },
+        "touches_per_case" : {
+          "covered" : true,
+          "naive" : -0.05692709846064492,
+          "projected" : {
+            "estimate" : -0.05692709846064492,
+            "low" : -0.06482031318729664,
+            "high" : -0.04953130130585208
+          },
+          "true" : -0.05373221028173081
+        }
+      },
+      "evidence" : {
+        "SAME_CASE" : 0.9999954507298379,
+        "SIMILAR_CASES" : 4.5492701621010915E-6,
+        "ASSUMED" : 0.0
+      },
+      "proposal" : "raise-four-eyes-limit",
+      "reasons" : [ "hard limit: four_eyes_violation_rate is 0.7179, above the limit of 0.0000" ],
+      "score" : {
+        "covered" : true,
+        "naive" : 0.007610176030973612,
+        "projected" : {
+          "estimate" : 0.006435292073017773,
+          "low" : -4.213751367285665E-5,
+          "high" : 0.012171388786539209
+        },
+        "true" : 0.004756974778971659
+      },
+      "trueBreaches" : [ "four_eyes_violation_rate is 0.7179, above the limit of 0.0000" ],
+      "verdict" : "BLOCKED",
+      "verdictHolds" : true
+    }, {
+      "delta" : {
+        "cost_per_case_eur" : {
+          "covered" : true,
+          "naive" : -51.179084527059736,
+          "projected" : {
+            "estimate" : -48.05982675012909,
+            "low" : -48.72983266243545,
+            "high" : -47.26075694246944
+          },
+          "true" : -47.60739730693517
+        },
+        "cycle_p90_hours" : {
+          "covered" : true,
+          "naive" : -1.203894444444444,
+          "projected" : {
+            "estimate" : -32.56932781944442,
+            "low" : -38.07811255555571,
+            "high" : -21.645550527777782
+          },
+          "true" : -30.08896216666667
+        },
+        "sla_breach_rate" : {
+          "covered" : true,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : -0.12917513796108043,
+            "low" : -0.156975537725609,
+            "high" : -0.10490578681803851
+          },
+          "true" : -0.12314841707812953
+        },
+        "touches_per_case" : {
+          "covered" : true,
+          "naive" : -4.736857391809469,
+          "projected" : {
+            "estimate" : -4.576096427534128,
+            "low" : -4.606302730379287,
+            "high" : -4.544400552656632
+          },
+          "true" : -4.603543421434795
+        }
+      },
+      "evidence" : {
+        "SAME_CASE" : 0.7807529903674083,
+        "SIMILAR_CASES" : 0.21458255585628058,
+        "ASSUMED" : 0.004664453776310996
+      },
+      "proposal" : "re-engineered",
+      "reasons" : [ "the projection rests on assumptions nobody has measured yet (classify_inquiry); run the candidate in shadow on live cases and measure them before deciding" ],
+      "score" : {
+        "covered" : true,
+        "naive" : 0.40750683441291,
+        "projected" : {
+          "estimate" : 0.9248011483542974,
+          "low" : 0.8150508637615935,
+          "high" : 0.9798619690556175
+        },
+        "true" : 0.894325113002977
+      },
+      "trueBreaches" : [ ],
+      "verdict" : "NEEDS_SHADOW_RUN",
+      "verdictHolds" : true
+    } ],
+    "seed" : 5
+  }, {
+    "cases" : 3484,
+    "conformance" : {
+      "asIs" : {
+        "deviations" : [ {
+          "cases" : 9,
+          "element" : "second_approval",
+          "kind" : "LEFT_UNDONE",
+          "message" : "In 9 of 3484 cases (0.3%) the history ends while the model still expects 'Second approval'."
+        }, {
+          "cases" : 9,
+          "element" : "send_recall",
+          "kind" : "RAN_WHEN_NOT_ALLOWED",
+          "message" : "'Send recall' ran in 9 of 3484 cases (0.3%) at a point where the model does not allow it; for these cases the model first requires 'Second approval' or 'Check funds can be returned'."
+        } ],
+        "fitness" : 0.9997853207070104,
+        "perfectlyFitting" : 0.9974167623421355
+      },
+      "documented" : {
+        "deviations" : [ {
+          "cases" : 893,
+          "element" : "lookup_payment",
+          "kind" : "LEFT_UNDONE",
+          "message" : "In 893 of 3484 cases (25.6%) the history ends while the model still expects 'Look up payment in hub'."
+        }, {
+          "cases" : 893,
+          "element" : "register_inquiry",
+          "kind" : "RAN_WHEN_NOT_ALLOWED",
+          "message" : "'Register inquiry' ran in 893 of 3484 cases (25.6%) at a point where the model does not allow it; for these cases the model first requires 'Inquiry received'."
+        }, {
+          "cases" : 893,
+          "element" : "request_info",
+          "kind" : "NOT_IN_MODEL",
+          "message" : "'request_info' appears in 893 of 3484 cases (25.6%) but is not a step of the model."
+        }, {
+          "cases" : 893,
+          "element" : "wait_reply",
+          "kind" : "NOT_IN_MODEL",
+          "message" : "'wait_reply' appears in 893 of 3484 cases (25.6%) but is not a step of the model."
+        }, {
+          "cases" : 9,
+          "element" : "second_approval",
+          "kind" : "LEFT_UNDONE",
+          "message" : "In 9 of 3484 cases (0.3%) the history ends while the model still expects 'Second approval'."
+        }, {
+          "cases" : 9,
+          "element" : "send_recall",
+          "kind" : "RAN_WHEN_NOT_ALLOWED",
+          "message" : "'Send recall' ran in 9 of 3484 cases (0.3%) at a point where the model does not allow it; for these cases the model first requires 'Second approval' or 'Check funds can be returned'."
+        } ],
+        "fitness" : 0.9410989421255176,
+        "perfectlyFitting" : 0.7413892078071183
+      }
+    },
+    "observed" : {
+      "cost_per_case_eur" : 56.812038572522006,
+      "cycle_p50_hours" : 20.191480555555557,
+      "cycle_p90_hours" : 73.16410086111112,
+      "four_eyes_violation_rate" : 0.03296703296703297,
+      "open_case_rate" : 0.0,
+      "person_minutes_per_case" : 58.49208594048986,
+      "sla_breach_rate" : 0.2502870264064294,
+      "touches_per_case" : 5.413605051664753
+    },
+    "proposals" : [ {
+      "delta" : {
+        "cost_per_case_eur" : {
+          "covered" : false,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : 0.0,
+            "low" : 0.0,
+            "high" : 0.0
+          },
+          "true" : 0.02907569396606391
+        },
+        "cycle_p90_hours" : {
+          "covered" : true,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : -4.3340860833333466,
+            "low" : -8.422125401388884,
+            "high" : -2.7034865041666722
+          },
+          "true" : -4.230440222222214
+        },
+        "sla_breach_rate" : {
+          "covered" : true,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : -0.05840987370838119,
+            "low" : -0.07763218793044369,
+            "high" : -0.04029612448620082
+          },
+          "true" : -0.05884041331802528
+        },
+        "touches_per_case" : {
+          "covered" : false,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : 0.0,
+            "low" : 0.0,
+            "high" : 0.0
+          },
+          "true" : 0.002583237657864501
+        }
+      },
+      "evidence" : {
+        "SAME_CASE" : 0.9999739145331308,
+        "SIMILAR_CASES" : 2.608546686924136E-5,
+        "ASSUMED" : 0.0
+      },
+      "proposal" : "add-analyst",
+      "reasons" : [ "the fitness score improves by 0.124 (90% interval 0.093 to 0.160)" ],
+      "score" : {
+        "covered" : true,
+        "naive" : 0.0,
+        "projected" : {
+          "estimate" : 0.12410966988925992,
+          "low" : 0.0930049329516053,
+          "high" : 0.1596212328228303
+        },
+        "true" : 0.12399298595879324
+      },
+      "trueBreaches" : [ ],
+      "verdict" : "IMPROVES",
+      "verdictHolds" : true
+    }, {
+      "delta" : {
+        "cost_per_case_eur" : {
+          "covered" : true,
+          "naive" : -14.779670871922434,
+          "projected" : {
+            "estimate" : -14.392070317722286,
+            "low" : -14.90807469083912,
+            "high" : -13.84547404429633
+          },
+          "true" : -14.332134676935837
+        },
+        "cycle_p90_hours" : {
+          "covered" : true,
+          "naive" : -0.3854922222222221,
+          "projected" : {
+            "estimate" : -3.862731624999995,
+            "low" : -8.559240613888871,
+            "high" : -1.0171095347222057
+          },
+          "true" : -3.1222008055555364
+        },
+        "sla_breach_rate" : {
+          "covered" : true,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : -0.0630740528128588,
+            "low" : -0.08862559704100652,
+            "high" : -0.036567479770325234
+          },
+          "true" : -0.06228473019517797
+        },
+        "touches_per_case" : {
+          "covered" : true,
+          "naive" : -1.273823191733639,
+          "projected" : {
+            "estimate" : -1.2299799081515497,
+            "low" : -1.265883149637312,
+            "high" : -1.2020869178518299
+          },
+          "true" : -1.2215843857634896
+        }
+      },
+      "evidence" : {
+        "SAME_CASE" : 0.8610321001072672,
+        "SIMILAR_CASES" : 0.13713295916793872,
+        "ASSUMED" : 0.001834940724794196
+      },
+      "proposal" : "agent-intake",
+      "reasons" : [ "the projection rests on assumptions nobody has measured yet (classify_inquiry); run the candidate in shadow on live cases and measure them before deciding" ],
+      "score" : {
+        "covered" : true,
+        "naive" : 0.17408274524797673,
+        "projected" : {
+          "estimate" : 0.2970133819872362,
+          "low" : 0.24853011039862957,
+          "high" : 0.35384257726714063
+        },
+        "true" : 0.29102851115669615
+      },
+      "trueBreaches" : [ ],
+      "verdict" : "NEEDS_SHADOW_RUN",
+      "verdictHolds" : true
+    }, {
+      "delta" : {
+        "cost_per_case_eur" : {
+          "covered" : false,
+          "naive" : -12.833816666666664,
+          "projected" : {
+            "estimate" : -12.207041508483229,
+            "low" : -12.523979170641063,
+            "high" : -11.838954815123802
+          },
+          "true" : -11.736797155568318
+        },
+        "cycle_p90_hours" : {
+          "covered" : true,
+          "naive" : -0.21800833333333358,
+          "projected" : {
+            "estimate" : -5.545791694444432,
+            "low" : -10.596120618055554,
+            "high" : -4.049611347222223
+          },
+          "true" : -5.31601672222223
+        },
+        "sla_breach_rate" : {
+          "covered" : true,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : -0.07254592422502873,
+            "low" : -0.09404423017275587,
+            "high" : -0.0512932295530952
+          },
+          "true" : -0.07319173363949485
+        },
+        "touches_per_case" : {
+          "covered" : true,
+          "naive" : -1.0,
+          "projected" : {
+            "estimate" : -0.9493398392652121,
+            "low" : -0.955878578843511,
+            "high" : -0.9418026198118464
+          },
+          "true" : -0.946613088404133
+        }
+      },
+      "evidence" : {
+        "SAME_CASE" : 0.9994596008622533,
+        "SIMILAR_CASES" : 2.6684904042907254E-5,
+        "ASSUMED" : 5.137142337037865E-4
+      },
+      "proposal" : "hub-connector",
+      "reasons" : [ "the fitness score improves by 0.293 (90% interval 0.260 to 0.338)" ],
+      "score" : {
+        "covered" : true,
+        "naive" : 0.14590699299713666,
+        "projected" : {
+          "estimate" : 0.29262054911256286,
+          "low" : 0.26001389515379547,
+          "high" : 0.33790396212601964
+        },
+        "true" : 0.28876537874310026
+      },
+      "trueBreaches" : [ ],
+      "verdict" : "IMPROVES",
+      "verdictHolds" : true
+    }, {
+      "delta" : {
+        "cost_per_case_eur" : {
+          "covered" : true,
+          "naive" : -0.5583660473274676,
+          "projected" : {
+            "estimate" : -0.5410744993781194,
+            "low" : -0.6237190887552743,
+            "high" : -0.4674107903286686
+          },
+          "true" : -0.5209753428370973
+        },
+        "cycle_p90_hours" : {
+          "covered" : true,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : -0.04002959027775432,
+            "low" : -0.4430994916667203,
+            "high" : 0.2062148944444512
+          },
+          "true" : -0.022569194444415075
+        },
+        "sla_breach_rate" : {
+          "covered" : false,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : -4.305396096441205E-4,
+            "low" : -0.0016959487022712356,
+            "high" : 0.0013531831583363382
+          },
+          "true" : -0.002009184845005757
+        },
+        "touches_per_case" : {
+          "covered" : true,
+          "naive" : -0.05797933409873668,
+          "projected" : {
+            "estimate" : -0.05797933409873668,
+            "low" : -0.06408355743716165,
+            "high" : -0.05216386982295243
+          },
+          "true" : -0.05539609644087218
+        }
+      },
+      "evidence" : {
+        "SAME_CASE" : 0.9999944227323986,
+        "SIMILAR_CASES" : 5.5772676014893306E-6,
+        "ASSUMED" : 0.0
+      },
+      "proposal" : "raise-four-eyes-limit",
+      "reasons" : [ "hard limit: four_eyes_violation_rate is 0.7399, above the limit of 0.0000" ],
+      "score" : {
+        "covered" : true,
+        "naive" : 0.006935726152941053,
+        "projected" : {
+          "estimate" : 0.0077557532404491005,
+          "low" : 0.004051829753277311,
+          "high" : 0.011048987697440768
+        },
+        "true" : 0.010154172448701235
+      },
+      "trueBreaches" : [ "four_eyes_violation_rate is 0.7399, above the limit of 0.0000" ],
+      "verdict" : "BLOCKED",
+      "verdictHolds" : true
+    }, {
+      "delta" : {
+        "cost_per_case_eur" : {
+          "covered" : false,
+          "naive" : -50.022452444986605,
+          "projected" : {
+            "estimate" : -47.39974415522548,
+            "low" : -48.320189455567814,
+            "high" : -46.47496702101368
+          },
+          "true" : -45.525032853520855
+        },
+        "cycle_p90_hours" : {
+          "covered" : true,
+          "naive" : -1.178537500000001,
+          "projected" : {
+            "estimate" : -29.60896022222221,
+            "low" : -35.46257217638888,
+            "high" : -26.032747526388892
+          },
+          "true" : -27.12284688888888
+        },
+        "sla_breach_rate" : {
+          "covered" : true,
+          "naive" : 0.0,
+          "projected" : {
+            "estimate" : -0.14674225028702642,
+            "low" : -0.17170750693343179,
+            "high" : -0.11765919215691431
+          },
+          "true" : -0.14380022962112515
+        },
+        "touches_per_case" : {
+          "covered" : true,
+          "naive" : -5.128013777267508,
+          "projected" : {
+            "estimate" : -4.95723306544202,
+            "low" : -4.993882457065211,
+            "high" : -4.919374180177984
+          },
+          "true" : -4.926808266360505
+        }
+      },
+      "evidence" : {
+        "SAME_CASE" : 0.8526118919655982,
+        "SIMILAR_CASES" : 0.14433063398576784,
+        "ASSUMED" : 0.0030574740486339915
+      },
+      "proposal" : "re-engineered",
+      "reasons" : [ "the projection rests on assumptions nobody has measured yet (classify_inquiry); run the candidate in shadow on live cases and measure them before deciding" ],
+      "score" : {
+        "covered" : true,
+        "naive" : 0.4059928763028199,
+        "projected" : {
+          "estimate" : 0.8069928179991379,
+          "low" : 0.746997900553796,
+          "high" : 0.8669920029007168
+        },
+        "true" : 0.789209746107592
+      },
+      "trueBreaches" : [ ],
+      "verdict" : "NEEDS_SHADOW_RUN",
+      "verdictHolds" : true
+    } ],
+    "seed" : 6
+  } ],
+  "set" : "dev",
   "settings" : {
     "replications" : 4,
     "bootstrap" : 400,
@@ -14,2354 +2300,62 @@
   },
   "summary" : {
     "add-analyst" : {
-      "worlds" : 6,
+      "intervalCoverage" : 1.0,
+      "scoreErrorNaive" : 0.1540209572683333,
+      "scoreErrorOurs" : 0.003810718096982494,
+      "verdictHolds" : 6,
       "verdicts" : {
         "IMPROVES" : 6
       },
-      "verdictHolds" : 6,
-      "scoreErrorOurs" : 0.003810718096982494,
-      "scoreErrorNaive" : 0.1540209572683333,
-      "intervalCoverage" : 1.0
+      "worlds" : 6
     },
     "agent-intake" : {
-      "worlds" : 6,
+      "intervalCoverage" : 1.0,
+      "scoreErrorNaive" : 0.13022241977480153,
+      "scoreErrorOurs" : 0.02578199306503937,
+      "verdictHolds" : 6,
       "verdicts" : {
         "NEEDS_SHADOW_RUN" : 6
       },
-      "verdictHolds" : 6,
-      "scoreErrorOurs" : 0.02578199306503937,
-      "scoreErrorNaive" : 0.13022241977480153,
-      "intervalCoverage" : 1.0
+      "worlds" : 6
     },
     "hub-connector" : {
-      "worlds" : 6,
+      "intervalCoverage" : 1.0,
+      "scoreErrorNaive" : 0.17064686501911275,
+      "scoreErrorOurs" : 0.00844509596276844,
+      "verdictHolds" : 6,
       "verdicts" : {
         "IMPROVES" : 6
       },
-      "verdictHolds" : 6,
-      "scoreErrorOurs" : 0.00844509596276844,
-      "scoreErrorNaive" : 0.17064686501911275,
-      "intervalCoverage" : 1.0
+      "worlds" : 6
+    },
+    "overall" : {
+      "intervalCoverage" : 0.9333333333333333,
+      "scoreErrorNaive" : 0.1734960921181484,
+      "scoreErrorOurs" : 0.013978191521064528,
+      "verdicts" : 30,
+      "verdictsThatHold" : 30
     },
     "raise-four-eyes-limit" : {
-      "worlds" : 6,
+      "intervalCoverage" : 0.6666666666666666,
+      "scoreErrorNaive" : 0.004522408833091292,
+      "scoreErrorOurs" : 0.0031802632051044395,
+      "verdictHolds" : 6,
       "verdicts" : {
         "BLOCKED" : 6
       },
-      "verdictHolds" : 6,
-      "scoreErrorOurs" : 0.0031802632051044395,
-      "scoreErrorNaive" : 0.004522408833091292,
-      "intervalCoverage" : 0.6666666666666666
+      "worlds" : 6
     },
     "re-engineered" : {
-      "worlds" : 6,
+      "intervalCoverage" : 1.0,
+      "scoreErrorNaive" : 0.4080678096954031,
+      "scoreErrorOurs" : 0.0286728872754279,
+      "verdictHolds" : 6,
       "verdicts" : {
         "NEEDS_SHADOW_RUN" : 6
       },
-      "verdictHolds" : 6,
-      "scoreErrorOurs" : 0.0286728872754279,
-      "scoreErrorNaive" : 0.4080678096954031,
-      "intervalCoverage" : 1.0
-    },
-    "overall" : {
-      "scoreErrorOurs" : 0.013978191521064528,
-      "verdicts" : 30,
-      "scoreErrorNaive" : 0.1734960921181484,
-      "verdictsThatHold" : 30,
-      "intervalCoverage" : 0.9333333333333333
+      "worlds" : 6
     }
   },
-  "perWorld" : [ {
-    "seed" : 1,
-    "cases" : 3808,
-    "observed" : {
-      "cycle_p50_hours" : 9.50741,
-      "cycle_p90_hours" : 66.65062205555556,
-      "sla_breach_rate" : 0.17673319327731093,
-      "cost_per_case_eur" : 55.11101774334734,
-      "touches_per_case" : 5.246586134453781,
-      "person_minutes_per_case" : 56.65958520658263,
-      "four_eyes_violation_rate" : 0.03205128205128205,
-      "open_case_rate" : 0.0
-    },
-    "conformance" : {
-      "documented" : {
-        "fitness" : 0.9634629752632662,
-        "perfectlyFitting" : 0.8432247899159664,
-        "deviations" : [ {
-          "element" : "lookup_payment",
-          "kind" : "LEFT_UNDONE",
-          "cases" : 589,
-          "message" : "In 589 of 3808 cases (15.5%) the history ends while the model still expects 'Look up payment in hub'."
-        }, {
-          "element" : "register_inquiry",
-          "kind" : "RAN_WHEN_NOT_ALLOWED",
-          "cases" : 589,
-          "message" : "'Register inquiry' ran in 589 of 3808 cases (15.5%) at a point where the model does not allow it; for these cases the model first requires 'Inquiry received'."
-        }, {
-          "element" : "request_info",
-          "kind" : "NOT_IN_MODEL",
-          "cases" : 589,
-          "message" : "'request_info' appears in 589 of 3808 cases (15.5%) but is not a step of the model."
-        }, {
-          "element" : "wait_reply",
-          "kind" : "NOT_IN_MODEL",
-          "cases" : 589,
-          "message" : "'wait_reply' appears in 589 of 3808 cases (15.5%) but is not a step of the model."
-        }, {
-          "element" : "second_approval",
-          "kind" : "LEFT_UNDONE",
-          "cases" : 10,
-          "message" : "In 10 of 3808 cases (0.3%) the history ends while the model still expects 'Second approval'."
-        }, {
-          "element" : "send_recall",
-          "kind" : "RAN_WHEN_NOT_ALLOWED",
-          "cases" : 10,
-          "message" : "'Send recall' ran in 10 of 3808 cases (0.3%) at a point where the model does not allow it; for these cases the model first requires 'Second approval' or 'Check funds can be returned'."
-        } ]
-      },
-      "asIs" : {
-        "fitness" : 0.9997719342258308,
-        "perfectlyFitting" : 0.9973739495798319,
-        "deviations" : [ {
-          "element" : "second_approval",
-          "kind" : "LEFT_UNDONE",
-          "cases" : 10,
-          "message" : "In 10 of 3808 cases (0.3%) the history ends while the model still expects 'Second approval'."
-        }, {
-          "element" : "send_recall",
-          "kind" : "RAN_WHEN_NOT_ALLOWED",
-          "cases" : 10,
-          "message" : "'Send recall' ran in 10 of 3808 cases (0.3%) at a point where the model does not allow it; for these cases the model first requires 'Second approval' or 'Check funds can be returned'."
-        } ]
-      }
-    },
-    "proposals" : [ {
-      "proposal" : "add-analyst",
-      "verdict" : "IMPROVES",
-      "reasons" : [ "the fitness score improves by 0.078 (90% interval 0.046 to 0.125)" ],
-      "score" : {
-        "naive" : 0.0,
-        "projected" : {
-          "estimate" : 0.0780407962825349,
-          "low" : 0.046279335939913575,
-          "high" : 0.12531724890982301
-        },
-        "covered" : true,
-        "true" : 0.08222570138576465
-      },
-      "delta" : {
-        "cycle_p90_hours" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : -1.7145049097221943,
-            "low" : -5.144471562500002,
-            "high" : -1.0280627138888847
-          },
-          "covered" : true,
-          "true" : -1.9561003888888848
-        },
-        "sla_breach_rate" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : -0.024619222689075626,
-            "low" : -0.03825671609957245,
-            "high" : -0.013359513344295514
-          },
-          "covered" : true,
-          "true" : -0.02573529411764708
-        },
-        "cost_per_case_eur" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : 0.0,
-            "low" : 0.0,
-            "high" : 0.0
-          },
-          "covered" : false,
-          "true" : 0.02314440096871806
-        },
-        "touches_per_case" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : 0.0,
-            "low" : 0.0,
-            "high" : 0.0
-          },
-          "covered" : false,
-          "true" : 0.002626050420168724
-        }
-      },
-      "evidence" : {
-        "SAME_CASE" : 0.9999550146880377,
-        "SIMILAR_CASES" : 4.498531196227724E-5,
-        "ASSUMED" : 0.0
-      },
-      "trueBreaches" : [ ],
-      "verdictHolds" : true
-    }, {
-      "proposal" : "agent-intake",
-      "verdict" : "NEEDS_SHADOW_RUN",
-      "reasons" : [ "the projection rests on assumptions nobody has measured yet (classify_inquiry); run the candidate in shadow on live cases and measure them before deciding" ],
-      "score" : {
-        "naive" : 0.19936690460773482,
-        "projected" : {
-          "estimate" : 0.23173589682038734,
-          "low" : 0.09833999355433845,
-          "high" : 0.36559943559153296
-        },
-        "covered" : true,
-        "true" : 0.23580392043783963
-      },
-      "delta" : {
-        "cycle_p90_hours" : {
-          "naive" : -0.4939866666666646,
-          "projected" : {
-            "estimate" : -0.24034666666666737,
-            "low" : -8.805373579166682,
-            "high" : 7.829596090277773
-          },
-          "covered" : true,
-          "true" : -0.6829585833333311
-        },
-        "sla_breach_rate" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : -0.014246323529411742,
-            "low" : -0.047179657977326574,
-            "high" : 0.018321715516385177
-          },
-          "covered" : true,
-          "true" : -0.014968487394957986
-        },
-        "cost_per_case_eur" : {
-          "naive" : -17.181283459383756,
-          "projected" : {
-            "estimate" : -16.80775135854342,
-            "low" : -17.409320880082202,
-            "high" : -16.17844863914986
-          },
-          "covered" : true,
-          "true" : -16.787770059232024
-        },
-        "touches_per_case" : {
-          "naive" : -1.1649159663865554,
-          "projected" : {
-            "estimate" : -1.1132484243697478,
-            "low" : -1.1653168153986448,
-            "high" : -1.0572433293659047
-          },
-          "covered" : true,
-          "true" : -1.1055672268907557
-        }
-      },
-      "evidence" : {
-        "SAME_CASE" : 0.7496195208479961,
-        "SIMILAR_CASES" : 0.24888715568644773,
-        "ASSUMED" : 0.0014933234655561045
-      },
-      "trueBreaches" : [ ],
-      "verdictHolds" : true
-    }, {
-      "proposal" : "hub-connector",
-      "verdict" : "IMPROVES",
-      "reasons" : [ "the fitness score improves by 0.250 (90% interval 0.206 to 0.323)" ],
-      "score" : {
-        "naive" : 0.14674880585202546,
-        "projected" : {
-          "estimate" : 0.2500610668802331,
-          "low" : 0.20630626351382964,
-          "high" : 0.32284375999490567
-        },
-        "covered" : true,
-        "true" : 0.25033049262627327
-      },
-      "delta" : {
-        "cycle_p90_hours" : {
-          "naive" : -0.2030608333333319,
-          "projected" : {
-            "estimate" : -3.202861694444451,
-            "low" : -8.736847038888927,
-            "high" : -1.9890144402777667
-          },
-          "covered" : true,
-          "true" : -3.546516916666647
-        },
-        "sla_breach_rate" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : -0.033810399159663856,
-            "low" : -0.0522493751735629,
-            "high" : -0.017883326791198147
-          },
-          "covered" : true,
-          "true" : -0.0344012605042017
-        },
-        "cost_per_case_eur" : {
-          "naive" : -11.96686166666666,
-          "projected" : {
-            "estimate" : -11.339342719238736,
-            "low" : -11.681416596740986,
-            "high" : -11.034180400908467
-          },
-          "covered" : false,
-          "true" : -10.985610251371384
-        },
-        "touches_per_case" : {
-          "naive" : -1.0,
-          "projected" : {
-            "estimate" : -0.9472820378151265,
-            "low" : -0.9555104468414126,
-            "high" : -0.9360220634535781
-          },
-          "covered" : true,
-          "true" : -0.9377626050420167
-        }
-      },
-      "evidence" : {
-        "SAME_CASE" : 0.9993257878289764,
-        "SIMILAR_CASES" : 4.609918271704615E-5,
-        "ASSUMED" : 6.281129883065563E-4
-      },
-      "trueBreaches" : [ ],
-      "verdictHolds" : true
-    }, {
-      "proposal" : "raise-four-eyes-limit",
-      "verdict" : "BLOCKED",
-      "reasons" : [ "hard limit: four_eyes_violation_rate is 0.6987, above the limit of 0.0000" ],
-      "score" : {
-        "naive" : 0.008160188512944838,
-        "projected" : {
-          "estimate" : 0.010800987412937673,
-          "low" : 0.00784335969287727,
-          "high" : 0.014266009551683606
-        },
-        "covered" : true,
-        "true" : 0.01394247495352707
-      },
-      "delta" : {
-        "cycle_p90_hours" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : 0.08529949999999076,
-            "low" : -0.08028899444444378,
-            "high" : 0.3094938722222105
-          },
-          "covered" : false,
-          "true" : -0.45087436111110435
-        },
-        "sla_breach_rate" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : -0.001181722689075626,
-            "low" : -0.002150109329620448,
-            "high" : -2.7345226931034674E-4
-          },
-          "covered" : true,
-          "true" : -0.0013130252100840567
-        },
-        "cost_per_case_eur" : {
-          "naive" : -0.6642730718954226,
-          "projected" : {
-            "estimate" : -0.6494845104604323,
-            "low" : -0.7384580965309311,
-            "high" : -0.5632986118083608
-          },
-          "covered" : true,
-          "true" : -0.6202614793417354
-        },
-        "touches_per_case" : {
-          "naive" : -0.05724789915966433,
-          "projected" : {
-            "estimate" : -0.05724789915966433,
-            "low" : -0.06347858099530543,
-            "high" : -0.051316814666819345
-          },
-          "covered" : true,
-          "true" : -0.054621848739495604
-        }
-      },
-      "evidence" : {
-        "SAME_CASE" : 0.9999862712119169,
-        "SIMILAR_CASES" : 1.372878808316759E-5,
-        "ASSUMED" : 0.0
-      },
-      "trueBreaches" : [ "four_eyes_violation_rate is 0.6987, above the limit of 0.0000" ],
-      "verdictHolds" : true
-    }, {
-      "proposal" : "re-engineered",
-      "verdict" : "NEEDS_SHADOW_RUN",
-      "reasons" : [ "the projection rests on assumptions nobody has measured yet (classify_inquiry); run the candidate in shadow on live cases and measure them before deciding" ],
-      "score" : {
-        "naive" : 0.4071580058640202,
-        "projected" : {
-          "estimate" : 0.7731845714633733,
-          "low" : 0.6249112097825571,
-          "high" : 0.8891033168646476
-        },
-        "covered" : true,
-        "true" : 0.8001242774072181
-      },
-      "delta" : {
-        "cycle_p90_hours" : {
-          "naive" : -1.2211736111111051,
-          "projected" : {
-            "estimate" : -26.486115548611124,
-            "low" : -34.85192853611112,
-            "high" : -12.799399483333243
-          },
-          "covered" : true,
-          "true" : -28.421956083333328
-        },
-        "sla_breach_rate" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : -0.07891281512605042,
-            "low" : -0.10860988223264281,
-            "high" : -0.04828560320445232
-          },
-          "covered" : true,
-          "true" : -0.08455882352941177
-        },
-        "cost_per_case_eur" : {
-          "naive" : -51.02243678104575,
-          "projected" : {
-            "estimate" : -48.12188665878851,
-            "low" : -48.863321077790104,
-            "high" : -47.195180119929326
-          },
-          "covered" : true,
-          "true" : -47.43857631798553
-        },
-        "touches_per_case" : {
-          "naive" : -5.004726890756303,
-          "projected" : {
-            "estimate" : -4.813878676470589,
-            "low" : -4.846822942941206,
-            "high" : -4.781028543566232
-          },
-          "covered" : true,
-          "true" : -4.842436974789916
-        }
-      },
-      "evidence" : {
-        "SAME_CASE" : 0.7353024191374743,
-        "SIMILAR_CASES" : 0.2620655484592362,
-        "ASSUMED" : 0.0026320324032895106
-      },
-      "trueBreaches" : [ ],
-      "verdictHolds" : true
-    } ],
-    "seconds" : 22.039469959
-  }, {
-    "seed" : 2,
-    "cases" : 3473,
-    "observed" : {
-      "cycle_p50_hours" : 24.22515111111111,
-      "cycle_p90_hours" : 90.60353866666671,
-      "sla_breach_rate" : 0.3198963432191189,
-      "cost_per_case_eur" : 58.92653029481396,
-      "touches_per_case" : 5.25079182263173,
-      "person_minutes_per_case" : 60.72067444092523,
-      "four_eyes_violation_rate" : 0.026615969581749048,
-      "open_case_rate" : 0.0
-    },
-    "conformance" : {
-      "documented" : {
-        "fitness" : 0.9509308424914216,
-        "perfectlyFitting" : 0.7875035991937805,
-        "deviations" : [ {
-          "element" : "lookup_payment",
-          "kind" : "LEFT_UNDONE",
-          "cases" : 732,
-          "message" : "In 732 of 3473 cases (21.1%) the history ends while the model still expects 'Look up payment in hub'."
-        }, {
-          "element" : "register_inquiry",
-          "kind" : "RAN_WHEN_NOT_ALLOWED",
-          "cases" : 732,
-          "message" : "'Register inquiry' ran in 732 of 3473 cases (21.1%) at a point where the model does not allow it; for these cases the model first requires 'Inquiry received'."
-        }, {
-          "element" : "request_info",
-          "kind" : "NOT_IN_MODEL",
-          "cases" : 732,
-          "message" : "'request_info' appears in 732 of 3473 cases (21.1%) but is not a step of the model."
-        }, {
-          "element" : "wait_reply",
-          "kind" : "NOT_IN_MODEL",
-          "cases" : 732,
-          "message" : "'wait_reply' appears in 732 of 3473 cases (21.1%) but is not a step of the model."
-        }, {
-          "element" : "second_approval",
-          "kind" : "LEFT_UNDONE",
-          "cases" : 7,
-          "message" : "In 7 of 3473 cases (0.2%) the history ends while the model still expects 'Second approval'."
-        }, {
-          "element" : "send_recall",
-          "kind" : "RAN_WHEN_NOT_ALLOWED",
-          "cases" : 7,
-          "message" : "'Send recall' ran in 7 of 3473 cases (0.2%) at a point where the model does not allow it; for these cases the model first requires 'Second approval' or 'Check funds can be returned'."
-        } ]
-      },
-      "asIs" : {
-        "fitness" : 0.9998273480662984,
-        "perfectlyFitting" : 0.9979844514828679,
-        "deviations" : [ {
-          "element" : "second_approval",
-          "kind" : "LEFT_UNDONE",
-          "cases" : 7,
-          "message" : "In 7 of 3473 cases (0.2%) the history ends while the model still expects 'Second approval'."
-        }, {
-          "element" : "send_recall",
-          "kind" : "RAN_WHEN_NOT_ALLOWED",
-          "cases" : 7,
-          "message" : "'Send recall' ran in 7 of 3473 cases (0.2%) at a point where the model does not allow it; for these cases the model first requires 'Second approval' or 'Check funds can be returned'."
-        } ]
-      }
-    },
-    "proposals" : [ {
-      "proposal" : "add-analyst",
-      "verdict" : "IMPROVES",
-      "reasons" : [ "the fitness score improves by 0.218 (90% interval 0.176 to 0.260)" ],
-      "score" : {
-        "naive" : 0.0,
-        "projected" : {
-          "estimate" : 0.21757829321754207,
-          "low" : 0.176032393423521,
-          "high" : 0.2595585046348268
-        },
-        "covered" : true,
-        "true" : 0.21180282719159887
-      },
-      "delta" : {
-        "cycle_p90_hours" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : -17.627932152777788,
-            "low" : -19.760787004166666,
-            "high" : -12.518264993055537
-          },
-          "covered" : true,
-          "true" : -17.296858999999984
-        },
-        "sla_breach_rate" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : -0.11675784624244173,
-            "low" : -0.14777423302838943,
-            "high" : -0.0921907411777858
-          },
-          "covered" : true,
-          "true" : -0.11344658796429599
-        },
-        "cost_per_case_eur" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : 0.0,
-            "low" : 0.0,
-            "high" : 0.0
-          },
-          "covered" : false,
-          "true" : 0.019778072111854783
-        },
-        "touches_per_case" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : 0.0,
-            "low" : 0.0,
-            "high" : 0.0
-          },
-          "covered" : false,
-          "true" : 0.0020155485171322596
-        }
-      },
-      "evidence" : {
-        "SAME_CASE" : 0.999981830316329,
-        "SIMILAR_CASES" : 1.816968367098671E-5,
-        "ASSUMED" : 0.0
-      },
-      "trueBreaches" : [ ],
-      "verdictHolds" : true
-    }, {
-      "proposal" : "agent-intake",
-      "verdict" : "NEEDS_SHADOW_RUN",
-      "reasons" : [ "the projection rests on assumptions nobody has measured yet (classify_inquiry); run the candidate in shadow on live cases and measure them before deciding" ],
-      "score" : {
-        "naive" : 0.20278763323148394,
-        "projected" : {
-          "estimate" : 0.41926252673032977,
-          "low" : 0.3177526964162995,
-          "high" : 0.49602931483652357
-        },
-        "covered" : true,
-        "true" : 0.4486310884455637
-      },
-      "delta" : {
-        "cycle_p90_hours" : {
-          "naive" : -0.5379377777777776,
-          "projected" : {
-            "estimate" : -15.676676722222226,
-            "low" : -21.72512334583332,
-            "high" : -3.067462602777785
-          },
-          "covered" : true,
-          "true" : -18.9263672777778
-        },
-        "sla_breach_rate" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : -0.1282032824647279,
-            "low" : -0.17243932805329967,
-            "high" : -0.08394586297567641
-          },
-          "covered" : true,
-          "true" : -0.1390728476821192
-        },
-        "cost_per_case_eur" : {
-          "naive" : -19.589952105448383,
-          "projected" : {
-            "estimate" : -19.013090629618965,
-            "low" : -19.91335700570829,
-            "high" : -18.078628826685083
-          },
-          "covered" : true,
-          "true" : -19.300581919250085
-        },
-        "touches_per_case" : {
-          "naive" : -1.2225741433918804,
-          "projected" : {
-            "estimate" : -1.1716095594586813,
-            "low" : -1.2200192605080176,
-            "high" : -1.120288020546689
-          },
-          "covered" : true,
-          "true" : -1.1923409156348974
-        }
-      },
-      "evidence" : {
-        "SAME_CASE" : 0.8061810326719212,
-        "SIMILAR_CASES" : 0.19246611782752973,
-        "ASSUMED" : 0.0013528495005490143
-      },
-      "trueBreaches" : [ ],
-      "verdictHolds" : true
-    }, {
-      "proposal" : "hub-connector",
-      "verdict" : "IMPROVES",
-      "reasons" : [ "the fitness score improves by 0.376 (90% interval 0.331 to 0.419)" ],
-      "score" : {
-        "naive" : 0.13862742548870882,
-        "projected" : {
-          "estimate" : 0.37567379367967946,
-          "low" : 0.3312600185181066,
-          "high" : 0.41937234584795324
-        },
-        "covered" : true,
-        "true" : 0.3589129893550322
-      },
-      "delta" : {
-        "cycle_p90_hours" : {
-          "naive" : -0.21127249999999975,
-          "projected" : {
-            "estimate" : -19.107425999999975,
-            "low" : -21.27530852916666,
-            "high" : -14.820965979166694
-          },
-          "covered" : true,
-          "true" : -18.739442944444463
-        },
-        "sla_breach_rate" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : -0.13331413763317018,
-            "low" : -0.16587999236460943,
-            "high" : -0.10433451869119745
-          },
-          "covered" : true,
-          "true" : -0.12640368557443132
-        },
-        "cost_per_case_eur" : {
-          "naive" : -12.443138333333337,
-          "projected" : {
-            "estimate" : -11.83285628823144,
-            "low" : -12.181610058528905,
-            "high" : -11.509604938968481
-          },
-          "covered" : false,
-          "true" : -11.098004110919149
-        },
-        "touches_per_case" : {
-          "naive" : -1.0,
-          "projected" : {
-            "estimate" : -0.9509069968327095,
-            "low" : -0.959204386989787,
-            "high" : -0.9382971844805956
-          },
-          "covered" : false,
-          "true" : -0.9291678663979264
-        }
-      },
-      "evidence" : {
-        "SAME_CASE" : 0.999554404554389,
-        "SIMILAR_CASES" : 1.848589409721677E-5,
-        "ASSUMED" : 4.2710955151373025E-4
-      },
-      "trueBreaches" : [ ],
-      "verdictHolds" : true
-    }, {
-      "proposal" : "raise-four-eyes-limit",
-      "verdict" : "BLOCKED",
-      "reasons" : [ "hard limit: four_eyes_violation_rate is 0.7110, above the limit of 0.0000" ],
-      "score" : {
-        "naive" : 0.005832681022331944,
-        "projected" : {
-          "estimate" : 0.003541104927377055,
-          "low" : -0.0013855634374924741,
-          "high" : 0.008473275153124616
-        },
-        "covered" : false,
-        "true" : -0.00546079428984147
-      },
-      "delta" : {
-        "cycle_p90_hours" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : 0.3444285555555666,
-            "low" : -0.2425121055555515,
-            "high" : 0.8149024597222155
-          },
-          "covered" : true,
-          "true" : 0.2966497222221989
-        },
-        "sla_breach_rate" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : 8.638065073423573E-4,
-            "low" : -0.0017628506612073355,
-            "high" : 0.003704216465054117
-          },
-          "covered" : false,
-          "true" : 0.007774258566081216
-        },
-        "cost_per_case_eur" : {
-          "naive" : -0.45436871964680847,
-          "projected" : {
-            "estimate" : -0.47084811442236685,
-            "low" : -0.5660603985829571,
-            "high" : -0.38134461492858773
-          },
-          "covered" : true,
-          "true" : -0.45364014716702883
-        },
-        "touches_per_case" : {
-          "naive" : -0.05384393895767303,
-          "projected" : {
-            "estimate" : -0.05384393895767303,
-            "low" : -0.06146975517290363,
-            "high" : -0.046706832577282545
-          },
-          "covered" : true,
-          "true" : -0.05182839044054077
-        }
-      },
-      "evidence" : {
-        "SAME_CASE" : 0.9999855609815633,
-        "SIMILAR_CASES" : 1.4439018436635187E-5,
-        "ASSUMED" : 0.0
-      },
-      "trueBreaches" : [ "four_eyes_violation_rate is 0.7110, above the limit of 0.0000" ],
-      "verdictHolds" : true
-    }, {
-      "proposal" : "re-engineered",
-      "verdict" : "NEEDS_SHADOW_RUN",
-      "reasons" : [ "the projection rests on assumptions nobody has measured yet (classify_inquiry); run the candidate in shadow on live cases and measure them before deciding" ],
-      "score" : {
-        "naive" : 0.4945290953008318,
-        "projected" : {
-          "estimate" : 0.7869661803449098,
-          "low" : 0.6967807933025981,
-          "high" : 0.8595172985370669
-        },
-        "covered" : true,
-        "true" : 0.8213431912443584
-      },
-      "delta" : {
-        "cycle_p90_hours" : {
-          "naive" : -1.3093608333333293,
-          "projected" : {
-            "estimate" : -34.60321509722223,
-            "low" : -42.23874536805556,
-            "high" : -23.848056513888885
-          },
-          "covered" : true,
-          "true" : -39.93186516666669
-        },
-        "sla_breach_rate" : {
-          "naive" : -0.06910452058738842,
-          "projected" : {
-            "estimate" : -0.19824359343507056,
-            "low" : -0.24147176741484885,
-            "high" : -0.15328137591134564
-          },
-          "covered" : true,
-          "true" : -0.20932911027929743
-        },
-        "cost_per_case_eur" : {
-          "naive" : -53.698970802700195,
-          "projected" : {
-            "estimate" : -51.626657630330804,
-            "low" : -52.65279618989876,
-            "high" : -50.71574992789041
-          },
-          "covered" : false,
-          "true" : -49.30478677800173
-        },
-        "touches_per_case" : {
-          "naive" : -4.909012381226605,
-          "projected" : {
-            "estimate" : -4.757126403685574,
-            "low" : -4.787501025551483,
-            "high" : -4.725257159521726
-          },
-          "covered" : true,
-          "true" : -4.727325079182263
-        }
-      },
-      "evidence" : {
-        "SAME_CASE" : 0.79814747053909,
-        "SIMILAR_CASES" : 0.19965619927229364,
-        "ASSUMED" : 0.002196330188616407
-      },
-      "trueBreaches" : [ ],
-      "verdictHolds" : true
-    } ],
-    "seconds" : 16.58266353
-  }, {
-    "seed" : 3,
-    "cases" : 3079,
-    "observed" : {
-      "cycle_p50_hours" : 7.970748333333334,
-      "cycle_p90_hours" : 67.42478522222224,
-      "sla_breach_rate" : 0.17765508281909712,
-      "cost_per_case_eur" : 59.27978875681138,
-      "touches_per_case" : 5.296200064956155,
-      "person_minutes_per_case" : 61.10850100140738,
-      "four_eyes_violation_rate" : 0.02830188679245283,
-      "open_case_rate" : 0.0
-    },
-    "conformance" : {
-      "documented" : {
-        "fitness" : 0.945038484815848,
-        "perfectlyFitting" : 0.7690808704124715,
-        "deviations" : [ {
-          "element" : "lookup_payment",
-          "kind" : "LEFT_UNDONE",
-          "cases" : 706,
-          "message" : "In 706 of 3079 cases (22.9%) the history ends while the model still expects 'Look up payment in hub'."
-        }, {
-          "element" : "register_inquiry",
-          "kind" : "RAN_WHEN_NOT_ALLOWED",
-          "cases" : 706,
-          "message" : "'Register inquiry' ran in 706 of 3079 cases (22.9%) at a point where the model does not allow it; for these cases the model first requires 'Inquiry received'."
-        }, {
-          "element" : "request_info",
-          "kind" : "NOT_IN_MODEL",
-          "cases" : 706,
-          "message" : "'request_info' appears in 706 of 3079 cases (22.9%) but is not a step of the model."
-        }, {
-          "element" : "wait_reply",
-          "kind" : "NOT_IN_MODEL",
-          "cases" : 706,
-          "message" : "'wait_reply' appears in 706 of 3079 cases (22.9%) but is not a step of the model."
-        }, {
-          "element" : "second_approval",
-          "kind" : "LEFT_UNDONE",
-          "cases" : 6,
-          "message" : "In 6 of 3079 cases (0.2%) the history ends while the model still expects 'Second approval'."
-        }, {
-          "element" : "send_recall",
-          "kind" : "RAN_WHEN_NOT_ALLOWED",
-          "cases" : 6,
-          "message" : "'Send recall' ran in 6 of 3079 cases (0.2%) at a point where the model does not allow it; for these cases the model first requires 'Second approval' or 'Check funds can be returned'."
-        } ]
-      },
-      "asIs" : {
-        "fitness" : 0.9998334952129874,
-        "perfectlyFitting" : 0.9980513153621305,
-        "deviations" : [ {
-          "element" : "second_approval",
-          "kind" : "LEFT_UNDONE",
-          "cases" : 6,
-          "message" : "In 6 of 3079 cases (0.2%) the history ends while the model still expects 'Second approval'."
-        }, {
-          "element" : "send_recall",
-          "kind" : "RAN_WHEN_NOT_ALLOWED",
-          "cases" : 6,
-          "message" : "'Send recall' ran in 6 of 3079 cases (0.2%) at a point where the model does not allow it; for these cases the model first requires 'Second approval' or 'Check funds can be returned'."
-        } ]
-      }
-    },
-    "proposals" : [ {
-      "proposal" : "add-analyst",
-      "verdict" : "IMPROVES",
-      "reasons" : [ "the fitness score improves by 0.038 (90% interval 0.021 to 0.065)" ],
-      "score" : {
-        "naive" : 0.0,
-        "projected" : {
-          "estimate" : 0.03751621065877959,
-          "low" : 0.020693569155623665,
-          "high" : 0.06498899461263442
-        },
-        "covered" : true,
-        "true" : 0.03890820598068221
-      },
-      "delta" : {
-        "cycle_p90_hours" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : -0.9482619027778156,
-            "low" : -1.7028187347222223,
-            "high" : -0.5838095791666787
-          },
-          "covered" : true,
-          "true" : -1.0806836666666868
-        },
-        "sla_breach_rate" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : -0.011692107827216636,
-            "low" : -0.021117009592355712,
-            "high" : -0.005159524286924714
-          },
-          "covered" : true,
-          "true" : -0.01201688860019487
-        },
-        "cost_per_case_eur" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : 0.0,
-            "low" : 0.0,
-            "high" : 0.0
-          },
-          "covered" : false,
-          "true" : 0.023606535671753193
-        },
-        "touches_per_case" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : 0.0,
-            "low" : 0.0,
-            "high" : 0.0
-          },
-          "covered" : false,
-          "true" : 0.0019486846378686806
-        }
-      },
-      "evidence" : {
-        "SAME_CASE" : 0.9999801917271348,
-        "SIMILAR_CASES" : 1.980827286528237E-5,
-        "ASSUMED" : 0.0
-      },
-      "trueBreaches" : [ ],
-      "verdictHolds" : true
-    }, {
-      "proposal" : "agent-intake",
-      "verdict" : "NEEDS_SHADOW_RUN",
-      "reasons" : [ "the projection rests on assumptions nobody has measured yet (classify_inquiry); run the candidate in shadow on live cases and measure them before deciding" ],
-      "score" : {
-        "naive" : 0.1870936467294342,
-        "projected" : {
-          "estimate" : 0.20143018201064822,
-          "low" : 0.13028302411028275,
-          "high" : 0.26080607203314177
-        },
-        "covered" : true,
-        "true" : 0.17439138589520523
-      },
-      "delta" : {
-        "cycle_p90_hours" : {
-          "naive" : -0.4685916666666685,
-          "projected" : {
-            "estimate" : -0.6251897500000325,
-            "low" : -2.877231911111123,
-            "high" : 3.4706720472222243
-          },
-          "covered" : true,
-          "true" : 1.2851777777777897
-        },
-        "sla_breach_rate" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : -0.00641442026632022,
-            "low" : -0.02340664328398127,
-            "high" : 0.010699700966812806
-          },
-          "covered" : true,
-          "true" : -9.743423189347289E-4
-        },
-        "cost_per_case_eur" : {
-          "naive" : -17.493997390927788,
-          "projected" : {
-            "estimate" : -17.181065257388767,
-            "low" : -17.662997109261653,
-            "high" : -16.676906958135238
-          },
-          "covered" : true,
-          "true" : -17.11695514867742
-        },
-        "touches_per_case" : {
-          "naive" : -1.2484572913283527,
-          "projected" : {
-            "estimate" : -1.2073725235466064,
-            "low" : -1.2424186286638041,
-            "high" : -1.16906418817527
-          },
-          "covered" : true,
-          "true" : -1.1929197791490749
-        }
-      },
-      "evidence" : {
-        "SAME_CASE" : 0.8660985426638961,
-        "SIMILAR_CASES" : 0.13292549961512157,
-        "ASSUMED" : 9.759577209823271E-4
-      },
-      "trueBreaches" : [ ],
-      "verdictHolds" : true
-    }, {
-      "proposal" : "hub-connector",
-      "verdict" : "IMPROVES",
-      "reasons" : [ "the fitness score improves by 0.187 (90% interval 0.169 to 0.216)" ],
-      "score" : {
-        "naive" : 0.14132304592318184,
-        "projected" : {
-          "estimate" : 0.18663878392414399,
-          "low" : 0.1686626914265894,
-          "high" : 0.21638413023117772
-        },
-        "covered" : true,
-        "true" : 0.17364228460801817
-      },
-      "delta" : {
-        "cycle_p90_hours" : {
-          "naive" : -0.22025888888889256,
-          "projected" : {
-            "estimate" : -1.7005818611111607,
-            "low" : -3.1291658055555414,
-            "high" : -1.1881673861110513
-          },
-          "covered" : true,
-          "true" : -1.4879996666666813
-        },
-        "sla_breach_rate" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : -0.01607664826242286,
-            "low" : -0.025554328422289527,
-            "high" : -0.009084272325125235
-          },
-          "covered" : true,
-          "true" : -0.01623903864891199
-        },
-        "cost_per_case_eur" : {
-          "naive" : -12.964348888888885,
-          "projected" : {
-            "estimate" : -12.291215496914589,
-            "low" : -12.663152437063294,
-            "high" : -11.970128925086495
-          },
-          "covered" : false,
-          "true" : -10.841368046804526
-        },
-        "touches_per_case" : {
-          "naive" : -1.0,
-          "projected" : {
-            "estimate" : -0.9477914907437484,
-            "low" : -0.9555771445713784,
-            "high" : -0.9407514728718789
-          },
-          "covered" : false,
-          "true" : -0.9116596297499191
-        }
-      },
-      "evidence" : {
-        "SAME_CASE" : 0.9994951183724525,
-        "SIMILAR_CASES" : 2.0252584418655395E-5,
-        "ASSUMED" : 4.8462904312879213E-4
-      },
-      "trueBreaches" : [ ],
-      "verdictHolds" : true
-    }, {
-      "proposal" : "raise-four-eyes-limit",
-      "verdict" : "BLOCKED",
-      "reasons" : [ "hard limit: four_eyes_violation_rate is 0.7217, above the limit of 0.0000" ],
-      "score" : {
-        "naive" : 0.0053133745621014574,
-        "projected" : {
-          "estimate" : 0.005333968755166054,
-          "low" : 0.0046756513134272116,
-          "high" : 0.006302722077541036
-        },
-        "covered" : false,
-        "true" : 0.004142395206138313
-      },
-      "delta" : {
-        "cycle_p90_hours" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : 0.017378152777780542,
-            "low" : -0.0667377430555444,
-            "high" : 0.0319352722222312
-          },
-          "covered" : false,
-          "true" : 0.032441277777763844
-        },
-        "sla_breach_rate" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : 0.0,
-            "low" : 0.0,
-            "high" : 0.0
-          },
-          "covered" : false,
-          "true" : 3.247807729782337E-4
-        },
-        "cost_per_case_eur" : {
-          "naive" : -0.41849698928223233,
-          "projected" : {
-            "estimate" : -0.4350392668074079,
-            "low" : -0.5036870861307214,
-            "high" : -0.36982704146831014
-          },
-          "covered" : true,
-          "true" : -0.4178029389051332
-        },
-        "touches_per_case" : {
-          "naive" : -0.04969145826567001,
-          "projected" : {
-            "estimate" : -0.04969145826567001,
-            "low" : -0.05576831875461026,
-            "high" : -0.04359503334033064
-          },
-          "covered" : true,
-          "true" : -0.04774277362780133
-        }
-      },
-      "evidence" : {
-        "SAME_CASE" : 1.0,
-        "SIMILAR_CASES" : 0.0,
-        "ASSUMED" : 0.0
-      },
-      "trueBreaches" : [ "four_eyes_violation_rate is 0.7217, above the limit of 0.0000" ],
-      "verdictHolds" : true
-    }, {
-      "proposal" : "re-engineered",
-      "verdict" : "NEEDS_SHADOW_RUN",
-      "reasons" : [ "the projection rests on assumptions nobody has measured yet (classify_inquiry); run the candidate in shadow on live cases and measure them before deciding" ],
-      "score" : {
-        "naive" : 0.4077656048382631,
-        "projected" : {
-          "estimate" : 0.7400321770235707,
-          "low" : 0.6597478374747041,
-          "high" : 0.8099071498290186
-        },
-        "covered" : true,
-        "true" : 0.7174274289644803
-      },
-      "delta" : {
-        "cycle_p90_hours" : {
-          "naive" : -1.3488788888888905,
-          "projected" : {
-            "estimate" : -21.902817416666707,
-            "low" : -25.649048527777847,
-            "high" : -15.248386075000012
-          },
-          "covered" : true,
-          "true" : -20.489848055555562
-        },
-        "sla_breach_rate" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : -0.07802858070802209,
-            "low" : -0.09961229990237432,
-            "high" : -0.05938894951860685
-          },
-          "covered" : true,
-          "true" : -0.0727508931471257
-        },
-        "cost_per_case_eur" : {
-          "naive" : -53.44946133719461,
-          "projected" : {
-            "estimate" : -50.21719905696294,
-            "low" : -51.121914728290015,
-            "high" : -49.53599208686937
-          },
-          "covered" : false,
-          "true" : -49.38462425679333
-        },
-        "touches_per_case" : {
-          "naive" : -4.961675868788567,
-          "projected" : {
-            "estimate" : -4.787836960051965,
-            "low" : -4.828843552723122,
-            "high" : -4.746228697254795
-          },
-          "covered" : true,
-          "true" : -4.779798635920754
-        }
-      },
-      "evidence" : {
-        "SAME_CASE" : 0.8581151930656579,
-        "SIMILAR_CASES" : 0.1398318724562811,
-        "ASSUMED" : 0.0020529344780610896
-      },
-      "trueBreaches" : [ ],
-      "verdictHolds" : true
-    } ],
-    "seconds" : 13.146255431
-  }, {
-    "seed" : 4,
-    "cases" : 3076,
-    "observed" : {
-      "cycle_p50_hours" : 19.96560402777778,
-      "cycle_p90_hours" : 68.64069722222223,
-      "sla_breach_rate" : 0.2048114434330299,
-      "cost_per_case_eur" : 64.12470183318885,
-      "touches_per_case" : 5.168725617685306,
-      "person_minutes_per_case" : 66.10254912765495,
-      "four_eyes_violation_rate" : 0.055,
-      "open_case_rate" : 0.0
-    },
-    "conformance" : {
-      "documented" : {
-        "fitness" : 0.9497529367194149,
-        "perfectlyFitting" : 0.796814044213264,
-        "deviations" : [ {
-          "element" : "lookup_payment",
-          "kind" : "LEFT_UNDONE",
-          "cases" : 615,
-          "message" : "In 615 of 3076 cases (20.0%) the history ends while the model still expects 'Look up payment in hub'."
-        }, {
-          "element" : "register_inquiry",
-          "kind" : "RAN_WHEN_NOT_ALLOWED",
-          "cases" : 615,
-          "message" : "'Register inquiry' ran in 615 of 3076 cases (20.0%) at a point where the model does not allow it; for these cases the model first requires 'Inquiry received'."
-        }, {
-          "element" : "request_info",
-          "kind" : "NOT_IN_MODEL",
-          "cases" : 615,
-          "message" : "'request_info' appears in 615 of 3076 cases (20.0%) but is not a step of the model."
-        }, {
-          "element" : "wait_reply",
-          "kind" : "NOT_IN_MODEL",
-          "cases" : 615,
-          "message" : "'wait_reply' appears in 615 of 3076 cases (20.0%) but is not a step of the model."
-        }, {
-          "element" : "second_approval",
-          "kind" : "LEFT_UNDONE",
-          "cases" : 11,
-          "message" : "In 11 of 3076 cases (0.4%) the history ends while the model still expects 'Second approval'."
-        }, {
-          "element" : "send_recall",
-          "kind" : "RAN_WHEN_NOT_ALLOWED",
-          "cases" : 11,
-          "message" : "'Send recall' ran in 11 of 3076 cases (0.4%) at a point where the model does not allow it; for these cases the model first requires 'Second approval' or 'Check funds can be returned'."
-        } ]
-      },
-      "asIs" : {
-        "fitness" : 0.9996870821835974,
-        "perfectlyFitting" : 0.9964239271781534,
-        "deviations" : [ {
-          "element" : "second_approval",
-          "kind" : "LEFT_UNDONE",
-          "cases" : 11,
-          "message" : "In 11 of 3076 cases (0.4%) the history ends while the model still expects 'Second approval'."
-        }, {
-          "element" : "send_recall",
-          "kind" : "RAN_WHEN_NOT_ALLOWED",
-          "cases" : 11,
-          "message" : "'Send recall' ran in 11 of 3076 cases (0.4%) at a point where the model does not allow it; for these cases the model first requires 'Second approval' or 'Check funds can be returned'."
-        } ]
-      }
-    },
-    "proposals" : [ {
-      "proposal" : "add-analyst",
-      "verdict" : "IMPROVES",
-      "reasons" : [ "the fitness score improves by 0.244 (90% interval 0.158 to 0.325)" ],
-      "score" : {
-        "naive" : 0.0,
-        "projected" : {
-          "estimate" : 0.24359120695093672,
-          "low" : 0.1581745647565234,
-          "high" : 0.32533764468612836
-        },
-        "covered" : true,
-        "true" : 0.24027583614325182
-      },
-      "delta" : {
-        "cycle_p90_hours" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : -13.409320277777766,
-            "low" : -18.902926823611114,
-            "high" : -4.166466704166663
-          },
-          "covered" : true,
-          "true" : -12.641224444444447
-        },
-        "sla_breach_rate" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : -0.07452860858257479,
-            "low" : -0.1026607976762645,
-            "high" : -0.051762648200908444
-          },
-          "covered" : true,
-          "true" : -0.07509752925877763
-        },
-        "cost_per_case_eur" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : 0.0,
-            "low" : 0.0,
-            "high" : 0.0
-          },
-          "covered" : false,
-          "true" : 0.02046494870683091
-        },
-        "touches_per_case" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : 0.0,
-            "low" : 0.0,
-            "high" : 0.0
-          },
-          "covered" : false,
-          "true" : 0.0035760728218461324
-        }
-      },
-      "evidence" : {
-        "SAME_CASE" : 0.9999357295216793,
-        "SIMILAR_CASES" : 6.42704783206571E-5,
-        "ASSUMED" : 0.0
-      },
-      "trueBreaches" : [ ],
-      "verdictHolds" : true
-    }, {
-      "proposal" : "agent-intake",
-      "verdict" : "NEEDS_SHADOW_RUN",
-      "reasons" : [ "the projection rests on assumptions nobody has measured yet (classify_inquiry); run the candidate in shadow on live cases and measure them before deciding" ],
-      "score" : {
-        "naive" : 0.16773580299141128,
-        "projected" : {
-          "estimate" : 0.3467580964366033,
-          "low" : 0.26890113800419985,
-          "high" : 0.4616190139758877
-        },
-        "covered" : true,
-        "true" : 0.3988061884268929
-      },
-      "delta" : {
-        "cycle_p90_hours" : {
-          "naive" : -0.4598716666666647,
-          "projected" : {
-            "estimate" : -6.0286344097222155,
-            "low" : -16.886379506944433,
-            "high" : -2.55257317361105
-          },
-          "covered" : true,
-          "true" : -10.236225555555563
-        },
-        "sla_breach_rate" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : -0.06794538361508454,
-            "low" : -0.0984245105041245,
-            "high" : -0.040443021342005614
-          },
-          "covered" : true,
-          "true" : -0.07932379713914173
-        },
-        "cost_per_case_eur" : {
-          "naive" : -16.8013983810143,
-          "projected" : {
-            "estimate" : -16.327931875496688,
-            "low" : -16.941198576179282,
-            "high" : -15.742751953827442
-          },
-          "covered" : true,
-          "true" : -16.582241091063437
-        },
-        "touches_per_case" : {
-          "naive" : -1.2210663198959684,
-          "projected" : {
-            "estimate" : -1.1629551365409618,
-            "low" : -1.2001416367652562,
-            "high" : -1.1239482766232602
-          },
-          "covered" : true,
-          "true" : -1.1869310793237973
-        }
-      },
-      "evidence" : {
-        "SAME_CASE" : 0.7865915890164302,
-        "SIMILAR_CASES" : 0.2105365458830512,
-        "ASSUMED" : 0.0028718651005185114
-      },
-      "trueBreaches" : [ ],
-      "verdictHolds" : true
-    }, {
-      "proposal" : "hub-connector",
-      "verdict" : "IMPROVES",
-      "reasons" : [ "the fitness score improves by 0.424 (90% interval 0.330 to 0.513)" ],
-      "score" : {
-        "naive" : 0.14963207898700795,
-        "projected" : {
-          "estimate" : 0.4241862649373732,
-          "low" : 0.32960576794906066,
-          "high" : 0.5126997575391564
-        },
-        "covered" : true,
-        "true" : 0.41887866217568526
-      },
-      "delta" : {
-        "cycle_p90_hours" : {
-          "naive" : -0.2686919444444449,
-          "projected" : {
-            "estimate" : -16.20299569444444,
-            "low" : -21.53616896388885,
-            "high" : -5.633446068055537
-          },
-          "covered" : true,
-          "true" : -15.570988472222226
-        },
-        "sla_breach_rate" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : -0.08501300390117036,
-            "low" : -0.11597670973578798,
-            "high" : -0.060071717475647025
-          },
-          "covered" : true,
-          "true" : -0.08517555266579974
-        },
-        "cost_per_case_eur" : {
-          "naive" : -15.773466111111098,
-          "projected" : {
-            "estimate" : -15.05306068378848,
-            "low" : -15.420189987987499,
-            "high" : -14.73102723717295
-          },
-          "covered" : true,
-          "true" : -14.771813858546466
-        },
-        "touches_per_case" : {
-          "naive" : -1.0,
-          "projected" : {
-            "estimate" : -0.9518855656697012,
-            "low" : -0.9592961168680157,
-            "high" : -0.9428566867359973
-          },
-          "covered" : true,
-          "true" : -0.944733420026008
-        }
-      },
-      "evidence" : {
-        "SAME_CASE" : 0.9990128829115593,
-        "SIMILAR_CASES" : 6.719063803352175E-5,
-        "ASSUMED" : 9.19926450407199E-4
-      },
-      "trueBreaches" : [ ],
-      "verdictHolds" : true
-    }, {
-      "proposal" : "raise-four-eyes-limit",
-      "verdict" : "BLOCKED",
-      "reasons" : [ "hard limit: four_eyes_violation_rate is 0.7200, above the limit of 0.0000" ],
-      "score" : {
-        "naive" : 0.005187607675960484,
-        "projected" : {
-          "estimate" : 0.009673554439520034,
-          "low" : 0.004501213347419975,
-          "high" : 0.01450408611035367
-        },
-        "covered" : true,
-        "true" : 0.008003672018027309
-      },
-      "delta" : {
-        "cycle_p90_hours" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : -0.26035222222220966,
-            "low" : -0.6874422486111386,
-            "high" : 0.01605447222224385
-          },
-          "covered" : false,
-          "true" : 0.07006583333333083
-        },
-        "sla_breach_rate" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : -0.0013816644993498162,
-            "low" : -0.003157962179819537,
-            "high" : 3.849561245888606E-4
-          },
-          "covered" : true,
-          "true" : -0.0016254876462938883
-        },
-        "cost_per_case_eur" : {
-          "naive" : -0.46504265279583734,
-          "projected" : {
-            "estimate" : -0.45005261008164155,
-            "low" : -0.5138226365774315,
-            "high" : -0.38700725328855407
-          },
-          "covered" : true,
-          "true" : -0.4185325137263476
-        },
-        "touches_per_case" : {
-          "naive" : -0.04681404421326363,
-          "projected" : {
-            "estimate" : -0.04681404421326363,
-            "low" : -0.052369103568266205,
-            "high" : -0.04109489976660479
-          },
-          "covered" : true,
-          "true" : -0.043237971391417496
-        }
-      },
-      "evidence" : {
-        "SAME_CASE" : 0.9999848425136442,
-        "SIMILAR_CASES" : 1.5157486355889404E-5,
-        "ASSUMED" : 0.0
-      },
-      "trueBreaches" : [ "four_eyes_violation_rate is 0.7200, above the limit of 0.0000" ],
-      "verdictHolds" : true
-    }, {
-      "proposal" : "re-engineered",
-      "verdict" : "NEEDS_SHADOW_RUN",
-      "reasons" : [ "the projection rests on assumptions nobody has measured yet (classify_inquiry); run the candidate in shadow on live cases and measure them before deciding" ],
-      "score" : {
-        "naive" : 0.40722318747386155,
-        "projected" : {
-          "estimate" : 0.9162959541311818,
-          "low" : 0.8214900937077011,
-          "high" : 0.9771927898230196
-        },
-        "covered" : true,
-        "true" : 0.9561527056384991
-      },
-      "delta" : {
-        "cycle_p90_hours" : {
-          "naive" : -1.2897924999999972,
-          "projected" : {
-            "estimate" : -36.315379062499986,
-            "low" : -42.27913299444445,
-            "high" : -27.891455086111115
-          },
-          "covered" : true,
-          "true" : -39.98723486111112
-        },
-        "sla_breach_rate" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : -0.1384102730819246,
-            "low" : -0.1713181992720959,
-            "high" : -0.11059967185823509
-          },
-          "covered" : true,
-          "true" : -0.1469440832249675
-        },
-        "cost_per_case_eur" : {
-          "naive" : -56.47058269216876,
-          "projected" : {
-            "estimate" : -53.051210333495895,
-            "low" : -53.838487597579395,
-            "high" : -52.200719786770655
-          },
-          "covered" : false,
-          "true" : -53.865599482733714
-        },
-        "touches_per_case" : {
-          "naive" : -4.772431729518855,
-          "projected" : {
-            "estimate" : -4.618579323797139,
-            "low" : -4.661904003295645,
-            "high" : -4.569934818082241
-          },
-          "covered" : true,
-          "true" : -4.638166449934981
-        }
-      },
-      "evidence" : {
-        "SAME_CASE" : 0.7650856783006625,
-        "SIMILAR_CASES" : 0.2300920652107243,
-        "ASSUMED" : 0.004822256488613102
-      },
-      "trueBreaches" : [ ],
-      "verdictHolds" : true
-    } ],
-    "seconds" : 13.337954892
-  }, {
-    "seed" : 5,
-    "cases" : 3443,
-    "observed" : {
-      "cycle_p50_hours" : 18.439352222222222,
-      "cycle_p90_hours" : 64.09327961111111,
-      "sla_breach_rate" : 0.19053151321521927,
-      "cost_per_case_eur" : 57.942035779520445,
-      "touches_per_case" : 5.1080453093232645,
-      "person_minutes_per_case" : 59.61258041920806,
-      "four_eyes_violation_rate" : 0.040293040293040296,
-      "open_case_rate" : 0.0
-    },
-    "conformance" : {
-      "documented" : {
-        "fitness" : 0.9627711117468598,
-        "perfectlyFitting" : 0.8451931455126344,
-        "deviations" : [ {
-          "element" : "lookup_payment",
-          "kind" : "LEFT_UNDONE",
-          "cases" : 523,
-          "message" : "In 523 of 3443 cases (15.2%) the history ends while the model still expects 'Look up payment in hub'."
-        }, {
-          "element" : "register_inquiry",
-          "kind" : "RAN_WHEN_NOT_ALLOWED",
-          "cases" : 523,
-          "message" : "'Register inquiry' ran in 523 of 3443 cases (15.2%) at a point where the model does not allow it; for these cases the model first requires 'Inquiry received'."
-        }, {
-          "element" : "request_info",
-          "kind" : "NOT_IN_MODEL",
-          "cases" : 523,
-          "message" : "'request_info' appears in 523 of 3443 cases (15.2%) but is not a step of the model."
-        }, {
-          "element" : "wait_reply",
-          "kind" : "NOT_IN_MODEL",
-          "cases" : 523,
-          "message" : "'wait_reply' appears in 523 of 3443 cases (15.2%) but is not a step of the model."
-        }, {
-          "element" : "second_approval",
-          "kind" : "LEFT_UNDONE",
-          "cases" : 11,
-          "message" : "In 11 of 3443 cases (0.3%) the history ends while the model still expects 'Second approval'."
-        }, {
-          "element" : "send_recall",
-          "kind" : "RAN_WHEN_NOT_ALLOWED",
-          "cases" : 11,
-          "message" : "'Send recall' ran in 11 of 3443 cases (0.3%) at a point where the model does not allow it; for these cases the model first requires 'Second approval' or 'Check funds can be returned'."
-        } ]
-      },
-      "asIs" : {
-        "fitness" : 0.9997168232719784,
-        "perfectlyFitting" : 0.9968051118210862,
-        "deviations" : [ {
-          "element" : "second_approval",
-          "kind" : "LEFT_UNDONE",
-          "cases" : 11,
-          "message" : "In 11 of 3443 cases (0.3%) the history ends while the model still expects 'Second approval'."
-        }, {
-          "element" : "send_recall",
-          "kind" : "RAN_WHEN_NOT_ALLOWED",
-          "cases" : 11,
-          "message" : "'Send recall' ran in 11 of 3443 cases (0.3%) at a point where the model does not allow it; for these cases the model first requires 'Second approval' or 'Check funds can be returned'."
-        } ]
-      }
-    },
-    "proposals" : [ {
-      "proposal" : "add-analyst",
-      "verdict" : "IMPROVES",
-      "reasons" : [ "the fitness score improves by 0.235 (90% interval 0.151 to 0.287)" ],
-      "score" : {
-        "naive" : 0.0,
-        "projected" : {
-          "estimate" : 0.23500007434257672,
-          "low" : 0.1513585928617149,
-          "high" : 0.28736724230839084
-        },
-        "covered" : true,
-        "true" : 0.22692018694990893
-      },
-      "delta" : {
-        "cycle_p90_hours" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : -9.758708722222146,
-            "low" : -11.062407877777789,
-            "high" : -2.487641313888904
-          },
-          "covered" : true,
-          "true" : -9.319484944444412
-        },
-        "sla_breach_rate" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : -0.06992448446122565,
-            "low" : -0.09244097902605415,
-            "high" : -0.05032701877431477
-          },
-          "covered" : true,
-          "true" : -0.06796398489689223
-        },
-        "cost_per_case_eur" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : 0.0,
-            "low" : 0.0,
-            "high" : 0.0
-          },
-          "covered" : false,
-          "true" : 0.0400868690095848
-        },
-        "touches_per_case" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : 0.0,
-            "low" : 0.0,
-            "high" : 0.0
-          },
-          "covered" : false,
-          "true" : 0.0031948881789141126
-        }
-      },
-      "evidence" : {
-        "SAME_CASE" : 0.9999350571318867,
-        "SIMILAR_CASES" : 6.49428681133858E-5,
-        "ASSUMED" : 0.0
-      },
-      "trueBreaches" : [ ],
-      "verdictHolds" : true
-    }, {
-      "proposal" : "agent-intake",
-      "verdict" : "NEEDS_SHADOW_RUN",
-      "reasons" : [ "the projection rests on assumptions nobody has measured yet (classify_inquiry); run the candidate in shadow on live cases and measure them before deciding" ],
-      "score" : {
-        "naive" : 0.16954174136334074,
-        "projected" : {
-          "estimate" : 0.3440609909108127,
-          "low" : 0.2339163710504452,
-          "high" : 0.4507216014475076
-        },
-        "covered" : true,
-        "true" : 0.30787737678953536
-      },
-      "delta" : {
-        "cycle_p90_hours" : {
-          "naive" : -0.41802166666666807,
-          "projected" : {
-            "estimate" : -5.014343097222223,
-            "low" : -11.513386193055538,
-            "high" : 1.6146129305555477
-          },
-          "covered" : true,
-          "true" : -1.2784189444444465
-        },
-        "sla_breach_rate" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : -0.06070287539936098,
-            "low" : -0.08917886154270405,
-            "high" : -0.03145210298558576
-          },
-          "covered" : true,
-          "true" : -0.05634620970084228
-        },
-        "cost_per_case_eur" : {
-          "naive" : -14.597479650498599,
-          "projected" : {
-            "estimate" : -14.195148516918387,
-            "low" : -14.64523492512067,
-            "high" : -13.7002231658943
-          },
-          "covered" : true,
-          "true" : -14.055905765966372
-        },
-        "touches_per_case" : {
-          "naive" : -1.1635201858844035,
-          "projected" : {
-            "estimate" : -1.116468196340401,
-            "low" : -1.1549024508407886,
-            "high" : -1.0819264119267404
-          },
-          "covered" : true,
-          "true" : -1.0961370897473133
-        }
-      },
-      "evidence" : {
-        "SAME_CASE" : 0.800745557379727,
-        "SIMILAR_CASES" : 0.19646773924436214,
-        "ASSUMED" : 0.0027867033759108777
-      },
-      "trueBreaches" : [ ],
-      "verdictHolds" : true
-    }, {
-      "proposal" : "hub-connector",
-      "verdict" : "IMPROVES",
-      "reasons" : [ "the fitness score improves by 0.425 (90% interval 0.338 to 0.479)" ],
-      "score" : {
-        "naive" : 0.15790755763814207,
-        "projected" : {
-          "estimate" : 0.42497836275141704,
-          "low" : 0.33765203519326137,
-          "high" : 0.4793164565797285
-        },
-        "covered" : true,
-        "true" : 0.4134972894927702
-      },
-      "delta" : {
-        "cycle_p90_hours" : {
-          "naive" : -0.2424019444444454,
-          "projected" : {
-            "estimate" : -12.828702944444437,
-            "low" : -14.116574844444454,
-            "high" : -4.487231165277772
-          },
-          "covered" : true,
-          "true" : -12.571045111111083
-        },
-        "sla_breach_rate" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : -0.07892826023816436,
-            "low" : -0.10203700373907044,
-            "high" : -0.056433531552155726
-          },
-          "covered" : true,
-          "true" : -0.0766773162939297
-        },
-        "cost_per_case_eur" : {
-          "naive" : -14.248646111111107,
-          "projected" : {
-            "estimate" : -13.517413312437476,
-            "low" : -13.823201781468246,
-            "high" : -13.18366203873632
-          },
-          "covered" : false,
-          "true" : -12.935120796140325
-        },
-        "touches_per_case" : {
-          "naive" : -1.0,
-          "projected" : {
-            "estimate" : -0.9495352889921582,
-            "low" : -0.9600701673625518,
-            "high" : -0.9388993618522425
-          },
-          "covered" : true,
-          "true" : -0.9526575660760965
-        }
-      },
-      "evidence" : {
-        "SAME_CASE" : 0.9990037685299825,
-        "SIMILAR_CASES" : 6.776033370134667E-5,
-        "ASSUMED" : 9.284711363162125E-4
-      },
-      "trueBreaches" : [ ],
-      "verdictHolds" : true
-    }, {
-      "proposal" : "raise-four-eyes-limit",
-      "verdict" : "BLOCKED",
-      "reasons" : [ "hard limit: four_eyes_violation_rate is 0.7179, above the limit of 0.0000" ],
-      "score" : {
-        "naive" : 0.007610176030973612,
-        "projected" : {
-          "estimate" : 0.006435292073017773,
-          "low" : -4.213751367285665E-5,
-          "high" : 0.012171388786539209
-        },
-        "covered" : true,
-        "true" : 0.004756974778971659
-      },
-      "delta" : {
-        "cycle_p90_hours" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : -3.2305555555467436E-4,
-            "low" : -0.463648822222212,
-            "high" : 0.49407793611096573
-          },
-          "covered" : true,
-          "true" : 0.11906827777779938
-        },
-        "sla_breach_rate" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : 3.630554748765835E-4,
-            "low" : -0.0011335811716222334,
-            "high" : 0.002011958801199856
-          },
-          "covered" : true,
-          "true" : 5.808887598025003E-4
-        },
-        "cost_per_case_eur" : {
-          "naive" : -0.6407580740310479,
-          "projected" : {
-            "estimate" : -0.6048258885177731,
-            "low" : -0.7086021113198544,
-            "high" : -0.5083670849992528
-          },
-          "covered" : true,
-          "true" : -0.5735780185238966
-        },
-        "touches_per_case" : {
-          "naive" : -0.05692709846064492,
-          "projected" : {
-            "estimate" : -0.05692709846064492,
-            "low" : -0.06482031318729664,
-            "high" : -0.04953130130585208
-          },
-          "covered" : true,
-          "true" : -0.05373221028173081
-        }
-      },
-      "evidence" : {
-        "SAME_CASE" : 0.9999954507298379,
-        "SIMILAR_CASES" : 4.5492701621010915E-6,
-        "ASSUMED" : 0.0
-      },
-      "trueBreaches" : [ "four_eyes_violation_rate is 0.7179, above the limit of 0.0000" ],
-      "verdictHolds" : true
-    }, {
-      "proposal" : "re-engineered",
-      "verdict" : "NEEDS_SHADOW_RUN",
-      "reasons" : [ "the projection rests on assumptions nobody has measured yet (classify_inquiry); run the candidate in shadow on live cases and measure them before deciding" ],
-      "score" : {
-        "naive" : 0.40750683441291,
-        "projected" : {
-          "estimate" : 0.9248011483542974,
-          "low" : 0.8150508637615935,
-          "high" : 0.9798619690556175
-        },
-        "covered" : true,
-        "true" : 0.894325113002977
-      },
-      "delta" : {
-        "cycle_p90_hours" : {
-          "naive" : -1.203894444444444,
-          "projected" : {
-            "estimate" : -32.56932781944442,
-            "low" : -38.07811255555571,
-            "high" : -21.645550527777782
-          },
-          "covered" : true,
-          "true" : -30.08896216666667
-        },
-        "sla_breach_rate" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : -0.12917513796108043,
-            "low" : -0.156975537725609,
-            "high" : -0.10490578681803851
-          },
-          "covered" : true,
-          "true" : -0.12314841707812953
-        },
-        "cost_per_case_eur" : {
-          "naive" : -51.179084527059736,
-          "projected" : {
-            "estimate" : -48.05982675012909,
-            "low" : -48.72983266243545,
-            "high" : -47.26075694246944
-          },
-          "covered" : true,
-          "true" : -47.60739730693517
-        },
-        "touches_per_case" : {
-          "naive" : -4.736857391809469,
-          "projected" : {
-            "estimate" : -4.576096427534128,
-            "low" : -4.606302730379287,
-            "high" : -4.544400552656632
-          },
-          "covered" : true,
-          "true" : -4.603543421434795
-        }
-      },
-      "evidence" : {
-        "SAME_CASE" : 0.7807529903674083,
-        "SIMILAR_CASES" : 0.21458255585628058,
-        "ASSUMED" : 0.004664453776310997
-      },
-      "trueBreaches" : [ ],
-      "verdictHolds" : true
-    } ],
-    "seconds" : 15.505331366
-  }, {
-    "seed" : 6,
-    "cases" : 3484,
-    "observed" : {
-      "cycle_p50_hours" : 20.191480555555557,
-      "cycle_p90_hours" : 73.16410086111112,
-      "sla_breach_rate" : 0.2502870264064294,
-      "cost_per_case_eur" : 56.812038572522006,
-      "touches_per_case" : 5.413605051664753,
-      "person_minutes_per_case" : 58.49208594048986,
-      "four_eyes_violation_rate" : 0.03296703296703297,
-      "open_case_rate" : 0.0
-    },
-    "conformance" : {
-      "documented" : {
-        "fitness" : 0.9410989421255176,
-        "perfectlyFitting" : 0.7413892078071183,
-        "deviations" : [ {
-          "element" : "lookup_payment",
-          "kind" : "LEFT_UNDONE",
-          "cases" : 893,
-          "message" : "In 893 of 3484 cases (25.6%) the history ends while the model still expects 'Look up payment in hub'."
-        }, {
-          "element" : "register_inquiry",
-          "kind" : "RAN_WHEN_NOT_ALLOWED",
-          "cases" : 893,
-          "message" : "'Register inquiry' ran in 893 of 3484 cases (25.6%) at a point where the model does not allow it; for these cases the model first requires 'Inquiry received'."
-        }, {
-          "element" : "request_info",
-          "kind" : "NOT_IN_MODEL",
-          "cases" : 893,
-          "message" : "'request_info' appears in 893 of 3484 cases (25.6%) but is not a step of the model."
-        }, {
-          "element" : "wait_reply",
-          "kind" : "NOT_IN_MODEL",
-          "cases" : 893,
-          "message" : "'wait_reply' appears in 893 of 3484 cases (25.6%) but is not a step of the model."
-        }, {
-          "element" : "second_approval",
-          "kind" : "LEFT_UNDONE",
-          "cases" : 9,
-          "message" : "In 9 of 3484 cases (0.3%) the history ends while the model still expects 'Second approval'."
-        }, {
-          "element" : "send_recall",
-          "kind" : "RAN_WHEN_NOT_ALLOWED",
-          "cases" : 9,
-          "message" : "'Send recall' ran in 9 of 3484 cases (0.3%) at a point where the model does not allow it; for these cases the model first requires 'Second approval' or 'Check funds can be returned'."
-        } ]
-      },
-      "asIs" : {
-        "fitness" : 0.9997853207070104,
-        "perfectlyFitting" : 0.9974167623421355,
-        "deviations" : [ {
-          "element" : "second_approval",
-          "kind" : "LEFT_UNDONE",
-          "cases" : 9,
-          "message" : "In 9 of 3484 cases (0.3%) the history ends while the model still expects 'Second approval'."
-        }, {
-          "element" : "send_recall",
-          "kind" : "RAN_WHEN_NOT_ALLOWED",
-          "cases" : 9,
-          "message" : "'Send recall' ran in 9 of 3484 cases (0.3%) at a point where the model does not allow it; for these cases the model first requires 'Second approval' or 'Check funds can be returned'."
-        } ]
-      }
-    },
-    "proposals" : [ {
-      "proposal" : "add-analyst",
-      "verdict" : "IMPROVES",
-      "reasons" : [ "the fitness score improves by 0.124 (90% interval 0.093 to 0.160)" ],
-      "score" : {
-        "naive" : 0.0,
-        "projected" : {
-          "estimate" : 0.12410966988925992,
-          "low" : 0.0930049329516053,
-          "high" : 0.1596212328228303
-        },
-        "covered" : true,
-        "true" : 0.12399298595879324
-      },
-      "delta" : {
-        "cycle_p90_hours" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : -4.3340860833333466,
-            "low" : -8.422125401388884,
-            "high" : -2.7034865041666722
-          },
-          "covered" : true,
-          "true" : -4.230440222222214
-        },
-        "sla_breach_rate" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : -0.05840987370838119,
-            "low" : -0.07763218793044369,
-            "high" : -0.04029612448620082
-          },
-          "covered" : true,
-          "true" : -0.05884041331802528
-        },
-        "cost_per_case_eur" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : 0.0,
-            "low" : 0.0,
-            "high" : 0.0
-          },
-          "covered" : false,
-          "true" : 0.02907569396606391
-        },
-        "touches_per_case" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : 0.0,
-            "low" : 0.0,
-            "high" : 0.0
-          },
-          "covered" : false,
-          "true" : 0.002583237657864501
-        }
-      },
-      "evidence" : {
-        "SAME_CASE" : 0.9999739145331308,
-        "SIMILAR_CASES" : 2.608546686924136E-5,
-        "ASSUMED" : 0.0
-      },
-      "trueBreaches" : [ ],
-      "verdictHolds" : true
-    }, {
-      "proposal" : "agent-intake",
-      "verdict" : "NEEDS_SHADOW_RUN",
-      "reasons" : [ "the projection rests on assumptions nobody has measured yet (classify_inquiry); run the candidate in shadow on live cases and measure them before deciding" ],
-      "score" : {
-        "naive" : 0.17408274524797673,
-        "projected" : {
-          "estimate" : 0.2970133819872362,
-          "low" : 0.24853011039862957,
-          "high" : 0.35384257726714063
-        },
-        "covered" : true,
-        "true" : 0.29102851115669615
-      },
-      "delta" : {
-        "cycle_p90_hours" : {
-          "naive" : -0.3854922222222221,
-          "projected" : {
-            "estimate" : -3.862731624999995,
-            "low" : -8.559240613888871,
-            "high" : -1.0171095347222057
-          },
-          "covered" : true,
-          "true" : -3.1222008055555364
-        },
-        "sla_breach_rate" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : -0.0630740528128588,
-            "low" : -0.08862559704100652,
-            "high" : -0.036567479770325234
-          },
-          "covered" : true,
-          "true" : -0.06228473019517797
-        },
-        "cost_per_case_eur" : {
-          "naive" : -14.779670871922434,
-          "projected" : {
-            "estimate" : -14.392070317722286,
-            "low" : -14.90807469083912,
-            "high" : -13.84547404429633
-          },
-          "covered" : true,
-          "true" : -14.332134676935837
-        },
-        "touches_per_case" : {
-          "naive" : -1.273823191733639,
-          "projected" : {
-            "estimate" : -1.2299799081515497,
-            "low" : -1.265883149637312,
-            "high" : -1.2020869178518299
-          },
-          "covered" : true,
-          "true" : -1.2215843857634896
-        }
-      },
-      "evidence" : {
-        "SAME_CASE" : 0.8610321001072672,
-        "SIMILAR_CASES" : 0.13713295916793872,
-        "ASSUMED" : 0.0018349407247941962
-      },
-      "trueBreaches" : [ ],
-      "verdictHolds" : true
-    }, {
-      "proposal" : "hub-connector",
-      "verdict" : "IMPROVES",
-      "reasons" : [ "the fitness score improves by 0.293 (90% interval 0.260 to 0.338)" ],
-      "score" : {
-        "naive" : 0.14590699299713666,
-        "projected" : {
-          "estimate" : 0.29262054911256286,
-          "low" : 0.26001389515379547,
-          "high" : 0.33790396212601964
-        },
-        "covered" : true,
-        "true" : 0.28876537874310026
-      },
-      "delta" : {
-        "cycle_p90_hours" : {
-          "naive" : -0.21800833333333358,
-          "projected" : {
-            "estimate" : -5.545791694444432,
-            "low" : -10.596120618055554,
-            "high" : -4.049611347222223
-          },
-          "covered" : true,
-          "true" : -5.31601672222223
-        },
-        "sla_breach_rate" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : -0.07254592422502873,
-            "low" : -0.09404423017275587,
-            "high" : -0.0512932295530952
-          },
-          "covered" : true,
-          "true" : -0.07319173363949485
-        },
-        "cost_per_case_eur" : {
-          "naive" : -12.833816666666664,
-          "projected" : {
-            "estimate" : -12.207041508483229,
-            "low" : -12.523979170641063,
-            "high" : -11.838954815123802
-          },
-          "covered" : false,
-          "true" : -11.736797155568318
-        },
-        "touches_per_case" : {
-          "naive" : -1.0,
-          "projected" : {
-            "estimate" : -0.9493398392652121,
-            "low" : -0.955878578843511,
-            "high" : -0.9418026198118464
-          },
-          "covered" : true,
-          "true" : -0.946613088404133
-        }
-      },
-      "evidence" : {
-        "SAME_CASE" : 0.9994596008622533,
-        "SIMILAR_CASES" : 2.6684904042907254E-5,
-        "ASSUMED" : 5.137142337037865E-4
-      },
-      "trueBreaches" : [ ],
-      "verdictHolds" : true
-    }, {
-      "proposal" : "raise-four-eyes-limit",
-      "verdict" : "BLOCKED",
-      "reasons" : [ "hard limit: four_eyes_violation_rate is 0.7399, above the limit of 0.0000" ],
-      "score" : {
-        "naive" : 0.006935726152941053,
-        "projected" : {
-          "estimate" : 0.0077557532404491005,
-          "low" : 0.004051829753277311,
-          "high" : 0.011048987697440768
-        },
-        "covered" : true,
-        "true" : 0.010154172448701235
-      },
-      "delta" : {
-        "cycle_p90_hours" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : -0.04002959027775432,
-            "low" : -0.4430994916667203,
-            "high" : 0.2062148944444512
-          },
-          "covered" : true,
-          "true" : -0.022569194444415075
-        },
-        "sla_breach_rate" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : -4.305396096441205E-4,
-            "low" : -0.0016959487022712356,
-            "high" : 0.0013531831583363382
-          },
-          "covered" : false,
-          "true" : -0.002009184845005757
-        },
-        "cost_per_case_eur" : {
-          "naive" : -0.5583660473274676,
-          "projected" : {
-            "estimate" : -0.5410744993781194,
-            "low" : -0.6237190887552743,
-            "high" : -0.4674107903286686
-          },
-          "covered" : true,
-          "true" : -0.5209753428370973
-        },
-        "touches_per_case" : {
-          "naive" : -0.05797933409873668,
-          "projected" : {
-            "estimate" : -0.05797933409873668,
-            "low" : -0.06408355743716165,
-            "high" : -0.05216386982295243
-          },
-          "covered" : true,
-          "true" : -0.05539609644087218
-        }
-      },
-      "evidence" : {
-        "SAME_CASE" : 0.9999944227323986,
-        "SIMILAR_CASES" : 5.5772676014893306E-6,
-        "ASSUMED" : 0.0
-      },
-      "trueBreaches" : [ "four_eyes_violation_rate is 0.7399, above the limit of 0.0000" ],
-      "verdictHolds" : true
-    }, {
-      "proposal" : "re-engineered",
-      "verdict" : "NEEDS_SHADOW_RUN",
-      "reasons" : [ "the projection rests on assumptions nobody has measured yet (classify_inquiry); run the candidate in shadow on live cases and measure them before deciding" ],
-      "score" : {
-        "naive" : 0.4059928763028199,
-        "projected" : {
-          "estimate" : 0.8069928179991379,
-          "low" : 0.746997900553796,
-          "high" : 0.8669920029007168
-        },
-        "covered" : true,
-        "true" : 0.789209746107592
-      },
-      "delta" : {
-        "cycle_p90_hours" : {
-          "naive" : -1.178537500000001,
-          "projected" : {
-            "estimate" : -29.60896022222221,
-            "low" : -35.46257217638888,
-            "high" : -26.032747526388892
-          },
-          "covered" : true,
-          "true" : -27.12284688888888
-        },
-        "sla_breach_rate" : {
-          "naive" : 0.0,
-          "projected" : {
-            "estimate" : -0.14674225028702642,
-            "low" : -0.17170750693343179,
-            "high" : -0.11765919215691431
-          },
-          "covered" : true,
-          "true" : -0.14380022962112515
-        },
-        "cost_per_case_eur" : {
-          "naive" : -50.022452444986605,
-          "projected" : {
-            "estimate" : -47.39974415522548,
-            "low" : -48.320189455567814,
-            "high" : -46.47496702101368
-          },
-          "covered" : false,
-          "true" : -45.525032853520855
-        },
-        "touches_per_case" : {
-          "naive" : -5.128013777267508,
-          "projected" : {
-            "estimate" : -4.95723306544202,
-            "low" : -4.993882457065211,
-            "high" : -4.919374180177984
-          },
-          "covered" : true,
-          "true" : -4.926808266360505
-        }
-      },
-      "evidence" : {
-        "SAME_CASE" : 0.8526118919655982,
-        "SIMILAR_CASES" : 0.14433063398576784,
-        "ASSUMED" : 0.0030574740486339915
-      },
-      "trueBreaches" : [ ],
-      "verdictHolds" : true
-    } ],
-    "seconds" : 15.638924499
-  } ]
+  "worlds" : [ 1, 2, 3, 4, 5, 6 ]
 }

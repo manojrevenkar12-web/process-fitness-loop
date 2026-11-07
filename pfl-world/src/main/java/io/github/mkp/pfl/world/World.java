@@ -69,7 +69,7 @@ public final class World {
       int count = poisson(r, mean);
       for (int i = 0; i < count; i++) {
         // arrivals cluster in office hours of the sending banks, 06:00-20:00
-        double hour = weekend ? 24 * r.nextDouble() : 6 + 14 * Math.pow(r.nextDouble(), 1.15);
+        double hour = weekend ? 24 * r.nextDouble() : 6 + 14 * StrictMath.pow(r.nextDouble(), 1.15);
         Instant at = day.atStartOfDay(ZONE).plusSeconds(Math.round(hour * 3600)).toInstant();
         String caseId = String.format("INV-%d-%05d", params.seed(), ++n);
         seeds.add(new CaseSeed(caseId, at, attributes(caseId)));
@@ -84,10 +84,10 @@ public final class World {
     double u = r.nextDouble();
     String type = u < params.typeMix().get("RECALL") ? "RECALL"
         : u < params.typeMix().get("RECALL") + params.typeMix().get("NON_RECEIPT") ? "NON_RECEIPT" : "QUERY";
-    double amount = Math.exp(Math.log(3_500) + 1.25 * Draws.normal(r));
+    double amount = StrictMath.exp(Math.log(3_500) + 1.25 * Draws.normal(r));
     String channel = r.nextDouble() < params.emailShare() ? "EMAIL" : "SWIFT";
     String[] currencies = {"EUR", "EUR", "EUR", "USD", "GBP", "CHF"};
-    double complexity = Math.exp(params.complexitySigma() * Draws.normal(r));
+    double complexity = StrictMath.exp(params.complexitySigma() * Draws.normal(r));
     boolean urgent = r.nextDouble() < params.urgentShare();
     boolean skip = urgent && r.nextDouble() < params.skipWhenUrgent();
     Map<String, Object> a = new LinkedHashMap<>();
@@ -219,7 +219,7 @@ public final class World {
   }
 
   private static int poisson(SplittableRandom r, double mean) {
-    double l = Math.exp(-mean);
+    double l = StrictMath.exp(-mean);
     int k = 0;
     double p = 1;
     do {

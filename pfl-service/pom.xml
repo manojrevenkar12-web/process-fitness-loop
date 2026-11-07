@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>io.github.mkp.pfl</groupId>
+    <artifactId>process-fitness-loop</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
+  </parent>
+  <artifactId>pfl-service</artifactId>
+  <name>pfl-service</name>
+  <description>The field service: the pfl command line, the HTTP API behind the dashboard, four-eyes decisions on proposals and deployment to Camunda.</description>
+
+  <dependencies>
+    <dependency>
+      <groupId>io.github.mkp.pfl</groupId>
+      <artifactId>pfl-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.github.mkp.pfl</groupId>
+      <artifactId>pfl-hub</artifactId>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <workingDirectory>${project.basedir}</workingDirectory>
+          <systemPropertyVariables>
+            <camunda.url>${env.CAMUNDA_URL}</camunda.url>
+          </systemPropertyVariables>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <configuration>
+          <mainClass>io.github.mkp.pfl.service.Main</mainClass>
+          <workingDirectory>${maven.multiModuleProjectDirectory}</workingDirectory>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

@@ -4,23 +4,23 @@
     "lostAnswer" : 0.08,
     "sessionCalls" : 25
   },
-  "recallsPerRun" : 2000,
   "jobRetries" : 3,
-  "seeds" : [ 11, 12, 13, 14, 15 ],
   "outcomes" : {
-    "checkBeforeAct" : {
-      "recalledTwiceOrMore" : 0,
-      "neverRecalled" : 0,
-      "recalls" : 10000,
-      "hubCallsPerRecall" : 2.8028,
-      "extraRecalls" : 0
-    },
     "blindRetry" : {
-      "recalledTwiceOrMore" : 822,
-      "neverRecalled" : 0,
-      "recalls" : 10000,
+      "extraRecalls" : 884,
       "hubCallsPerRecall" : 1.3186,
-      "extraRecalls" : 884
+      "neverRecalled" : 0,
+      "recalledTwiceOrMore" : 822,
+      "recalls" : 10000
+    },
+    "checkBeforeAct" : {
+      "extraRecalls" : 0,
+      "hubCallsPerRecall" : 2.8028,
+      "neverRecalled" : 0,
+      "recalledTwiceOrMore" : 0,
+      "recalls" : 10000
     }
-  }
+  },
+  "recallsPerRun" : 2000,
+  "seeds" : [ 11, 12, 13, 14, 15 ]
 }

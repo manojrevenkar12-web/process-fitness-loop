@@ -56,7 +56,7 @@ public final class EvaluateBacktest {
   public static void main(String[] args) throws Exception {
     String set = args.length > 0 ? args[0] : "dev";
     Path root = Path.of(args.length > 1 ? args[1] : ".");
-    ObjectMapper json = new ObjectMapper().registerModule(new com.fasterxml.jackson.datatype.jsr310.JavaTimeModule()).enable(SerializationFeature.INDENT_OUTPUT);
+    ObjectMapper json = new ObjectMapper().registerModule(new com.fasterxml.jackson.datatype.jsr310.JavaTimeModule()).enable(SerializationFeature.INDENT_OUTPUT).enable(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS);
     @SuppressWarnings("unchecked")
     Map<String, List<Integer>> worlds = json.readValue(root.resolve("config/worlds.json").toFile(), Map.class);
     List<Integer> seeds = worlds.get(set);
@@ -156,7 +156,6 @@ public final class EvaluateBacktest {
         byProposal.computeIfAbsent(p.id(), k -> new ArrayList<>()).add(r);
       }
       w.put("proposals", results);
-      w.put("seconds", (System.nanoTime() - started) / 1e9);
       perWorld.add(w);
       System.out.printf(Locale.ROOT, "world %d: %d cases, %.1fs%n", seed, history.size(), (System.nanoTime() - started) / 1e9);
       for (Map<String, Object> r : results) {

@@ -132,7 +132,7 @@ public final class HubReliabilityExperiment {
     report.put("outcomes", outcomes);
     Path out = Path.of(args.length > 0 ? args[0] : "reports/hub-reliability.json");
     Files.createDirectories(out.toAbsolutePath().getParent());
-    new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT).writeValue(out.toFile(), report);
-    System.out.println(new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT).writeValueAsString(outcomes));
+    new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT).enable(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS).writeValue(out.toFile(), report);
+    System.out.println(new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT).enable(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS).writeValueAsString(outcomes));
   }
 }

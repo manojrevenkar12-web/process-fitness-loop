@@ -1,0 +1,9 @@
+{
+  "port": 8790,
+  "today": "processes/payment-investigation-as-is.bpmn",
+  "documented": "processes/payment-investigation-as-documented.bpmn",
+  "history": "data/history-sample.jsonl",
+  "proposals": "proposals",
+  "decisions": "data/decisions.jsonl",
+  "camundaUrl": null
+}

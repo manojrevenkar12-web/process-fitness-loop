@@ -30,7 +30,7 @@ public final class Draws {
   public static double normal(SplittableRandom r) {
     double u1 = r.nextDouble();
     double u2 = r.nextDouble();
-    return Math.sqrt(-2.0 * Math.log(1.0 - u1)) * Math.cos(2.0 * Math.PI * u2);
+    return StrictMath.sqrt(-2.0 * StrictMath.log(1.0 - u1)) * StrictMath.cos(2.0 * Math.PI * u2);
   }
 
   /** Log-normal with the given median and 90th percentile. */
@@ -38,8 +38,8 @@ public final class Draws {
     if (median <= 0) {
       return 0;
     }
-    double sigma = p90 <= median ? 0 : Math.log(p90 / median) / 1.2815515655446004;
-    return median * Math.exp(sigma * normal(r));
+    double sigma = p90 <= median ? 0 : StrictMath.log(p90 / median) / 1.2815515655446004;
+    return median * StrictMath.exp(sigma * normal(r));
   }
 
   private static long mix(long z) {

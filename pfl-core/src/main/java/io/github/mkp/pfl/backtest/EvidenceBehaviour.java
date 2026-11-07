@@ -36,9 +36,9 @@ final class EvidenceBehaviour implements Behaviour {
     this.minPool = minPool;
     plan.sources().forEach((step, source) -> {
       if (source.assumption() != null && source.history() == null) {
-        double u = Math.log(source.assumption().uncertainty());
+        double u = StrictMath.log(source.assumption().uncertainty());
         SplittableRandom r = Draws.rng(this.seed, "factor", step);
-        factors.put(step, Math.exp(u * (2 * r.nextDouble() - 1)));
+        factors.put(step, StrictMath.exp(u * (2 * r.nextDouble() - 1)));
       }
       if (source.assumption() != null && source.outputsFrom() != null) {
         List<Double> range = source.assumption().agreement();
