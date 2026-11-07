@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL"
+                  xmlns:zeebe="http://camunda.org/schema/zeebe/1.0"
+                  id="definitions_to_be" targetNamespace="https://github.com/manojrevenkar12-web/process-fitness-loop">
+  <bpmn:message id="msg_sender_reply" name="sender-reply">
+    <bpmn:extensionElements>
+      <zeebe:subscription correlationKey="=caseId" />
+    </bpmn:extensionElements>
+  </bpmn:message>
+  <bpmn:error id="err_not_found" name="Payment not found" errorCode="PAYMENT_NOT_FOUND" />
+  <bpmn:process id="payment-investigation-v2" name="Payment investigation (re-engineered)" isExecutable="true">
+    <bpmn:documentation>Intake by an agent whose output rules check, hub lookups and recalls through the legacy hub connector, people only for the four-eyes approval, payments the hub cannot find, unclear traces and free-text queries.</bpmn:documentation>
+    <bpmn:startEvent id="inquiry_received" name="Inquiry received">
+      <bpmn:outgoing>f_start</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:exclusiveGateway id="gw_intake_merge" name="New or resubmitted" />
+    <bpmn:serviceTask id="classify_inquiry" name="Read and classify inquiry">
+      <bpmn:documentation>Reads the inbound MT199, camt.056, camt.027 or e-mail and proposes type, UETR and amount. Rules accept the proposal only if the UETR is well-formed and the hub record matches amount and currency.</bpmn:documentation>
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="pfl.intake-agent" retries="3" />
+        <zeebe:properties>
+          <zeebe:property name="pfl:actor" value="agent" />
+          <zeebe:property name="pfl:outputs" value="inquiryType,uetr,infoComplete" />
+        </zeebe:properties>
+      </bpmn:extensionElements>
+    </bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="gw_complete" name="Details complete?" default="f_incomplete" />
+    <bpmn:serviceTask id="request_info" name="Ask sender for missing details">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="pfl.request-info" retries="3" />
+      </bpmn:extensionElements>
+    </bpmn:serviceTask>
+    <bpmn:intermediateCatchEvent id="wait_reply" name="Sender replied">
+      <bpmn:messageEventDefinition messageRef="msg_sender_reply" />
+    </bpmn:intermediateCatchEvent>
+    <bpmn:serviceTask id="hub_lookup" name="Look up payment in hub">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="pfl.legacy-hub.lookup" retries="5" />
+        <zeebe:properties>
+          <zeebe:property name="pfl:outputs" value="hubStatus" />
+        </zeebe:properties>
+      </bpmn:extensionElements>
+    </bpmn:serviceTask>
+    <bpmn:boundaryEvent id="not_found" name="Payment not found" attachedToRef="hub_lookup">
+      <bpmn:errorEventDefinition errorRef="err_not_found" />
+    </bpmn:boundaryEvent>
+    <bpmn:userTask id="manual_lookup" name="Find payment by hand">
+      <bpmn:extensionElements>
+        <zeebe:userTask />
+        <zeebe:assignmentDefinition candidateGroups="payments-ops" />
+      </bpmn:extensionElements>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="gw_found_merge" />
+    <bpmn:exclusiveGateway id="gw_type" name="Inquiry type?" default="f_query" />
+    <bpmn:exclusiveGateway id="gw_amount" name="Above four-eyes limit?" default="f_small" />
+    <bpmn:userTask id="approve_recall" name="Approve recall (four eyes)">
+      <bpmn:extensionElements>
+        <zeebe:userTask />
+        <zeebe:assignmentDefinition candidateGroups="team-leads" />
+      </bpmn:extensionElements>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="gw_approved_merge" />
+    <bpmn:serviceTask id="send_recall" name="Send recall through hub">
+      <bpmn:documentation>Sends the camt.056 once, even when the hub times out after accepting it.</bpmn:documentation>
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="pfl.legacy-hub.recall" retries="5" />
+      </bpmn:extensionElements>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="gpi_trace" name="Check gpi tracker">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="pfl.gpi.track" retries="5" />
+        <zeebe:properties>
+          <zeebe:property name="pfl:outputs" value="gpiStatus" />
+        </zeebe:properties>
+      </bpmn:extensionElements>
+    </bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="gw_gpi" name="Credited?" default="f_unclear" />
+    <bpmn:userTask id="investigate_trace" name="Investigate unclear trace">
+      <bpmn:extensionElements>
+        <zeebe:userTask />
+        <zeebe:assignmentDefinition candidateGroups="payments-ops" />
+      </bpmn:extensionElements>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="gw_notify_merge" />
+    <bpmn:serviceTask id="notify_customer" name="Tell customer the status">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="pfl.notify" retries="3" />
+      </bpmn:extensionElements>
+    </bpmn:serviceTask>
+    <bpmn:userTask id="answer_query" name="Answer query">
+      <bpmn:extensionElements>
+        <zeebe:userTask />
+        <zeebe:assignmentDefinition candidateGroups="payments-ops" />
+      </bpmn:extensionElements>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="gw_done_merge" />
+    <bpmn:endEvent id="resolved" name="Inquiry resolved" />
+
+    <bpmn:sequenceFlow id="f_start" sourceRef="inquiry_received" targetRef="gw_intake_merge" />
+    <bpmn:sequenceFlow id="f_to_classify" sourceRef="gw_intake_merge" targetRef="classify_inquiry" />
+    <bpmn:sequenceFlow id="f_classified" sourceRef="classify_inquiry" targetRef="gw_complete" />
+    <bpmn:sequenceFlow id="f_complete" name="complete" sourceRef="gw_complete" targetRef="hub_lookup">
+      <bpmn:conditionExpression>=infoComplete = true</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="f_incomplete" name="details missing" sourceRef="gw_complete" targetRef="request_info" />
+    <bpmn:sequenceFlow id="f_requested" sourceRef="request_info" targetRef="wait_reply" />
+    <bpmn:sequenceFlow id="f_replied" sourceRef="wait_reply" targetRef="gw_intake_merge" />
+    <bpmn:sequenceFlow id="f_found" sourceRef="hub_lookup" targetRef="gw_found_merge" />
+    <bpmn:sequenceFlow id="f_not_found" sourceRef="not_found" targetRef="manual_lookup" />
+    <bpmn:sequenceFlow id="f_found_by_hand" sourceRef="manual_lookup" targetRef="gw_found_merge" />
+    <bpmn:sequenceFlow id="f_to_type" sourceRef="gw_found_merge" targetRef="gw_type" />
+    <bpmn:sequenceFlow id="f_recall" name="recall" sourceRef="gw_type" targetRef="gw_amount">
+      <bpmn:conditionExpression>=inquiryType = "RECALL"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="f_non_receipt" name="non-receipt" sourceRef="gw_type" targetRef="gpi_trace">
+      <bpmn:conditionExpression>=inquiryType = "NON_RECEIPT"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="f_query" name="query" sourceRef="gw_type" targetRef="answer_query" />
+    <bpmn:sequenceFlow id="f_large" name="above 10,000" sourceRef="gw_amount" targetRef="approve_recall">
+      <bpmn:conditionExpression>=amount &gt; 10000</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="f_small" sourceRef="gw_amount" targetRef="gw_approved_merge" />
+    <bpmn:sequenceFlow id="f_approved" sourceRef="approve_recall" targetRef="gw_approved_merge" />
+    <bpmn:sequenceFlow id="f_to_send" sourceRef="gw_approved_merge" targetRef="send_recall" />
+    <bpmn:sequenceFlow id="f_sent" sourceRef="send_recall" targetRef="gw_done_merge" />
+    <bpmn:sequenceFlow id="f_traced" sourceRef="gpi_trace" targetRef="gw_gpi" />
+    <bpmn:sequenceFlow id="f_credited" name="credited" sourceRef="gw_gpi" targetRef="gw_notify_merge">
+      <bpmn:conditionExpression>=gpiStatus = "CREDITED"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="f_unclear" sourceRef="gw_gpi" targetRef="investigate_trace" />
+    <bpmn:sequenceFlow id="f_investigated" sourceRef="investigate_trace" targetRef="gw_notify_merge" />
+    <bpmn:sequenceFlow id="f_to_notify" sourceRef="gw_notify_merge" targetRef="notify_customer" />
+    <bpmn:sequenceFlow id="f_notified" sourceRef="notify_customer" targetRef="gw_done_merge" />
+    <bpmn:sequenceFlow id="f_answered" sourceRef="answer_query" targetRef="gw_done_merge" />
+    <bpmn:sequenceFlow id="f_to_end" sourceRef="gw_done_merge" targetRef="resolved" />
+  </bpmn:process>
+</bpmn:definitions>

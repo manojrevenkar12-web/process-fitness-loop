@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL"
+                  xmlns:zeebe="http://camunda.org/schema/zeebe/1.0"
+                  id="definitions_as_is" targetNamespace="https://github.com/manojrevenkar12-web/process-fitness-loop">
+  <bpmn:message id="msg_sender_reply" name="sender-reply">
+    <bpmn:extensionElements>
+      <zeebe:subscription correlationKey="=caseId" />
+    </bpmn:extensionElements>
+  </bpmn:message>
+  <bpmn:process id="payment-investigation" name="Payment investigation (as is)" isExecutable="true">
+    <bpmn:documentation>How inbound payment inquiries are handled today, reconstructed from twelve weeks of case-tool history: recall requests (camt.056 / MT192), claims of non-receipt (camt.027) and free-text queries (MT199 or e-mail). Every step is done by hand in the case tool and the payments hub screens.</bpmn:documentation>
+    <bpmn:startEvent id="inquiry_received" name="Inquiry received">
+      <bpmn:outgoing>f_start</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:exclusiveGateway id="gw_register_merge" name="New or resubmitted" />
+    <bpmn:userTask id="register_inquiry" name="Register inquiry">
+      <bpmn:documentation>Read the inbound message, key UETR, amount and inquiry type into the case tool.</bpmn:documentation>
+      <bpmn:extensionElements>
+        <zeebe:userTask />
+        <zeebe:assignmentDefinition candidateGroups="payments-ops" />
+        <zeebe:properties>
+          <zeebe:property name="pfl:outputs" value="infoComplete" />
+        </zeebe:properties>
+      </bpmn:extensionElements>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="gw_complete" name="Details complete?" default="f_incomplete" />
+    <bpmn:userTask id="request_info" name="Request missing details">
+      <bpmn:extensionElements>
+        <zeebe:userTask />
+        <zeebe:assignmentDefinition candidateGroups="payments-ops" />
+      </bpmn:extensionElements>
+    </bpmn:userTask>
+    <bpmn:intermediateCatchEvent id="wait_reply" name="Sender replied">
+      <bpmn:messageEventDefinition messageRef="msg_sender_reply" />
+    </bpmn:intermediateCatchEvent>
+    <bpmn:userTask id="lookup_payment" name="Look up payment in hub">
+      <bpmn:documentation>Find the original payment in the payments hub screens by UETR or reference.</bpmn:documentation>
+      <bpmn:extensionElements>
+        <zeebe:userTask />
+        <zeebe:assignmentDefinition candidateGroups="payments-ops" />
+      </bpmn:extensionElements>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="gw_type" name="Inquiry type?" default="f_query" />
+    <bpmn:userTask id="check_funds" name="Check funds can be returned">
+      <bpmn:extensionElements>
+        <zeebe:userTask />
+        <zeebe:assignmentDefinition candidateGroups="payments-ops" />
+      </bpmn:extensionElements>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="gw_amount" name="Above four-eyes limit?" default="f_small" />
+    <bpmn:userTask id="second_approval" name="Second approval">
+      <bpmn:documentation>Four-eyes control: a team lead approves every recall above 10,000.</bpmn:documentation>
+      <bpmn:extensionElements>
+        <zeebe:userTask />
+        <zeebe:assignmentDefinition candidateGroups="team-leads" />
+      </bpmn:extensionElements>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="gw_approved_merge" />
+    <bpmn:userTask id="send_recall" name="Send recall">
+      <bpmn:documentation>Key the recall (camt.056) into the payments hub.</bpmn:documentation>
+      <bpmn:extensionElements>
+        <zeebe:userTask />
+        <zeebe:assignmentDefinition candidateGroups="payments-ops" />
+      </bpmn:extensionElements>
+    </bpmn:userTask>
+    <bpmn:userTask id="trace_payment" name="Trace payment in gpi tracker">
+      <bpmn:extensionElements>
+        <zeebe:userTask />
+        <zeebe:assignmentDefinition candidateGroups="payments-ops" />
+      </bpmn:extensionElements>
+    </bpmn:userTask>
+    <bpmn:userTask id="notify_customer" name="Tell customer the status">
+      <bpmn:extensionElements>
+        <zeebe:userTask />
+        <zeebe:assignmentDefinition candidateGroups="payments-ops" />
+      </bpmn:extensionElements>
+    </bpmn:userTask>
+    <bpmn:userTask id="answer_query" name="Answer query">
+      <bpmn:extensionElements>
+        <zeebe:userTask />
+        <zeebe:assignmentDefinition candidateGroups="payments-ops" />
+      </bpmn:extensionElements>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="gw_done_merge" />
+    <bpmn:userTask id="close_case" name="Close case">
+      <bpmn:extensionElements>
+        <zeebe:userTask />
+        <zeebe:assignmentDefinition candidateGroups="payments-ops" />
+      </bpmn:extensionElements>
+    </bpmn:userTask>
+    <bpmn:endEvent id="resolved" name="Inquiry resolved" />
+
+    <bpmn:sequenceFlow id="f_start" sourceRef="inquiry_received" targetRef="gw_register_merge" />
+    <bpmn:sequenceFlow id="f_to_register" sourceRef="gw_register_merge" targetRef="register_inquiry" />
+    <bpmn:sequenceFlow id="f_registered" sourceRef="register_inquiry" targetRef="gw_complete" />
+    <bpmn:sequenceFlow id="f_complete" name="complete" sourceRef="gw_complete" targetRef="lookup_payment">
+      <bpmn:conditionExpression>=infoComplete = true</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="f_incomplete" name="details missing" sourceRef="gw_complete" targetRef="request_info" />
+    <bpmn:sequenceFlow id="f_requested" sourceRef="request_info" targetRef="wait_reply" />
+    <bpmn:sequenceFlow id="f_replied" sourceRef="wait_reply" targetRef="gw_register_merge" />
+    <bpmn:sequenceFlow id="f_looked_up" sourceRef="lookup_payment" targetRef="gw_type" />
+    <bpmn:sequenceFlow id="f_recall" name="recall" sourceRef="gw_type" targetRef="check_funds">
+      <bpmn:conditionExpression>=inquiryType = "RECALL"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="f_non_receipt" name="non-receipt" sourceRef="gw_type" targetRef="trace_payment">
+      <bpmn:conditionExpression>=inquiryType = "NON_RECEIPT"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="f_query" name="query" sourceRef="gw_type" targetRef="answer_query" />
+    <bpmn:sequenceFlow id="f_funds_checked" sourceRef="check_funds" targetRef="gw_amount" />
+    <bpmn:sequenceFlow id="f_large" name="above 10,000" sourceRef="gw_amount" targetRef="second_approval">
+      <bpmn:conditionExpression>=amount &gt; 10000</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="f_small" sourceRef="gw_amount" targetRef="gw_approved_merge" />
+    <bpmn:sequenceFlow id="f_approved" sourceRef="second_approval" targetRef="gw_approved_merge" />
+    <bpmn:sequenceFlow id="f_to_send" sourceRef="gw_approved_merge" targetRef="send_recall" />
+    <bpmn:sequenceFlow id="f_sent" sourceRef="send_recall" targetRef="gw_done_merge" />
+    <bpmn:sequenceFlow id="f_traced" sourceRef="trace_payment" targetRef="notify_customer" />
+    <bpmn:sequenceFlow id="f_notified" sourceRef="notify_customer" targetRef="gw_done_merge" />
+    <bpmn:sequenceFlow id="f_answered" sourceRef="answer_query" targetRef="gw_done_merge" />
+    <bpmn:sequenceFlow id="f_to_close" sourceRef="gw_done_merge" targetRef="close_case" />
+    <bpmn:sequenceFlow id="f_closed" sourceRef="close_case" targetRef="resolved" />
+  </bpmn:process>
+</bpmn:definitions>
