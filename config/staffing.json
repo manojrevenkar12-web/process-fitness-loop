@@ -1,0 +1,6 @@
+{
+  "zone": "Europe/Berlin",
+  "openHour": 8,
+  "closeHour": 18,
+  "teams": { "payments-ops": 7, "team-leads": 2 }
+}

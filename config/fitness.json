@@ -1,0 +1,26 @@
+{
+  "process": "payment-investigation",
+  "endActivity": "resolved",
+  "slaAttribute": "inquiryType",
+  "slaHours": { "RECALL": 24, "NON_RECEIPT": 48, "QUERY": 72, "*": 72 },
+  "roles": {
+    "payments-ops": { "eurPerHour": 58 },
+    "team-leads": { "eurPerHour": 92 }
+  },
+  "automation": { "agentEurPerCall": 0.06, "systemEurPerCall": 0.004 },
+  "fourEyes": {
+    "appliesWhen": "=inquiryType = \"RECALL\" and amount > 10000",
+    "approvals": ["second_approval", "approve_recall"],
+    "guarded": ["send_recall"]
+  },
+  "kpis": [
+    { "kpi": "cycle_p90_hours", "weight": 0.25, "target": 24 },
+    { "kpi": "sla_breach_rate", "weight": 0.35, "target": 0.05 },
+    { "kpi": "cost_per_case_eur", "weight": 0.25, "target": 25 },
+    { "kpi": "touches_per_case", "weight": 0.15, "target": 2 }
+  ],
+  "constraints": [
+    { "kpi": "four_eyes_violation_rate", "max": 0.0 },
+    { "kpi": "open_case_rate", "max": 0.03 }
+  ]
+}
