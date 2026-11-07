@@ -74,7 +74,7 @@
           "cases" : 10,
           "element" : "send_recall",
           "kind" : "RAN_WHEN_NOT_ALLOWED",
-          "message" : "'Send recall' ran in 10 of 3808 cases (0.3%) at a point where the model does not allow it; for these cases the model first requires 'Second approval' or 'Check funds can be returned'."
+          "message" : "'Send recall' ran in 10 of 3808 cases (0.3%) while the model, given each case's data, still required 'Second approval' first."
         } ],
         "fitness" : 0.9997719342258308,
         "perfectlyFitting" : 0.9973739495798319
@@ -89,7 +89,7 @@
           "cases" : 589,
           "element" : "register_inquiry",
           "kind" : "RAN_WHEN_NOT_ALLOWED",
-          "message" : "'Register inquiry' ran in 589 of 3808 cases (15.5%) at a point where the model does not allow it; for these cases the model first requires 'Inquiry received'."
+          "message" : "'Register inquiry' ran in 589 of 3808 cases (15.5%) while the model, given each case's data, still required 'Look up payment in hub' first."
         }, {
           "cases" : 589,
           "element" : "request_info",
@@ -109,7 +109,7 @@
           "cases" : 10,
           "element" : "send_recall",
           "kind" : "RAN_WHEN_NOT_ALLOWED",
-          "message" : "'Send recall' ran in 10 of 3808 cases (0.3%) at a point where the model does not allow it; for these cases the model first requires 'Second approval' or 'Check funds can be returned'."
+          "message" : "'Send recall' ran in 10 of 3808 cases (0.3%) while the model, given each case's data, still required 'Second approval' first."
         } ],
         "fitness" : 0.9634629752632662,
         "perfectlyFitting" : 0.8432247899159664
@@ -363,7 +363,7 @@
         "SIMILAR_CASES" : 1.372878808316759E-5
       },
       "proposal" : "raise-four-eyes-limit",
-      "reasons" : [ "hard limit: four_eyes_violation_rate is 0.6987, above the limit of 0.0000" ],
+      "reasons" : [ "hard limit: four_eyes_violation_rate would be 69.9% of cases; the limit is 0.0%" ],
       "score" : {
         "covered" : true,
         "naive" : 0.008160188512944838,
@@ -374,7 +374,7 @@
         },
         "true" : 0.01394247495352707
       },
-      "trueBreaches" : [ "four_eyes_violation_rate is 0.6987, above the limit of 0.0000" ],
+      "trueBreaches" : [ "four_eyes_violation_rate would be 69.9% of cases; the limit is 0.0%" ],
       "verdict" : "BLOCKED",
       "verdictHolds" : true
     }, {

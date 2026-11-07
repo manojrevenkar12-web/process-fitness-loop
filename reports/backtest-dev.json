@@ -302,7 +302,7 @@
         "ASSUMED" : 0.0
       },
       "proposal" : "raise-four-eyes-limit",
-      "reasons" : [ "hard limit: four_eyes_violation_rate is 0.6987, above the limit of 0.0000" ],
+      "reasons" : [ "hard limit: four_eyes_violation_rate would be 69.9% of cases; the limit is 0.0%" ],
       "score" : {
         "covered" : true,
         "naive" : 0.008160188512944838,
@@ -313,7 +313,7 @@
         },
         "true" : 0.01394247495352707
       },
-      "trueBreaches" : [ "four_eyes_violation_rate is 0.6987, above the limit of 0.0000" ],
+      "trueBreaches" : [ "four_eyes_violation_rate would be 69.9% of cases; the limit is 0.0%" ],
       "verdict" : "BLOCKED",
       "verdictHolds" : true
     }, {
@@ -683,7 +683,7 @@
         "ASSUMED" : 0.0
       },
       "proposal" : "raise-four-eyes-limit",
-      "reasons" : [ "hard limit: four_eyes_violation_rate is 0.7110, above the limit of 0.0000" ],
+      "reasons" : [ "hard limit: four_eyes_violation_rate would be 71.1% of cases; the limit is 0.0%" ],
       "score" : {
         "covered" : false,
         "naive" : 0.005832681022331944,
@@ -694,7 +694,7 @@
         },
         "true" : -0.00546079428984147
       },
-      "trueBreaches" : [ "four_eyes_violation_rate is 0.7110, above the limit of 0.0000" ],
+      "trueBreaches" : [ "four_eyes_violation_rate would be 71.1% of cases; the limit is 0.0%" ],
       "verdict" : "BLOCKED",
       "verdictHolds" : true
     }, {
@@ -1064,7 +1064,7 @@
         "ASSUMED" : 0.0
       },
       "proposal" : "raise-four-eyes-limit",
-      "reasons" : [ "hard limit: four_eyes_violation_rate is 0.7217, above the limit of 0.0000" ],
+      "reasons" : [ "hard limit: four_eyes_violation_rate would be 72.2% of cases; the limit is 0.0%" ],
       "score" : {
         "covered" : false,
         "naive" : 0.0053133745621014574,
@@ -1075,7 +1075,7 @@
         },
         "true" : 0.004142395206138313
       },
-      "trueBreaches" : [ "four_eyes_violation_rate is 0.7217, above the limit of 0.0000" ],
+      "trueBreaches" : [ "four_eyes_violation_rate would be 72.2% of cases; the limit is 0.0%" ],
       "verdict" : "BLOCKED",
       "verdictHolds" : true
     }, {
@@ -1445,7 +1445,7 @@
         "ASSUMED" : 0.0
       },
       "proposal" : "raise-four-eyes-limit",
-      "reasons" : [ "hard limit: four_eyes_violation_rate is 0.7200, above the limit of 0.0000" ],
+      "reasons" : [ "hard limit: four_eyes_violation_rate would be 72.0% of cases; the limit is 0.0%" ],
       "score" : {
         "covered" : true,
         "naive" : 0.005187607675960484,
@@ -1456,7 +1456,7 @@
         },
         "true" : 0.008003672018027309
       },
-      "trueBreaches" : [ "four_eyes_violation_rate is 0.7200, above the limit of 0.0000" ],
+      "trueBreaches" : [ "four_eyes_violation_rate would be 72.0% of cases; the limit is 0.0%" ],
       "verdict" : "BLOCKED",
       "verdictHolds" : true
     }, {
@@ -1826,7 +1826,7 @@
         "ASSUMED" : 0.0
       },
       "proposal" : "raise-four-eyes-limit",
-      "reasons" : [ "hard limit: four_eyes_violation_rate is 0.7179, above the limit of 0.0000" ],
+      "reasons" : [ "hard limit: four_eyes_violation_rate would be 71.8% of cases; the limit is 0.0%" ],
       "score" : {
         "covered" : true,
         "naive" : 0.007610176030973612,
@@ -1837,7 +1837,7 @@
         },
         "true" : 0.004756974778971659
       },
-      "trueBreaches" : [ "four_eyes_violation_rate is 0.7179, above the limit of 0.0000" ],
+      "trueBreaches" : [ "four_eyes_violation_rate would be 71.8% of cases; the limit is 0.0%" ],
       "verdict" : "BLOCKED",
       "verdictHolds" : true
     }, {
@@ -2207,7 +2207,7 @@
         "ASSUMED" : 0.0
       },
       "proposal" : "raise-four-eyes-limit",
-      "reasons" : [ "hard limit: four_eyes_violation_rate is 0.7399, above the limit of 0.0000" ],
+      "reasons" : [ "hard limit: four_eyes_violation_rate would be 74.0% of cases; the limit is 0.0%" ],
       "score" : {
         "covered" : true,
         "naive" : 0.006935726152941053,
@@ -2218,7 +2218,7 @@
         },
         "true" : 0.010154172448701235
       },
-      "trueBreaches" : [ "four_eyes_violation_rate is 0.7399, above the limit of 0.0000" ],
+      "trueBreaches" : [ "four_eyes_violation_rate would be 74.0% of cases; the limit is 0.0%" ],
       "verdict" : "BLOCKED",
       "verdictHolds" : true
     }, {

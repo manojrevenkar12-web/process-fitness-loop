@@ -101,3 +101,21 @@ jobs:
           path: |
             reports/engine-equivalence.json
             reports/verifier-vs-engine.json
+
+  dashboard:
+    name: dashboard builds
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: dashboard
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: dashboard/package-lock.json
+      - run: npm ci
+      - run: npm run lint -- --max-warnings 0
+      - run: npm test
+      - run: npm run build

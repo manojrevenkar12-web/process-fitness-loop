@@ -52,7 +52,9 @@ public final class FitnessFunction {
     for (FitnessConfig.Constraint c : config.constraints()) {
       double value = values.get(Kpi.of(c.kpi()));
       if (value > c.max() + 1e-12) {
-        breaches.add(String.format(Locale.ROOT, "%s is %.4f, above the limit of %.4f", c.kpi(), value, c.max()));
+        breaches.add(c.kpi().endsWith("_rate")
+            ? String.format(Locale.ROOT, "%s would be %.1f%% of cases; the limit is %.1f%%", c.kpi(), 100 * value, 100 * c.max())
+            : String.format(Locale.ROOT, "%s would be %.4f; the limit is %.4f", c.kpi(), value, c.max()));
       }
     }
     return new FitnessScore(score, values, progress, breaches);
