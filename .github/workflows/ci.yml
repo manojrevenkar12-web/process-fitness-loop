@@ -22,6 +22,8 @@ jobs:
           cache: maven
       - name: build and test every module
         run: mvn -B -ntp verify
+      - name: the container image builds
+        run: docker build -q -f deploy/Dockerfile -t pfl:ci .
       - name: test summary
         if: always()
         run: |

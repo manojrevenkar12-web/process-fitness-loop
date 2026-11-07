@@ -1,0 +1,27 @@
+# A local engagement: a single-node Camunda 8.10 cluster on H2, the simulated PH/9 hub and the job worker.
+#   mvn -q package -DskipTests && docker compose -f deploy/docker-compose.yml up --build
+services:
+  camunda:
+    image: camunda/camunda:8.10.9
+    ports: ["8080:8080", "26500:26500", "9600:9600"]
+    environment:
+      CAMUNDA_DATA_SECONDARYSTORAGE_TYPE: rdbms
+      CAMUNDA_DATA_SECONDARYSTORAGE_RDBMS_URL: "jdbc:h2:file:/usr/local/camunda/data/h2db"
+      CAMUNDA_DATA_SECONDARYSTORAGE_RDBMS_USERNAME: sa
+      CAMUNDA_DATA_SECONDARYSTORAGE_RDBMS_PASSWORD: ""
+      CAMUNDA_SECURITY_AUTHENTICATION_UNPROTECTEDAPI: "true"
+      CAMUNDA_SECURITY_AUTHORIZATIONS_ENABLED: "false"
+    volumes: ["camunda-data:/usr/local/camunda/data"]
+
+  hub:
+    build: { context: .., dockerfile: deploy/Dockerfile }
+    command: ["hub-sim", "8091"]
+    ports: ["8091:8091"]
+
+  worker:
+    build: { context: .., dockerfile: deploy/Dockerfile }
+    command: ["worker", "http://camunda:8080", "http://hub:8091/ph9/gateway"]
+    depends_on: [camunda, hub]
+
+volumes:
+  camunda-data:

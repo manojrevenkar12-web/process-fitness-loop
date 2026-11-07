@@ -1,5 +1,9 @@
 {
   "backtest-dev" : {
+    "approvable" : {
+      "covered" : 12,
+      "total" : 12
+    },
     "summary" : {
       "add-analyst" : {
         "intervalCoverage" : 1.0,
@@ -60,6 +64,87 @@
       }
     },
     "worlds" : [ 1, 2, 3, 4, 5, 6 ]
+  },
+  "backtest-heldout" : {
+    "approvable" : {
+      "covered" : 19,
+      "total" : 20
+    },
+    "summary" : {
+      "add-analyst" : {
+        "intervalCoverage" : 1.0,
+        "scoreErrorNaive" : 0.13011898167018068,
+        "scoreErrorOurs" : 0.006287965470055348,
+        "verdictHolds" : 10,
+        "verdicts" : {
+          "IMPROVES" : 10
+        },
+        "worlds" : 10
+      },
+      "agent-intake" : {
+        "intervalCoverage" : 0.7,
+        "scoreErrorNaive" : 0.13093228090340808,
+        "scoreErrorOurs" : 0.06377978734193922,
+        "verdictHolds" : 10,
+        "verdicts" : {
+          "NEEDS_SHADOW_RUN" : 10
+        },
+        "worlds" : 10
+      },
+      "hub-connector" : {
+        "intervalCoverage" : 0.9,
+        "scoreErrorNaive" : 0.1444385873176774,
+        "scoreErrorOurs" : 0.010191098391842793,
+        "verdictHolds" : 10,
+        "verdicts" : {
+          "IMPROVES" : 10
+        },
+        "worlds" : 10
+      },
+      "overall" : {
+        "intervalCoverage" : 0.78,
+        "scoreErrorNaive" : 0.165144562356913,
+        "scoreErrorOurs" : 0.028848160364128593,
+        "verdicts" : 50,
+        "verdictsThatHold" : 50
+      },
+      "raise-four-eyes-limit" : {
+        "intervalCoverage" : 0.4,
+        "scoreErrorNaive" : 0.010749774599671285,
+        "scoreErrorOurs" : 0.014236266175596715,
+        "verdictHolds" : 10,
+        "verdicts" : {
+          "BLOCKED" : 10
+        },
+        "worlds" : 10
+      },
+      "re-engineered" : {
+        "intervalCoverage" : 0.9,
+        "scoreErrorNaive" : 0.40948318729362754,
+        "scoreErrorOurs" : 0.0497456844412089,
+        "verdictHolds" : 10,
+        "verdicts" : {
+          "NEEDS_SHADOW_RUN" : 10
+        },
+        "worlds" : 10
+      }
+    },
+    "worlds" : [ 1009, 1013, 1019, 1021, 1031, 1033, 1039, 1049, 1051, 1061 ]
+  },
+  "engine-equivalence" : {
+    "camundaVersion" : "8.10.9",
+    "cases" : 32,
+    "hubCalls" : 96,
+    "hubFaults" : {
+      "lostAnswer" : 0.25,
+      "overload" : 0.1,
+      "sessionCalls" : 20
+    },
+    "mismatches" : [ ],
+    "recallCases" : 8,
+    "recalledTwice" : 0,
+    "recallsOnHub" : 8,
+    "samePath" : 32
   },
   "exampleWorld" : {
     "cases" : 3808,
@@ -468,5 +553,945 @@
     },
     "recallsPerRun" : 2000,
     "seeds" : [ 11, 12, 13, 14, 15 ]
+  },
+  "verifier-vs-engine" : {
+    "camundaVersion" : "8.10.9",
+    "dev" : {
+      "agree" : 64,
+      "engineRefused" : 30,
+      "mutants" : 64,
+      "rows" : [ {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: classify_inquiry\\n    - ERROR: Must have exa",
+        "mutant" : "drop-job-type:classify_inquiry",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: request_info\\n    - ERROR: Must have exactly",
+        "mutant" : "drop-job-type:request_info",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: hub_lookup\\n    - ERROR: Must have exactly o",
+        "mutant" : "drop-job-type:hub_lookup",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: send_recall\\n    - ERROR: Must have exactly ",
+        "mutant" : "drop-job-type:send_recall",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: gpi_trace\\n    - ERROR: Must have exactly on",
+        "mutant" : "drop-job-type:gpi_trace",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: notify_customer\\n    - ERROR: Must have exac",
+        "mutant" : "drop-job-type:notify_customer",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "condition-outside-gateway:f_classified",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "drop-condition:f_complete",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: f_complete > conditionExpression\\n    - ERRO",
+        "mutant" : "broken-feel:f_complete",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: f_complete > conditionExpression\\n    - ERRO",
+        "mutant" : "condition-without-equals:f_complete",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: f_complete > conditionExpression\\n    - ERRO",
+        "mutant" : "unbalanced-paren:f_complete",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "condition-outside-gateway:f_requested",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "condition-outside-gateway:f_found",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "drop-condition:f_recall",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: f_recall > conditionExpression\\n    - ERROR:",
+        "mutant" : "broken-feel:f_recall",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: f_recall > conditionExpression\\n    - ERROR:",
+        "mutant" : "condition-without-equals:f_recall",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: f_recall > conditionExpression\\n    - ERROR:",
+        "mutant" : "unbalanced-paren:f_recall",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "drop-condition:f_non_receipt",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: f_non_receipt > conditionExpression\\n    - E",
+        "mutant" : "broken-feel:f_non_receipt",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: f_non_receipt > conditionExpression\\n    - E",
+        "mutant" : "condition-without-equals:f_non_receipt",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: f_non_receipt > conditionExpression\\n    - E",
+        "mutant" : "unbalanced-paren:f_non_receipt",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "drop-condition:f_large",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: f_large > conditionExpression\\n    - ERROR: ",
+        "mutant" : "broken-feel:f_large",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: f_large > conditionExpression\\n    - ERROR: ",
+        "mutant" : "condition-without-equals:f_large",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: f_large > conditionExpression\\n    - ERROR: ",
+        "mutant" : "unbalanced-paren:f_large",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "condition-outside-gateway:f_sent",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "condition-outside-gateway:f_traced",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "drop-condition:f_credited",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: f_credited > conditionExpression\\n    - ERRO",
+        "mutant" : "broken-feel:f_credited",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: f_credited > conditionExpression\\n    - ERRO",
+        "mutant" : "condition-without-equals:f_credited",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: f_credited > conditionExpression\\n    - ERRO",
+        "mutant" : "unbalanced-paren:f_credited",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "condition-outside-gateway:f_notified",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "merge-becomes-parallel-join:gw_intake_merge",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: gw_complete\\n    - ERROR: Default flow must ",
+        "mutant" : "default-not-outgoing:gw_complete",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "condition-on-default:gw_complete",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "drop-default:gw_complete",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "split-becomes-parallel:gw_complete",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "merge-becomes-parallel-join:gw_found_merge",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: gw_type\\n    - ERROR: Default flow must star",
+        "mutant" : "default-not-outgoing:gw_type",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "condition-on-default:gw_type",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "drop-default:gw_type",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "split-becomes-parallel:gw_type",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: gw_amount\\n    - ERROR: Default flow must st",
+        "mutant" : "default-not-outgoing:gw_amount",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "condition-on-default:gw_amount",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "drop-default:gw_amount",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "split-becomes-parallel:gw_amount",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "merge-becomes-parallel-join:gw_approved_merge",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: gw_gpi\\n    - ERROR: Default flow must start",
+        "mutant" : "default-not-outgoing:gw_gpi",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "condition-on-default:gw_gpi",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "drop-default:gw_gpi",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "split-becomes-parallel:gw_gpi",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "merge-becomes-parallel-join:gw_notify_merge",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "merge-becomes-parallel-join:gw_done_merge",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: msg_sender_reply\\n    - ERROR: Must have exa",
+        "mutant" : "drop-correlation-key:msg_sender_reply",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: not_found\\n    - ERROR: Must be attached to ",
+        "mutant" : "boundary-detached:not_found",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "error-ref-missing:not_found",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "start-has-incoming:inquiry_received",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "end-has-outgoing:resolved",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': Error: URI=null Line=134: cvc-id.1: There is no ID/IDRE",
+        "mutant" : "dangling-flow:f_start",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': Error: URI=null Line=133: cvc-id.2: There are multiple ",
+        "mutant" : "duplicate-id:f_start",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: wait_a_little\\n    - ERROR: Invalid timer du",
+        "mutant" : "intermediate-timer-bad-duration:wait",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "intermediate-timer-ok:wait",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "rename-everything:names",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "payment-investigation-to-be.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "add-documentation:process",
+        "verifierSaysDeploys" : true
+      } ],
+      "verifierPredictedRefused" : 30
+    },
+    "heldout" : {
+      "agree" : 87,
+      "engineRefused" : 41,
+      "mutants" : 87,
+      "rows" : [ {
+        "base" : "hub-connector.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: hub_lookup\\n    - ERROR: Must have exactly o",
+        "mutant" : "drop-job-type:hub_lookup",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "hub-connector.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "drop-condition:f_complete",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "hub-connector.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: f_complete > conditionExpression\\n    - ERRO",
+        "mutant" : "broken-feel:f_complete",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "hub-connector.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: f_complete > conditionExpression\\n    - ERRO",
+        "mutant" : "condition-without-equals:f_complete",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "hub-connector.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: f_complete > conditionExpression\\n    - ERRO",
+        "mutant" : "unbalanced-paren:f_complete",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "hub-connector.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "condition-outside-gateway:f_looked_up",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "hub-connector.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "drop-condition:f_recall",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "hub-connector.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: f_recall > conditionExpression\\n    - ERROR:",
+        "mutant" : "broken-feel:f_recall",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "hub-connector.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: f_recall > conditionExpression\\n    - ERROR:",
+        "mutant" : "condition-without-equals:f_recall",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "hub-connector.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: f_recall > conditionExpression\\n    - ERROR:",
+        "mutant" : "unbalanced-paren:f_recall",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "hub-connector.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "drop-condition:f_non_receipt",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "hub-connector.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: f_non_receipt > conditionExpression\\n    - E",
+        "mutant" : "broken-feel:f_non_receipt",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "hub-connector.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: f_non_receipt > conditionExpression\\n    - E",
+        "mutant" : "condition-without-equals:f_non_receipt",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "hub-connector.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: f_non_receipt > conditionExpression\\n    - E",
+        "mutant" : "unbalanced-paren:f_non_receipt",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "hub-connector.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "drop-condition:f_large",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "hub-connector.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: f_large > conditionExpression\\n    - ERROR: ",
+        "mutant" : "broken-feel:f_large",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "hub-connector.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: f_large > conditionExpression\\n    - ERROR: ",
+        "mutant" : "condition-without-equals:f_large",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "hub-connector.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: f_large > conditionExpression\\n    - ERROR: ",
+        "mutant" : "unbalanced-paren:f_large",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "hub-connector.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "merge-becomes-parallel-join:gw_register_merge",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "hub-connector.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: gw_complete\\n    - ERROR: Default flow must ",
+        "mutant" : "default-not-outgoing:gw_complete",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "hub-connector.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "condition-on-default:gw_complete",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "hub-connector.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "drop-default:gw_complete",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "hub-connector.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "split-becomes-parallel:gw_complete",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "hub-connector.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "merge-becomes-parallel-join:gw_found_merge",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "hub-connector.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: gw_type\\n    - ERROR: Default flow must star",
+        "mutant" : "default-not-outgoing:gw_type",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "hub-connector.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "condition-on-default:gw_type",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "hub-connector.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "drop-default:gw_type",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "hub-connector.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "split-becomes-parallel:gw_type",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "hub-connector.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: gw_amount\\n    - ERROR: Default flow must st",
+        "mutant" : "default-not-outgoing:gw_amount",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "hub-connector.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "condition-on-default:gw_amount",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "hub-connector.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "drop-default:gw_amount",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "hub-connector.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "split-becomes-parallel:gw_amount",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "hub-connector.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "merge-becomes-parallel-join:gw_approved_merge",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "hub-connector.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "merge-becomes-parallel-join:gw_done_merge",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "hub-connector.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: msg_sender_reply\\n    - ERROR: Must have exa",
+        "mutant" : "drop-correlation-key:msg_sender_reply",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "hub-connector.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: not_found\\n    - ERROR: Must be attached to ",
+        "mutant" : "boundary-detached:not_found",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "hub-connector.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "error-ref-missing:not_found",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "hub-connector.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "start-has-incoming:inquiry_received",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "hub-connector.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "end-has-outgoing:resolved",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "hub-connector.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': Error: URI=null Line=133: cvc-id.1: There is no ID/IDRE",
+        "mutant" : "dangling-flow:f_start",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "hub-connector.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': Error: URI=null Line=132: cvc-id.2: There are multiple ",
+        "mutant" : "duplicate-id:f_start",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "hub-connector.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: wait_a_little\\n    - ERROR: Invalid timer du",
+        "mutant" : "intermediate-timer-bad-duration:wait",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "hub-connector.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "intermediate-timer-ok:wait",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "hub-connector.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "rename-everything:names",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "hub-connector.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "add-documentation:process",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "agent-intake.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: classify_inquiry\\n    - ERROR: Must have exa",
+        "mutant" : "drop-job-type:classify_inquiry",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "agent-intake.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "condition-outside-gateway:f_registered",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "agent-intake.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "drop-condition:f_complete",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "agent-intake.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: f_complete > conditionExpression\\n    - ERRO",
+        "mutant" : "broken-feel:f_complete",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "agent-intake.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: f_complete > conditionExpression\\n    - ERRO",
+        "mutant" : "condition-without-equals:f_complete",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "agent-intake.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: f_complete > conditionExpression\\n    - ERRO",
+        "mutant" : "unbalanced-paren:f_complete",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "agent-intake.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "drop-condition:f_recall",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "agent-intake.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: f_recall > conditionExpression\\n    - ERROR:",
+        "mutant" : "broken-feel:f_recall",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "agent-intake.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: f_recall > conditionExpression\\n    - ERROR:",
+        "mutant" : "condition-without-equals:f_recall",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "agent-intake.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: f_recall > conditionExpression\\n    - ERROR:",
+        "mutant" : "unbalanced-paren:f_recall",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "agent-intake.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "drop-condition:f_non_receipt",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "agent-intake.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: f_non_receipt > conditionExpression\\n    - E",
+        "mutant" : "broken-feel:f_non_receipt",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "agent-intake.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: f_non_receipt > conditionExpression\\n    - E",
+        "mutant" : "condition-without-equals:f_non_receipt",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "agent-intake.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: f_non_receipt > conditionExpression\\n    - E",
+        "mutant" : "unbalanced-paren:f_non_receipt",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "agent-intake.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "drop-condition:f_large",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "agent-intake.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: f_large > conditionExpression\\n    - ERROR: ",
+        "mutant" : "broken-feel:f_large",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "agent-intake.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: f_large > conditionExpression\\n    - ERROR: ",
+        "mutant" : "condition-without-equals:f_large",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "agent-intake.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: f_large > conditionExpression\\n    - ERROR: ",
+        "mutant" : "unbalanced-paren:f_large",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "agent-intake.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "merge-becomes-parallel-join:gw_register_merge",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "agent-intake.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: gw_complete\\n    - ERROR: Default flow must ",
+        "mutant" : "default-not-outgoing:gw_complete",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "agent-intake.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "condition-on-default:gw_complete",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "agent-intake.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "drop-default:gw_complete",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "agent-intake.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "split-becomes-parallel:gw_complete",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "agent-intake.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: gw_type\\n    - ERROR: Default flow must star",
+        "mutant" : "default-not-outgoing:gw_type",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "agent-intake.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "condition-on-default:gw_type",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "agent-intake.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "drop-default:gw_type",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "agent-intake.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "split-becomes-parallel:gw_type",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "agent-intake.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: gw_amount\\n    - ERROR: Default flow must st",
+        "mutant" : "default-not-outgoing:gw_amount",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "agent-intake.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "condition-on-default:gw_amount",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "agent-intake.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "drop-default:gw_amount",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "agent-intake.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "split-becomes-parallel:gw_amount",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "agent-intake.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "merge-becomes-parallel-join:gw_approved_merge",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "agent-intake.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "merge-becomes-parallel-join:gw_done_merge",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "agent-intake.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: msg_sender_reply\\n    - ERROR: Must have exa",
+        "mutant" : "drop-correlation-key:msg_sender_reply",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "agent-intake.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "start-has-incoming:inquiry_received",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "agent-intake.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "end-has-outgoing:resolved",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "agent-intake.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': Error: URI=null Line=120: cvc-id.1: There is no ID/IDRE",
+        "mutant" : "dangling-flow:f_start",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "agent-intake.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': Error: URI=null Line=119: cvc-id.2: There are multiple ",
+        "mutant" : "duplicate-id:f_start",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "agent-intake.bpmn",
+        "engineDeployed" : false,
+        "engineMessage" : "POST /v2/deployments -> 400: {\"type\":\"about:blank\",\"title\":\"INVALID_ARGUMENT\",\"status\":400,\"detail\":\"Command 'CREATE' rejected with code 'INVALID_ARGUMENT': Expected to deploy new resources, but encountered the following errors:\\n'mutant.bpmn': - Element: wait_a_little\\n    - ERROR: Invalid timer du",
+        "mutant" : "intermediate-timer-bad-duration:wait",
+        "verifierSaysDeploys" : false
+      }, {
+        "base" : "agent-intake.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "intermediate-timer-ok:wait",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "agent-intake.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "rename-everything:names",
+        "verifierSaysDeploys" : true
+      }, {
+        "base" : "agent-intake.bpmn",
+        "engineDeployed" : true,
+        "engineMessage" : "",
+        "mutant" : "add-documentation:process",
+        "verifierSaysDeploys" : true
+      } ],
+      "verifierPredictedRefused" : 41
+    }
+  },
+  "verifier-vs-engine-first-run" : {
+    "acceptedByEngine" : [ "condition-on-default", "condition-outside-gateway", "drop-condition", "drop-default", "end-has-outgoing", "error-ref-missing", "start-has-incoming" ],
+    "camundaVersion" : "8.10.9",
+    "dev" : {
+      "agree" : 42,
+      "engineRefused" : 30,
+      "mutants" : 64,
+      "verifierPredictedRefused" : 52
+    },
+    "heldout" : {
+      "agree" : 60,
+      "engineRefused" : 41,
+      "mutants" : 87,
+      "verifierPredictedRefused" : 68
+    },
+    "note" : "First run against the engine, before the verifier's rules were re-classified. Every disagreement went one way: the verifier called a file undeployable that the engine accepted. See REPORT.md."
   }
 }

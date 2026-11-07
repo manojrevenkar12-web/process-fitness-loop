@@ -27,6 +27,8 @@ import java.util.stream.Collectors;
  * pfl backtest PROPOSAL_ID                 backtest one proposal of the engagement
  * pfl serve                                the API behind the dashboard
  * pfl report                               gather reports into reports/results.json and the README
+ * pfl hub-sim PORT                         serve a simulated PH/9 hub with demo payments
+ * pfl worker CAMUNDA_URL HUB_URL           work the hub job types against a cluster
  * </pre>
  */
 public final class Main {
@@ -60,6 +62,28 @@ public final class Main {
         Thread.currentThread().join();
       }
       case "report" -> ResultsReport.write(root);
+      case "hub-sim" -> {
+        io.github.mkp.pfl.hub.LegacyHub hub = new io.github.mkp.pfl.hub.LegacyHub(
+            new io.github.mkp.pfl.hub.LegacyHub.Faults(0.05, 0.05, 50), 1);
+        for (var c : io.github.mkp.pfl.service.scenario.Scenario.cases()) {
+          hub.add(new io.github.mkp.pfl.hub.Payment((String) c.get("scenarioCorrectUetr"), "PH" + ((String) c.get("caseId")).substring(4),
+              new java.math.BigDecimal(c.get("amount").toString()).setScale(2), "EUR", java.time.LocalDate.of(2026, 7, 1), "ST"));
+        }
+        var server = new io.github.mkp.pfl.hub.HubHttpServer(hub, Integer.parseInt(args[1]), java.time.Duration.ofSeconds(3));
+        System.out.println("PH/9 hub simulator on http://127.0.0.1:" + server.port() + "/ph9/gateway");
+        Thread.currentThread().join();
+      }
+      case "worker" -> {
+        var camunda = new io.github.mkp.pfl.camunda.CamundaClient(java.net.URI.create(args[1]), null, null);
+        var hub = new io.github.mkp.pfl.hub.LegacyHubClient(new io.github.mkp.pfl.hub.HttpHubTransport(java.net.URI.create(args[2]),
+            java.time.Duration.ofSeconds(2)), "PFLWORKER", 5, java.time.Duration.ofMillis(200));
+        var worker = new io.github.mkp.pfl.worker.JobWorker(camunda, "pfl-worker",
+            io.github.mkp.pfl.service.scenario.ScenarioWorkers.handlers(camunda, hub), java.time.Duration.ofSeconds(60)).start();
+        System.out.println("working " + String.join(", ", java.util.List.of("pfl.legacy-hub.lookup", "pfl.legacy-hub.recall",
+            "pfl.intake-agent", "pfl.gpi.track", "pfl.notify", "pfl.request-info")) + " jobs; Ctrl-C to stop");
+        Runtime.getRuntime().addShutdownHook(new Thread(worker::close));
+        Thread.currentThread().join();
+      }
       default -> usage();
     }
   }
@@ -90,6 +114,6 @@ public final class Main {
   }
 
   private static void usage() {
-    System.out.println("usage: pfl verify|explain|conformance|backtest|serve|report ...");
+    System.out.println("usage: pfl verify|explain|conformance|backtest|serve|report|hub-sim|worker ...");
   }
 }

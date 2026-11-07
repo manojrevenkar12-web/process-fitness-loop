@@ -33,6 +33,7 @@ public final class ResultsReport {
         Map<String, Object> b = new LinkedHashMap<>();
         b.put("worlds", r.get("worlds"));
         b.put("summary", r.get("summary"));
+        b.put("approvable", approvable(r));
         results.put(name, b);
       }
     }
@@ -41,7 +42,7 @@ public final class ResultsReport {
       List<Map<String, Object>> worlds = list(dev.get("perWorld"));
       results.put("exampleWorld", worlds.get(0));
     }
-    for (String name : List.of("hub-reliability", "engine-equivalence", "verifier-vs-engine")) {
+    for (String name : List.of("hub-reliability", "engine-equivalence", "verifier-vs-engine", "verifier-vs-engine-first-run")) {
       Map<String, Object> r = read(reports.resolve(name + ".json"));
       if (r != null) {
         results.put(name, r);
@@ -76,6 +77,9 @@ public final class ResultsReport {
           label, num(overall.get("scoreErrorOurs")), num(overall.get("scoreErrorNaive")), set, worlds));
       md.append(String.format(Locale.ROOT, "| 90%% interval contains the true change, %s worlds | **%.0f%%** of proposals | `reports/%s.json` |%n",
           label, 100 * num(overall.get("intervalCoverage")), set));
+      Map<String, Object> approvable = (Map<String, Object>) b.get("approvable");
+      md.append(String.format(Locale.ROOT, "| ... for the changes the gate lets a reviewer approve | **%d of %d** | `reports/%s.json` |%n",
+          ((Number) approvable.get("covered")).intValue(), ((Number) approvable.get("total")).intValue(), set));
       md.append(String.format(Locale.ROOT, "| Verdicts that hold against the truth, %s worlds | **%d of %d** | `reports/%s.json` |%n",
           label, ((Number) overall.get("verdictsThatHold")).intValue(), ((Number) overall.get("verdicts")).intValue(), set));
     }
@@ -94,6 +98,7 @@ public final class ResultsReport {
           eq.get("camundaVersion"), ((Number) eq.get("samePath")).intValue(), ((Number) eq.get("cases")).intValue()));
     }
     Map<String, Object> ve = (Map<String, Object>) results.get("verifier-vs-engine");
+    Map<String, Object> first = (Map<String, Object>) results.get("verifier-vs-engine-first-run");
     if (ve != null) {
       for (String set : List.of("heldout", "dev")) {
         Map<String, Object> s = (Map<String, Object>) ve.get(set);
@@ -102,8 +107,34 @@ public final class ResultsReport {
               set.equals("heldout") ? "held-out" : "dev", ((Number) s.get("agree")).intValue(), ((Number) s.get("mutants")).intValue()));
         }
       }
+      if (first != null) {
+        Map<String, Object> h = (Map<String, Object>) first.get("heldout");
+        md.append(String.format(Locale.ROOT, "| ... on the first engine run, before six rules were reclassified | %d of %d held-out | `reports/verifier-vs-engine-first-run.json` |%n",
+            ((Number) h.get("agree")).intValue(), ((Number) h.get("mutants")).intValue()));
+      }
     }
     return md.toString();
+  }
+
+  /** Interval coverage over the projections the gate would let a reviewer approve. */
+  @SuppressWarnings("unchecked")
+  static Map<String, Object> approvable(Map<String, Object> report) {
+    int covered = 0;
+    int total = 0;
+    for (Map<String, Object> world : list(report.get("perWorld"))) {
+      for (Map<String, Object> p : list(world.get("proposals"))) {
+        if ("IMPROVES".equals(p.get("verdict"))) {
+          total++;
+          if (Boolean.TRUE.equals(((Map<String, Object>) p.get("score")).get("covered"))) {
+            covered++;
+          }
+        }
+      }
+    }
+    Map<String, Object> out = new LinkedHashMap<>();
+    out.put("covered", covered);
+    out.put("total", total);
+    return out;
   }
 
   private static double num(Object o) {

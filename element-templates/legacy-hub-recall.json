@@ -1,0 +1,17 @@
+{
+  "$schema": "https://unpkg.com/@camunda/zeebe-element-templates-json-schema/resources/schema.json",
+  "name": "Legacy hub: send recall",
+  "id": "io.github.mkp.pfl.legacy-hub.recall",
+  "version": 1,
+  "description": "Sends a camt.056 recall through the PH/9 hub exactly once, even when the hub times out after accepting it. Throws PAYMENT_NOT_FOUND or RECALL_REJECTED.",
+  "appliesTo": ["bpmn:Task"],
+  "elementType": { "value": "bpmn:ServiceTask" },
+  "groups": [{ "id": "input", "label": "Input" }],
+  "properties": [
+    { "type": "Hidden", "value": "pfl.legacy-hub.recall", "binding": { "type": "zeebe:taskDefinition", "property": "type" } },
+    { "type": "Hidden", "value": "5", "binding": { "type": "zeebe:taskDefinition", "property": "retries" } },
+    { "label": "UETR", "group": "input", "type": "String", "feel": "required", "value": "=uetr", "binding": { "type": "zeebe:input", "name": "uetr" }, "constraints": { "notEmpty": true } },
+    { "label": "Amount", "group": "input", "type": "String", "feel": "required", "value": "=amount", "binding": { "type": "zeebe:input", "name": "amount" }, "constraints": { "notEmpty": true } },
+    { "label": "Currency", "group": "input", "type": "String", "feel": "required", "value": "=currency", "binding": { "type": "zeebe:input", "name": "currency" }, "constraints": { "notEmpty": true } }
+  ]
+}

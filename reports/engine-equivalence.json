@@ -1,0 +1,15 @@
+{
+  "camundaVersion": "8.10.9",
+  "cases": 32,
+  "hubCalls": 96,
+  "hubFaults": {
+    "lostAnswer": 0.25,
+    "overload": 0.1,
+    "sessionCalls": 20
+  },
+  "mismatches": [],
+  "recallCases": 8,
+  "recalledTwice": 0,
+  "recallsOnHub": 8,
+  "samePath": 32
+}

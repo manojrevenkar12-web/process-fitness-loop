@@ -1,0 +1,24 @@
+{
+  "$schema": "https://unpkg.com/@camunda/zeebe-element-templates-json-schema/resources/schema.json",
+  "name": "Legacy hub: look up payment",
+  "id": "io.github.mkp.pfl.legacy-hub.lookup",
+  "version": 1,
+  "description": "Finds a payment in the PH/9 payments hub by UETR. Throws PAYMENT_NOT_FOUND when the hub does not know it.",
+  "appliesTo": ["bpmn:Task"],
+  "elementType": { "value": "bpmn:ServiceTask" },
+  "groups": [{ "id": "input", "label": "Input" }, { "id": "output", "label": "Output" }],
+  "properties": [
+    { "type": "Hidden", "value": "pfl.legacy-hub.lookup", "binding": { "type": "zeebe:taskDefinition", "property": "type" } },
+    { "type": "Hidden", "value": "5", "binding": { "type": "zeebe:taskDefinition", "property": "retries" } },
+    {
+      "label": "UETR", "group": "input", "type": "String", "feel": "required", "value": "=uetr",
+      "binding": { "type": "zeebe:input", "name": "uetr" },
+      "constraints": { "notEmpty": true }
+    },
+    {
+      "label": "Status variable", "group": "output", "type": "String", "value": "hubStatus",
+      "description": "Receives ST (settled), PD (pending), RJ (rejected) or RT (returned).",
+      "binding": { "type": "zeebe:property", "name": "pfl:outputs" }
+    }
+  ]
+}

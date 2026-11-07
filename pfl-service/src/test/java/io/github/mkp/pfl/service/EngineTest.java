@@ -198,6 +198,11 @@ class EngineTest {
     @SuppressWarnings("unchecked")
     Map<String, Object> dev = (Map<String, Object>) report.get("dev");
     assertTrue(((Number) dev.get("mutants")).intValue() > 40);
+    for (String set : List.of("dev", "heldout")) {
+      @SuppressWarnings("unchecked")
+      Map<String, Object> s = (Map<String, Object>) report.get(set);
+      assertEquals(s.get("mutants"), s.get("agree"), set + ": the verifier and the engine disagree on a mutant");
+    }
   }
 
   private static Map<String, Object> corpus(List<String> bases) throws Exception {
